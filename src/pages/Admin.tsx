@@ -143,7 +143,7 @@ const Admin = () => {
         <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" />
         </button>
-        <Shield className="h-4 w-4 text-primary" />
+        <img src="/favicon.png" alt="Ticket Crusader" className="h-4 w-4" />
         <span className="font-display text-sm font-bold text-foreground">Promo Code Admin</span>
       </header>
 
