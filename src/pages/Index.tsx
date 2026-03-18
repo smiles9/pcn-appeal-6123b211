@@ -1,34 +1,42 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import HeroSection from "@/components/HeroSection";
 import AnalysisProgress from "@/components/AnalysisProgress";
 import DiagnosisCard from "@/components/DiagnosisCard";
 import MockCheckout from "@/components/MockCheckout";
 import AppealLetter from "@/components/AppealLetter";
 import { useSubmission } from "@/hooks/useSubmission";
+import type { PcnAnalysis } from "@/hooks/useSubmission";
 
-type Stage = "upload" | "analyzing" | "diagnosis" | "unlocked";
+type Stage = "upload" | "analyzing" | "diagnosis" | "generating" | "unlocked";
 
 const Index = () => {
   const [stage, setStage] = useState<Stage>("upload");
   const [checkoutOpen, setCheckoutOpen] = useState(false);
-  const { letterText, createSubmission, markDiagnosed, markPaidAndGenerateLetter } = useSubmission();
+  const { analysis, letterText, loading, analyzeImage, generateLetter } = useSubmission();
+  const fileRef = useRef<File | null>(null);
 
-  const handleFileSelected = useCallback(async (_file: File) => {
+  const handleFileSelected = useCallback(async (file: File) => {
+    fileRef.current = file;
     setStage("analyzing");
-    await createSubmission();
-  }, [createSubmission]);
-
-  const handleAnalysisComplete = useCallback(async () => {
-    await markDiagnosed();
-    setStage("diagnosis");
-  }, [markDiagnosed]);
+    const result = await analyzeImage(file);
+    if (result) {
+      setStage("diagnosis");
+    } else {
+      setStage("upload");
+    }
+  }, [analyzeImage]);
 
   const handleUnlock = () => setCheckoutOpen(true);
 
   const handlePaymentSuccess = async () => {
     setCheckoutOpen(false);
-    await markPaidAndGenerateLetter();
-    setStage("unlocked");
+    setStage("generating");
+    const letter = await generateLetter();
+    if (letter) {
+      setStage("unlocked");
+    } else {
+      setStage("diagnosis");
+    }
   };
 
   return (
@@ -40,8 +48,11 @@ const Index = () => {
       </header>
 
       {stage === "upload" && <HeroSection onFileSelected={handleFileSelected} />}
-      {stage === "analyzing" && <AnalysisProgress onComplete={handleAnalysisComplete} />}
-      {stage === "diagnosis" && <DiagnosisCard onUnlock={handleUnlock} />}
+      {stage === "analyzing" && <AnalysisProgress />}
+      {stage === "diagnosis" && analysis && (
+        <DiagnosisCard analysis={analysis} onUnlock={handleUnlock} />
+      )}
+      {stage === "generating" && <AnalysisProgress generating />}
       {stage === "unlocked" && <AppealLetter letterText={letterText} />}
 
       <MockCheckout

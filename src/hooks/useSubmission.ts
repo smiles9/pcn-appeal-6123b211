@@ -1,30 +1,28 @@
 import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
+import { toast } from "sonner";
 
-const ISSUES = [
-  { text: "Invalid Signage Location — Sign positioned >2m from bay, violating TSR 2016 §8.3", severity: "high" },
-  { text: "Incorrect Date Format — PCN date format non-compliant with TMA 2004 Schedule 1", severity: "medium" },
-  { text: "10-Minute Grace Period Violation — Enforcement within statutory grace window", severity: "high" },
-];
+export interface PcnIssue {
+  title: string;
+  description: string;
+  legal_reference: string;
+  severity: "high" | "medium" | "low";
+}
 
-const LETTER_TEXT = `Dear Sir/Madam,
-
-I am writing to formally appeal Penalty Charge Notice PCN-2024-AX7291 issued on 14 March 2026 at High Street, London Borough of Camden. Having conducted a thorough review of the circumstances and applicable legislation, I have identified several procedural and evidential deficiencies which render this PCN unenforceable under the Traffic Management Act 2004.
-
-GROUND 1: INVALID SIGNAGE LOCATION
-The traffic sign at the enforcement location is positioned approximately 3.2 metres from the nearest parking bay. This exceeds the maximum distance permitted under The Traffic Signs Regulations and General Directions 2016 (TSRGD), Schedule 12, Part 5, regulation 8.3, which stipulates that regulatory signs must be placed within 2 metres of the relevant restriction. I have photographic evidence confirming this measurement.
-
-GROUND 2: INCORRECT DATE FORMAT
-The PCN displays the date in a format that is non-compliant with the requirements set out in the Traffic Management Act 2004, Schedule 1, Paragraph 2(4). The date should be expressed in the format DD/MM/YYYY. The failure to adhere to this prescribed format constitutes a procedural irregularity.
-
-GROUND 3: GRACE PERIOD VIOLATION
-Under the Deregulation Act 2015, Section 71, a mandatory 10-minute observation period is required before a PCN may be issued to a stationary vehicle. CCTV evidence and the CEO's notes indicate that enforcement action was taken within 7 minutes of the alleged contravention commencing. This is a direct breach of the statutory grace period.
-
-I respectfully request that this PCN be cancelled on the grounds stated above. Should you wish to discuss this matter further, I am available at the contact details provided.
-
-Yours faithfully,
-[Your Name]
-[Your Address]`;
+export interface PcnAnalysis {
+  pcn_type: "council" | "private" | "unknown";
+  pcn_details?: {
+    pcn_number?: string;
+    date_issued?: string;
+    location?: string;
+    contravention_code?: string;
+    issuing_authority?: string;
+    amount?: string;
+  };
+  success_probability: number;
+  issues: PcnIssue[];
+  summary: string;
+}
 
 function getSessionId(): string {
   let id = localStorage.getItem("ptc_session_id");
@@ -35,76 +33,128 @@ function getSessionId(): string {
   return id;
 }
 
+async function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 export function useSubmission() {
   const [submissionId, setSubmissionId] = useState<string | null>(null);
+  const [analysis, setAnalysis] = useState<PcnAnalysis | null>(null);
   const [letterText, setLetterText] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const createSubmission = async () => {
+  const analyzeImage = async (file: File, userDescription?: string) => {
     setLoading(true);
-    const sessionId = getSessionId();
-    const { data, error } = await supabase
-      .from("submissions")
-      .insert({
-        session_id: sessionId,
-        success_probability: 85,
-        issues: ISSUES as any,
-        status: "analyzing",
-      })
-      .select("id")
-      .single();
+    setError(null);
 
-    if (error) {
-      console.error("Failed to create submission:", error);
+    try {
+      // Convert image to base64
+      const imageBase64 = await fileToBase64(file);
+
+      // Call AI analysis edge function
+      const { data: analysisData, error: fnError } = await supabase.functions.invoke("analyze-pcn", {
+        body: { imageBase64, userDescription },
+      });
+
+      if (fnError) {
+        throw new Error(fnError.message || "Analysis failed");
+      }
+
+      if (analysisData.error) {
+        throw new Error(analysisData.error);
+      }
+
+      const result = analysisData as PcnAnalysis;
+      setAnalysis(result);
+
+      // Save to database
+      const sessionId = getSessionId();
+      const { data: submission, error: dbError } = await supabase
+        .from("submissions")
+        .insert({
+          session_id: sessionId,
+          success_probability: result.success_probability,
+          issues: result.issues as any,
+          status: "diagnosed",
+        })
+        .select("id")
+        .single();
+
+      if (dbError) {
+        console.error("Failed to save submission:", dbError);
+      } else {
+        setSubmissionId(submission.id);
+      }
+
+      setLoading(false);
+      return result;
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Analysis failed";
+      setError(msg);
+      toast.error(msg);
       setLoading(false);
       return null;
     }
-    setSubmissionId(data.id);
-    setLoading(false);
-    return data.id;
   };
 
-  const markDiagnosed = async () => {
-    if (!submissionId) return;
-    await supabase
-      .from("submissions")
-      .update({ status: "diagnosed" })
-      .eq("id", submissionId);
-  };
+  const generateLetter = async (userDescription?: string) => {
+    if (!analysis || !submissionId) return null;
+    setLoading(true);
+    setError(null);
 
-  const markPaidAndGenerateLetter = async () => {
-    if (!submissionId) return;
+    try {
+      // Update submission status
+      await supabase
+        .from("submissions")
+        .update({ status: "paid" })
+        .eq("id", submissionId);
 
-    // Update submission status
-    await supabase
-      .from("submissions")
-      .update({ status: "paid" })
-      .eq("id", submissionId);
+      // Call AI letter generation
+      const { data: letterData, error: fnError } = await supabase.functions.invoke("generate-appeal", {
+        body: { analysis, userDescription },
+      });
 
-    // Insert appeal letter
-    const { data, error } = await supabase
-      .from("appeal_letters")
-      .insert({
+      if (fnError) {
+        throw new Error(fnError.message || "Letter generation failed");
+      }
+
+      if (letterData.error) {
+        throw new Error(letterData.error);
+      }
+
+      const letter = letterData.letter;
+      setLetterText(letter);
+
+      // Save to database
+      await supabase.from("appeal_letters").insert({
         submission_id: submissionId,
-        letter_text: LETTER_TEXT,
-      })
-      .select("letter_text")
-      .single();
+        letter_text: letter,
+      });
 
-    if (error) {
-      console.error("Failed to create appeal letter:", error);
-      return;
+      setLoading(false);
+      return letter;
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Letter generation failed";
+      setError(msg);
+      toast.error(msg);
+      setLoading(false);
+      return null;
     }
-
-    setLetterText(data.letter_text);
   };
 
   return {
     submissionId,
+    analysis,
     letterText,
     loading,
-    createSubmission,
-    markDiagnosed,
-    markPaidAndGenerateLetter,
+    error,
+    analyzeImage,
+    generateLetter,
   };
 }
