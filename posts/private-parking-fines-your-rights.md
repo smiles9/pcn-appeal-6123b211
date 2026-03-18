@@ -3,6 +3,7 @@ title: "Private Parking Fines: Know Your Rights"
 slug: "private-parking-fines-your-rights"
 description: "Understand your legal rights when you receive a private parking fine. Learn about the Protection of Freedoms Act, POPLA appeals, and when you can ignore a ticket."
 date: "2025-05-15"
+lang: "en"
 author: "Ticket Crusader"
 tags: ["UK", "private parking", "rights", "POPLA"]
 ---

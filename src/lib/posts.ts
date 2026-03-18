@@ -7,6 +7,7 @@ export interface Post {
   description: string;
   date: string;
   author: string;
+  lang: string;
   tags: string[];
   content: string;
 }
@@ -46,6 +47,7 @@ function rawToPost(raw: string): Post | null {
     description: meta.description || "",
     date: meta.date || "",
     author: meta.author || "",
+    lang: meta.lang || "en",
     tags: meta.tags || [],
     content,
   };
@@ -59,8 +61,9 @@ const allPosts: Post[] = Object.values(modules)
   .filter((p): p is Post => p !== null)
   .sort((a, b) => (b.date > a.date ? 1 : -1));
 
-export function fetchAllPosts(): Post[] {
-  return allPosts;
+export function fetchAllPosts(lang?: string): Post[] {
+  if (!lang) return allPosts;
+  return allPosts.filter((p) => p.lang === lang);
 }
 
 export function fetchPostBySlug(slug: string): Post | undefined {

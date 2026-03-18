@@ -3,6 +3,7 @@ title: "Comment contester une amende de stationnement en France"
 slug: "contester-amende-stationnement-france"
 description: "Guide complet pour contester un FPS ou une amende de stationnement en France. Délais, procédures et motifs de contestation."
 date: "2025-05-10"
+lang: "fr"
 author: "Ticket Crusader"
 tags: ["France", "amende", "stationnement", "FPS", "contestation"]
 ---
