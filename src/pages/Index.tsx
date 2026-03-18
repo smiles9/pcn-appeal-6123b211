@@ -114,23 +114,26 @@ const Index = () => {
             Ticket Crusader
           </span>
         </div>
-        {user && (
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setStage(stage === "history" ? "upload" : "history")}
-              className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-            >
-              <History className="h-3.5 w-3.5" />
-              {t("history")}
-            </button>
-            <button
-              onClick={signOut}
-              className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-            >
-              <LogOut className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        )}
+        <div className="flex items-center gap-1">
+          <LanguageSwitcher />
+          {user && (
+            <>
+              <button
+                onClick={() => setStage(stage === "history" ? "upload" : "history")}
+                className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              >
+                <History className="h-3.5 w-3.5" />
+                {t("history")}
+              </button>
+              <button
+                onClick={signOut}
+                className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+              </button>
+            </>
+          )}
+        </div>
       </header>
 
       {stage === "history" && <AppealHistory onBack={() => setStage("upload")} />}
