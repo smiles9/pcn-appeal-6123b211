@@ -79,7 +79,7 @@ ${userDescription ? `Additional context from the driver: "${userDescription}"` :
 Success probability assessment: ${analysis.success_probability}%
 Overall assessment: ${analysis.summary}
 
-Write the complete appeal letter now. Use the correct laws and legal references for ${country}. Make it authoritative, cite all relevant legislation precisely, and ensure it gives the driver the strongest possible case.`;
+Write the complete appeal letter now. You MUST use EXACTLY the legal grounds listed above — do not add, remove, or substitute any grounds. Each numbered ground above must appear as a clearly headed section in the letter, using the same title and legal reference provided. Do not invent additional grounds or omit any. Use the correct laws and legal references for ${country}. Make it authoritative, cite all relevant legislation precisely, and ensure it gives the driver the strongest possible case.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
