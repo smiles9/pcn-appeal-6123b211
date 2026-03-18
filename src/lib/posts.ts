@@ -7,6 +7,7 @@ export interface Post {
   description: string;
   date: string;
   author: string;
+  lang: string;
   tags: string[];
   content: string;
 }
