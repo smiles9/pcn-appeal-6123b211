@@ -35,7 +35,10 @@ const nextSteps = [
 
 const AppealLetter = ({ letterText: propLetter }: AppealLetterProps) => {
   const [copied, setCopied] = useState(false);
+  const [recipientEmail, setRecipientEmail] = useState("");
   const text = propLetter || DEFAULT_LETTER;
+
+  const isValidEmail = recipientEmail.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipientEmail.trim());
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(text);
