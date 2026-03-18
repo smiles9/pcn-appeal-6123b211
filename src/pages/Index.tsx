@@ -11,7 +11,7 @@ import AppealHistory from "@/components/AppealHistory";
 import FAQSection from "@/components/FAQSection";
 import { useSubmission } from "@/hooks/useSubmission";
 import { useAuth } from "@/hooks/useAuth";
-import { LogOut, History, Shield, X } from "lucide-react";
+import { LogOut, History, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
 
