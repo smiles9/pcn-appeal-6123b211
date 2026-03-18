@@ -10,7 +10,7 @@ export interface PcnIssue {
 }
 
 export interface PcnAnalysis {
-  pcn_type: "council" | "private" | "unknown";
+  pcn_type: "council" | "private" | "unknown" | "government";
   pcn_details?: {
     pcn_number?: string;
     date_issued?: string;
@@ -19,6 +19,7 @@ export interface PcnAnalysis {
     issuing_authority?: string;
     amount?: string;
     appeals_email?: string;
+    country?: string;
   };
   success_probability: number;
   issues: PcnIssue[];
