@@ -38,6 +38,15 @@ const GuidePage = () => {
     publisher: { "@type": "Organization", name: "Ticket Crusader" },
     mainEntityOfPage: articleUrl,
   };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://pcn-appeal.lovable.app/" },
+      { "@type": "ListItem", position: 2, name: "Legal Guides", item: "https://pcn-appeal.lovable.app/guides" },
+      { "@type": "ListItem", position: 3, name: post.title, item: articleUrl },
+    ],
+  };
 
   return (
     <HelmetProvider>
@@ -52,6 +61,7 @@ const GuidePage = () => {
           <meta property="og:type" content="article" />
           <meta property="article:published_time" content={post.date} />
           <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+          <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
         </Helmet>
 
         <header className="border-b border-border px-4 py-3">
