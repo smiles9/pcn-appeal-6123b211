@@ -108,6 +108,7 @@ serve(async (req) => {
                       contravention_code: { type: "string" },
                       issuing_authority: { type: "string" },
                       amount: { type: "string" },
+                      appeals_email: { type: "string", description: "The email address for submitting appeals to this council or parking company, if known or visible on the PCN" },
                     },
                   },
                   success_probability: {
