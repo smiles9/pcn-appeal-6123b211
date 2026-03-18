@@ -40,9 +40,14 @@ export function useSubmission(userId: string | undefined) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const analyzeImage = async (file: File, userDescription?: string) => {
+  const analyzeImage = async (file?: File, userDescription?: string) => {
     if (!userId) {
       toast.error("Please sign in first");
+      return null;
+    }
+
+    if (!file && !userDescription) {
+      toast.error("Please upload a photo or describe your PCN");
       return null;
     }
 
@@ -50,7 +55,10 @@ export function useSubmission(userId: string | undefined) {
     setError(null);
 
     try {
-      const imageBase64 = await fileToBase64(file);
+      let imageBase64: string | undefined;
+      if (file) {
+        imageBase64 = await fileToBase64(file);
+      }
 
       const { data: analysisData, error: fnError } = await supabase.functions.invoke("analyze-pcn", {
         body: { imageBase64, userDescription },
@@ -62,7 +70,6 @@ export function useSubmission(userId: string | undefined) {
       const result = analysisData as PcnAnalysis;
       setAnalysis(result);
 
-      // Save to database with user_id
       const { data: submission, error: dbError } = await supabase
         .from("submissions")
         .insert({

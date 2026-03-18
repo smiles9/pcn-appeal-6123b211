@@ -28,6 +28,16 @@ const Index = () => {
     }
   }, [analyzeImage]);
 
+  const handleTextSubmit = useCallback(async (description: string) => {
+    setStage("analyzing");
+    const result = await analyzeImage(undefined, description);
+    if (result) {
+      setStage("diagnosis");
+    } else {
+      setStage("upload");
+    }
+  }, [analyzeImage]);
+
   const handleUnlock = () => setCheckoutOpen(true);
 
   const handlePaymentSuccess = async () => {
@@ -93,7 +103,7 @@ const Index = () => {
       </header>
 
       {stage === "history" && <AppealHistory onBack={() => setStage("upload")} />}
-      {stage === "upload" && <HeroSection onFileSelected={handleFileSelected} />}
+      {stage === "upload" && <HeroSection onFileSelected={handleFileSelected} onTextSubmit={handleTextSubmit} />}
       {stage === "analyzing" && <AnalysisProgress />}
       {stage === "diagnosis" && analysis && (
         <DiagnosisCard analysis={analysis} onUnlock={handleUnlock} />
