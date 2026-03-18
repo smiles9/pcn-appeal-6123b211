@@ -1,5 +1,5 @@
-// Build-time import of markdown posts using Vite glob
-// Automatically picks up new .md files added to the /posts directory
+// Runtime fetching of markdown posts from GitHub API
+// Fetches articles dynamically so new posts appear without rebuild
 
 export interface Post {
   title: string;
@@ -12,6 +12,9 @@ export interface Post {
   content: string;
 }
 
+const GITHUB_API_URL =
+  "https://api.github.com/repos/smiles9/pcn-appeal-6123b211/contents/posts";
+
 function parseFrontmatter(raw: string): { meta: Record<string, any>; content: string } {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return { meta: {}, content: raw };
@@ -22,7 +25,10 @@ function parseFrontmatter(raw: string): { meta: Record<string, any>; content: st
     if (idx === -1) continue;
     const key = line.slice(0, idx).trim();
     let value = line.slice(idx + 1).trim();
-    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
       value = value.slice(1, -1);
     }
     if (value.startsWith("[")) {
@@ -53,19 +59,44 @@ function rawToPost(raw: string): Post | null {
   };
 }
 
-// Vite glob import – eagerly loads all .md files from /posts at build time
-const modules = import.meta.glob("/posts/*.md", { eager: true, query: "?raw", import: "default" });
-
-const allPosts: Post[] = Object.values(modules)
-  .map((raw) => rawToPost(raw as string))
-  .filter((p): p is Post => p !== null)
-  .sort((a, b) => (b.date > a.date ? 1 : -1));
-
-export function fetchAllPosts(lang?: string): Post[] {
-  if (!lang) return allPosts;
-  return allPosts.filter((p) => p.lang === lang);
+interface GitHubFile {
+  name: string;
+  download_url: string;
 }
 
-export function fetchPostBySlug(slug: string): Post | undefined {
-  return allPosts.find((p) => p.slug === slug);
+/**
+ * Fetches all posts from the GitHub repo at runtime.
+ * Results are cached by React Query in the caller.
+ */
+export async function fetchPostsFromGitHub(): Promise<Post[]> {
+  // Step 1: list files in /posts directory
+  const listRes = await fetch(GITHUB_API_URL, {
+    headers: { Accept: "application/vnd.github.v3+json" },
+  });
+
+  if (!listRes.ok) {
+    console.error("GitHub API error:", listRes.status);
+    return [];
+  }
+
+  const files: GitHubFile[] = await listRes.json();
+  const mdFiles = files.filter((f) => f.name.endsWith(".md"));
+
+  // Step 2: fetch raw content of each markdown file in parallel
+  const posts = await Promise.all(
+    mdFiles.map(async (file) => {
+      try {
+        const rawRes = await fetch(file.download_url);
+        if (!rawRes.ok) return null;
+        const raw = await rawRes.text();
+        return rawToPost(raw);
+      } catch {
+        return null;
+      }
+    })
+  );
+
+  return posts
+    .filter((p): p is Post => p !== null)
+    .sort((a, b) => (b.date > a.date ? 1 : -1));
 }
