@@ -65,21 +65,13 @@ const Index = () => {
   const handleFileSelected = useCallback(async (file: File) => {
     setStage("analyzing");
     const result = await analyzeImage(file);
-    if (result) {
-      setStage("diagnosis");
-    } else {
-      setStage("upload");
-    }
+    setStage(result ? "diagnosis" : "upload");
   }, [analyzeImage]);
 
   const handleTextSubmit = useCallback(async (description: string) => {
     setStage("analyzing");
     const result = await analyzeImage(undefined, description);
-    if (result) {
-      setStage("diagnosis");
-    } else {
-      setStage("upload");
-    }
+    setStage(result ? "diagnosis" : "upload");
   }, [analyzeImage]);
 
   const handleUnlock = () => {
