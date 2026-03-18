@@ -112,7 +112,7 @@ export function useSubmission(userId: string | undefined) {
     }
   }, [userId]);
 
-  const generateLetter = useCallback(async (userDescription?: string) => {
+  const generateLetter = useCallback(async (userDescription?: string, circumstances?: string[]) => {
     // Get fresh userId from auth session to avoid stale closures
     const { data: { session } } = await supabase.auth.getSession();
     const currentUserId = session?.user?.id || userId;
@@ -132,7 +132,7 @@ export function useSubmission(userId: string | undefined) {
         .eq("id", submissionId);
 
       const { data: letterData, error: fnError } = await supabase.functions.invoke("generate-appeal", {
-        body: { analysis, userDescription },
+        body: { analysis, userDescription, circumstances },
       });
 
       if (fnError) throw new Error(fnError.message || "Letter generation failed");

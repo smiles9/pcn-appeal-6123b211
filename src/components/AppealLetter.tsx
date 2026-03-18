@@ -1,4 +1,4 @@
-import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle, ExternalLink } from "lucide-react";
+import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle, ExternalLink, Sparkles, Loader2 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,8 @@ interface AppealLetterProps {
   vehicleRegistration?: string;
   pcnNumber?: string;
   issuingAuthority?: string;
+  onStrengthen?: (circumstances: string[], extraDetails: string) => Promise<void>;
+  strengthening?: boolean;
 }
 
 const PLACEHOLDERS = {
@@ -17,12 +19,25 @@ const PLACEHOLDERS = {
   postcode: "[YOUR POSTCODE]",
 };
 
+const CIRCUMSTANCE_OPTIONS = [
+  { id: "loading", label: "Loading/Unloading" },
+  { id: "blue-badge", label: "Blue Badge" },
+  { id: "breakdown", label: "Breakdown" },
+  { id: "medical", label: "Medical Emergency" },
+  { id: "obscured-signs", label: "Obscured Signs" },
+  { id: "wrong-duration", label: "Wrong Duration" },
+  { id: "paid-valid", label: "Paid & Valid Ticket" },
+  { id: "dropped-off", label: "Dropping Off Passenger" },
+];
+
 const AppealLetter = ({
   letterText: propLetter,
   defaultRecipientEmail,
   vehicleRegistration,
   pcnNumber,
   issuingAuthority,
+  onStrengthen,
+  strengthening,
 }: AppealLetterProps) => {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
@@ -32,6 +47,8 @@ const AppealLetter = ({
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [postcode, setPostcode] = useState("");
+  const [selectedCircumstances, setSelectedCircumstances] = useState<string[]>([]);
+  const [extraDetails, setExtraDetails] = useState("");
 
   const rawText = propLetter || "";
 
@@ -250,6 +267,76 @@ const AppealLetter = ({
             )}
           </button>
         </div>
+
+        {/* Strengthen Your Appeal section */}
+        {onStrengthen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="mt-6 rounded-2xl border border-dashed border-accent/40 bg-accent/5 p-5"
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <Sparkles className="h-4 w-4 text-accent" />
+              <h3 className="font-display text-sm font-bold text-foreground">
+                Strengthen Your Appeal
+                <span className="ml-1.5 text-[10px] font-normal text-muted-foreground">(Optional)</span>
+              </h3>
+            </div>
+            <p className="text-xs text-muted-foreground mb-4">
+              Add details the photo didn't capture. Our AI will rewrite the letter with stronger grounds.
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              {CIRCUMSTANCE_OPTIONS.map((opt) => {
+                const isSelected = selectedCircumstances.includes(opt.id);
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() =>
+                      setSelectedCircumstances((prev) =>
+                        isSelected ? prev.filter((c) => c !== opt.id) : [...prev, opt.id]
+                      )
+                    }
+                    className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-all ${
+                      isSelected
+                        ? "border-accent bg-accent text-accent-foreground shadow-sm"
+                        : "border-border bg-card text-muted-foreground hover:border-accent/50 hover:text-foreground"
+                    }`}
+                  >
+                    {opt.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            <textarea
+              value={extraDetails}
+              onChange={(e) => setExtraDetails(e.target.value)}
+              placeholder="e.g. I was unloading shopping for 3 minutes and the meter had 5 mins left…"
+              maxLength={500}
+              rows={3}
+              className="w-full rounded-xl border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent resize-none"
+            />
+
+            <button
+              onClick={() => onStrengthen(selectedCircumstances, extraDetails)}
+              disabled={strengthening || (selectedCircumstances.length === 0 && !extraDetails.trim())}
+              className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none"
+            >
+              {strengthening ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" /> Rewriting…
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-4 w-4" /> Rewrite with stronger grounds
+                </>
+              )}
+            </button>
+          </motion.div>
+        )}
 
         <div className="mt-6 rounded-2xl border border-border bg-card p-5">
           <h3 className="font-display text-sm font-bold text-foreground">
