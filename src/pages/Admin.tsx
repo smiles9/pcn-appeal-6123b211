@@ -124,7 +124,7 @@ const Admin = () => {
   if (!isAdmin) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background">
-        <Shield className="h-12 w-12 text-muted-foreground" />
+        <img src="/favicon.png" alt="Ticket Crusader" className="h-12 w-12" />
         <h1 className="font-display text-lg font-bold text-foreground">Access Denied</h1>
         <p className="text-sm text-muted-foreground">You don't have admin privileges.</p>
         <button
