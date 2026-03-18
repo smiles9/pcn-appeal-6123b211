@@ -148,7 +148,9 @@ const Admin = () => {
         <span className="font-display text-sm font-bold text-foreground">Promo Code Admin</span>
       </header>
 
-      <div className="mx-auto max-w-2xl p-4">
+      <div className="mx-auto max-w-2xl p-4 space-y-6">
+        {/* Analytics Dashboard */}
+        <AdminAnalytics />
         {/* Add button */}
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-display text-base font-bold text-foreground">
