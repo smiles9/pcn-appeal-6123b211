@@ -113,7 +113,7 @@ const AppealLetter = ({
 
               <div>
                 <label className="text-[11px] font-medium text-muted-foreground">
-                  {t("your_address", "Your address")}
+                  {t("your_address", "Your address")} <span className="text-muted-foreground/60">({t("optional", "optional")})</span>
                 </label>
                 <div className="mt-1 flex items-center gap-0 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
                   <MapPin className="ml-3 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
