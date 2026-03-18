@@ -14,7 +14,68 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      appeal_letters: {
+        Row: {
+          created_at: string
+          id: string
+          letter_text: string
+          submission_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          letter_text: string
+          submission_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          letter_text?: string
+          submission_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appeal_letters_submission_id_fkey"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "submissions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      submissions: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string | null
+          issues: Json
+          session_id: string
+          status: string
+          success_probability: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          issues?: Json
+          session_id: string
+          status?: string
+          success_probability?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          issues?: Json
+          session_id?: string
+          status?: string
+          success_probability?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
