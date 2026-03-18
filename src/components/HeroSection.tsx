@@ -195,30 +195,58 @@ const HeroSection = ({ onFilesSelected, onTextSubmit }: HeroSectionProps) => {
         className="w-full max-w-sm mt-4"
       >
         {mode === "photo" ? (
-          <div
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={handleDrop}
-            onClick={() => inputRef.current?.click()}
-            className="group flex w-full cursor-pointer flex-col items-center gap-3 rounded-xl border-2 border-dashed border-accent/50 bg-card p-7 transition-all hover:border-accent hover:shadow-md"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 transition-colors group-hover:bg-accent/20">
-              <Upload className="h-5 w-5 text-accent" />
+          <div className="flex w-full flex-col gap-3">
+            <div
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={handleDrop}
+              onClick={() => inputRef.current?.click()}
+              className="group flex w-full cursor-pointer flex-col items-center gap-3 rounded-xl border-2 border-dashed border-accent/50 bg-card p-7 transition-all hover:border-accent hover:shadow-md"
+            >
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 transition-colors group-hover:bg-accent/20">
+                <Upload className="h-5 w-5 text-accent" />
+              </div>
+              <div className="text-center">
+                <p className="font-display text-sm font-semibold text-foreground">
+                  {t("upload_title")}
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {t("upload_hint_multi", "Front & back · JPG, PNG, HEIC · max 5 photos")}
+                </p>
+              </div>
+              <input
+                ref={inputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                onChange={handleChange}
+              />
             </div>
-            <div className="text-center">
-              <p className="font-display text-sm font-semibold text-foreground">
-                {t("upload_title")}
-              </p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                {t("upload_hint")}
-              </p>
-            </div>
-            <input
-              ref={inputRef}
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleChange}
-            />
+
+            {selectedFiles.length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {selectedFiles.map((file, i) => (
+                    <div
+                      key={`${file.name}-${i}`}
+                      className="relative flex items-center gap-1.5 rounded-lg border border-border bg-muted px-2.5 py-1.5 text-xs"
+                    >
+                      <CheckCircle className="h-3 w-3 text-success" />
+                      <span className="max-w-[120px] truncate text-foreground">{file.name}</span>
+                      <button
+                        onClick={(e) => { e.stopPropagation(); removeFile(i); }}
+                        className="ml-1 rounded-full p-0.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <Button onClick={handleSubmitPhotos} className="w-full">
+                  {t("analyse_button", "Analyse my ticket")} ({selectedFiles.length} {selectedFiles.length === 1 ? "photo" : "photos"})
+                </Button>
+              </div>
+            )}
           </div>
         ) : (
           <div className="flex w-full flex-col gap-3">
