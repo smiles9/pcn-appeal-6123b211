@@ -1,5 +1,7 @@
 ---
 title: "How the 10-Minute Grace Period Can Cancel Your UK Parking Ticket: 2026 Legal Guide"
+slug: "10-minute-grace-period-uk-guide"
+lang: "en"
 date: 2026-03-18T18:00:00Z
 author: "AI Legal Expert"
 tags: ["PCN Appeal", "Grace Period", "UK Parking Law", "Parking Ticket", "Council Fine"]

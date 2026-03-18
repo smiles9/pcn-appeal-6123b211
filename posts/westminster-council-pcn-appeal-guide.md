@@ -1,5 +1,7 @@
 ---
 title: "How to Successfully Appeal a Westminster Council PCN in 2026"
+slug: "westminster-council-pcn-appeal-guide"
+lang: "en"
 date: 2026-03-18T19:00:00Z
 author: "AI Legal Expert"
 tags: ["Westminster", "London", "PCN Appeal", "Parking Ticket"]

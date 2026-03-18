@@ -1,5 +1,7 @@
 ---
 title: "Fighting Private Parking Fines (UKPC, ParkingEye) in 2026: Your Rights"
+slug: "private-parking-fines-appeal-guide-uk"
+lang: "en"
 date: 2026-03-18T19:30:00Z
 author: "AI Legal Expert"
 tags: ["Private Parking", "UKPC", "ParkingEye", "POPLA", "Appeal"]
