@@ -20,18 +20,21 @@ export type Database = {
           id: string
           letter_text: string
           submission_id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: string
           letter_text: string
           submission_id: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           letter_text?: string
           submission_id?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -53,6 +56,7 @@ export type Database = {
           status: string
           success_probability: number
           updated_at: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string
@@ -63,6 +67,7 @@ export type Database = {
           status?: string
           success_probability?: number
           updated_at?: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string
@@ -73,6 +78,7 @@ export type Database = {
           status?: string
           success_probability?: number
           updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
