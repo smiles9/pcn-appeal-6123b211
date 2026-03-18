@@ -5,46 +5,62 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const SYSTEM_PROMPT = `You are an expert UK parking law solicitor AI. You analyze Penalty Charge Notices (PCNs) and identify legal grounds for appeal.
+const SYSTEM_PROMPT = `You are an expert parking and traffic law AI analyst. You analyze parking tickets, fines, and penalty notices from ANY country worldwide and identify legal grounds for appeal.
 
-You have deep knowledge of:
-- Protection of Freedoms Act 2012 (PoFA 2012) — especially Schedule 4 regarding private parking
-- Traffic Management Act 2004 (TMA 2004) — council PCN procedures and requirements
-- The Traffic Signs Regulations and General Directions 2016 (TSRGD 2016) — signage compliance
+Your task is to:
+1. AUTO-DETECT the country/jurisdiction from the ticket image or user description (language, currency, authority names, legal references, formatting clues).
+2. Apply the CORRECT local laws for that jurisdiction.
+
+You have deep knowledge of parking and traffic enforcement law across jurisdictions including (but not limited to):
+
+**United Kingdom:**
+- Protection of Freedoms Act 2012 (PoFA 2012) — Schedule 4 regarding private parking
+- Traffic Management Act 2004 (TMA 2004) — council PCN procedures
+- Traffic Signs Regulations and General Directions 2016 (TSRGD 2016)
 - Deregulation Act 2015 — 10-minute grace period (Section 71)
-- BPA (British Parking Association) Approved Operator Scheme Code of Practice
-- IPC (International Parking Community) Code of Practice
-- POFA Schedule 4 keeper liability requirements
-- Civil Enforcement of Road Traffic Contraventions (Approved Devices) (England) Order 2022
+- BPA/IPC Codes of Practice
 - The Parking (Code of Practice) Act 2019
-- Local Government Act 1972 — authority powers
-- Road Traffic Regulation Act 1984 — Traffic Regulation Orders (TROs)
-- Human Rights Act 1998, Article 6 — right to fair hearing
-- Consumer Rights Act 2015 — unfair terms in private parking
+- Road Traffic Regulation Act 1984
 
-When analyzing a PCN, you MUST use the tool provided to return structured analysis.
+**United States:**
+- State-specific traffic codes (e.g. California Vehicle Code, NYC Traffic Rules Title 34 RCNY)
+- ADA parking violations and defenses
+- Due process requirements (14th Amendment)
+- Municipal parking ordinances and meter regulations
+- Signage requirements per Manual on Uniform Traffic Control Devices (MUTCD)
 
-Analyze based on:
-1. Whether it's a council (TMA 2004) or private (PoFA 2012/BPA/IPC) PCN
+**European Union / EEA:**
+- Country-specific road traffic acts (e.g. German StVO, French Code de la Route, Italian Codice della Strada)
+- EU directive on cross-border enforcement (2015/413)
+- Local municipal parking ordinances
+
+**Australia / New Zealand:**
+- State/territory road rules (e.g. NSW Road Rules 2014, Victorian Road Safety Road Rules 2017)
+- Local council parking by-laws
+
+**Canada:**
+- Provincial Highway Traffic Acts
+- Municipal by-laws
+
+For ANY jurisdiction, analyze:
+1. Whether the ticket is from a government/municipal authority or a private operator
 2. Procedural compliance (time limits, format, required information)
-3. Signage compliance (TSRGD 2016 for council, BPA/IPC CoP for private)
-4. Grace period compliance (Deregulation Act 2015 s.71)
-5. Evidence quality (photos, timestamps, CEO notes)
-6. TRO validity (for council PCNs)
-7. Keeper liability requirements (for private PCNs under PoFA 2012)
-8. Whether the operator followed the correct appeals process
-9. Proportionality of the charge
+3. Signage compliance (local signage regulations)
+4. Grace period compliance (where applicable)
+5. Evidence quality
+6. Whether the operator/authority followed correct procedures
+7. Proportionality of the charge
 
-Be realistic about success probability. Base it on the strength of the grounds identified.
+Be realistic about success probability:
 - 80-95%: Clear procedural failures or strong legal grounds
 - 60-79%: Good grounds but may need supporting evidence
 - 40-59%: Some grounds but outcome uncertain
 - 20-39%: Weak grounds, appeal possible but unlikely
 - Below 20%: Very unlikely to succeed
 
-Each issue must cite the SPECIFIC law, section, and regulation number.
+Each issue must cite the SPECIFIC law, section, and regulation number for the detected jurisdiction.
 
-IMPORTANT: If you can identify the issuing authority, try to provide their appeals/challenges email address in the pcn_details.appeals_email field. For well-known operators (ParkingEye, APCOA, Excel Parking, NCP, etc.) and major UK councils, you should know their contact emails. If visible on the PCN image, extract it directly.`;
+IMPORTANT: Include the detected country/jurisdiction in the pcn_details. If you can identify the issuing authority's appeals/challenges email or web portal, provide it in pcn_details.appeals_email.`;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -71,8 +87,8 @@ serve(async (req) => {
     userContent.push({
       type: "text",
       text: userDescription
-        ? `Analyze this PCN. The user describes: "${userDescription}". Identify all possible legal grounds for appeal under UK parking law.`
-        : "Analyze this PCN image. Extract all details visible (PCN number, date, location, contravention code, issuing authority, amount, etc.) and identify all possible legal grounds for appeal under UK parking law.",
+        ? `Analyze this parking ticket/fine. The user describes: "${userDescription}". First detect the country/jurisdiction, then identify all possible legal grounds for appeal under the applicable local laws.`
+        : "Analyze this parking ticket/fine image. First detect the country/jurisdiction from visual clues. Extract all details visible (ticket number, date, location, violation code, issuing authority, amount, etc.) and identify all possible legal grounds for appeal under the applicable local laws.",
     });
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -92,25 +108,26 @@ serve(async (req) => {
             type: "function",
             function: {
               name: "pcn_analysis",
-              description: "Return structured PCN analysis with legal grounds for appeal",
+              description: "Return structured parking ticket analysis with legal grounds for appeal",
               parameters: {
                 type: "object",
                 properties: {
                   pcn_type: {
                     type: "string",
-                    enum: ["council", "private", "unknown"],
-                    description: "Whether this is a council (TMA 2004) or private (PoFA 2012) PCN",
+                    enum: ["government", "private", "unknown"],
+                    description: "Whether this is from a government/municipal authority or a private parking operator",
                   },
                   pcn_details: {
                     type: "object",
                     properties: {
-                      pcn_number: { type: "string" },
+                      pcn_number: { type: "string", description: "Ticket/notice reference number" },
                       date_issued: { type: "string" },
                       location: { type: "string" },
-                      contravention_code: { type: "string" },
+                      contravention_code: { type: "string", description: "Violation/contravention code if applicable" },
                       issuing_authority: { type: "string" },
                       amount: { type: "string" },
-                      appeals_email: { type: "string", description: "The email address for submitting appeals to this council or parking company, if known or visible on the PCN" },
+                      country: { type: "string", description: "Detected country/jurisdiction (e.g. United Kingdom, United States - California, Germany, Australia - NSW)" },
+                      appeals_email: { type: "string", description: "Email address or web portal URL for submitting appeals, if known or visible on the ticket" },
                     },
                   },
                   success_probability: {
@@ -125,13 +142,13 @@ serve(async (req) => {
                       type: "object",
                       properties: {
                         title: { type: "string", description: "Short title of the issue" },
-                        description: { type: "string", description: "Detailed explanation with specific law citations" },
-                        legal_reference: { type: "string", description: "Specific Act, Section, Schedule reference" },
+                        description: { type: "string", description: "Detailed explanation with specific law citations for the detected jurisdiction" },
+                        legal_reference: { type: "string", description: "Specific Act, Section, Schedule, or Code reference for the jurisdiction" },
                         severity: { type: "string", enum: ["high", "medium", "low"] },
                       },
                       required: ["title", "description", "legal_reference", "severity"],
                     },
-                    description: "Legal issues found, each citing specific UK legislation",
+                    description: "Legal issues found, each citing specific legislation for the detected jurisdiction",
                   },
                   summary: {
                     type: "string",

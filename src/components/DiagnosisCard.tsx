@@ -1,4 +1,4 @@
-import { CheckCircle, Lock, AlertTriangle, Scale } from "lucide-react";
+import { CheckCircle, Lock, AlertTriangle, Scale, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import type { PcnAnalysis } from "@/hooks/useSubmission";
 
@@ -18,6 +18,14 @@ const DiagnosisCard = ({ analysis, onUnlock }: DiagnosisCardProps) => {
   const probColor = prob >= 60 ? "text-success" : prob >= 40 ? "text-accent" : "text-destructive";
   const barColor = prob >= 60 ? "bg-success" : prob >= 40 ? "bg-accent" : "bg-destructive";
 
+  const ticketTypeLabel = analysis.pcn_type === "government" || analysis.pcn_type === "council"
+    ? "Government / Municipal"
+    : analysis.pcn_type === "private"
+    ? "Private Operator"
+    : "Unknown Type";
+
+  const country = analysis.pcn_details?.country;
+
   return (
     <section className="px-4 py-6 pb-8">
       {/* Success Gauge */}
@@ -30,24 +38,30 @@ const DiagnosisCard = ({ analysis, onUnlock }: DiagnosisCardProps) => {
           AI Legal Audit Complete
         </p>
 
-        {/* PCN Type Badge */}
-        <div className="mt-3 flex items-center gap-2">
-          <Scale className="h-4 w-4 text-primary" />
-          <span className="text-xs font-semibold text-primary">
-            {analysis.pcn_type === "council"
-              ? "Council PCN (TMA 2004)"
-              : analysis.pcn_type === "private"
-              ? "Private PCN (PoFA 2012)"
-              : "PCN Type Unknown"}
-          </span>
+        {/* Ticket Type & Jurisdiction Badge */}
+        <div className="mt-3 flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-1.5">
+            <Scale className="h-4 w-4 text-primary" />
+            <span className="text-xs font-semibold text-primary">
+              {ticketTypeLabel}
+            </span>
+          </div>
+          {country && (
+            <div className="flex items-center gap-1.5">
+              <Globe className="h-3.5 w-3.5 text-muted-foreground" />
+              <span className="text-xs font-medium text-muted-foreground">
+                {country}
+              </span>
+            </div>
+          )}
         </div>
 
-        {/* PCN Details */}
+        {/* Ticket Details */}
         {analysis.pcn_details && (
           <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 text-xs text-muted-foreground">
             {analysis.pcn_details.pcn_number && (
               <>
-                <span className="font-medium">PCN No:</span>
+                <span className="font-medium">Ticket No:</span>
                 <span>{analysis.pcn_details.pcn_number}</span>
               </>
             )}
@@ -128,10 +142,9 @@ const DiagnosisCard = ({ analysis, onUnlock }: DiagnosisCardProps) => {
           <div className="space-y-2 p-4 text-xs leading-relaxed text-muted-foreground blur-[6px] select-none">
             <p>Dear Sir/Madam,</p>
             <p>
-              I am writing to formally appeal the Penalty Charge Notice referenced
+              I am writing to formally appeal the parking ticket referenced
               above. Having conducted a thorough review of the circumstances and
-              applicable legislation including the {analysis.pcn_type === "private" ? "Protection of Freedoms Act 2012" : "Traffic Management Act 2004"},
-              I have identified several procedural and evidential deficiencies…
+              applicable legislation, I have identified several procedural and evidential deficiencies…
             </p>
             <p>
               Under {analysis.issues[0]?.legal_reference || "applicable legislation"},
@@ -155,11 +168,11 @@ const DiagnosisCard = ({ analysis, onUnlock }: DiagnosisCardProps) => {
         className="mx-auto mt-6 max-w-sm rounded-2xl border border-accent/30 bg-card p-6 shadow-lg"
       >
         <p className="font-display text-lg font-bold text-foreground">
-          Ready to Beat {analysis.pcn_type === "private" ? "the Operator" : "the Council"}?
+          Ready to Fight This Ticket?
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
           Unlock your custom appeal letter citing {analysis.issues.length} legal grounds,
-          written by our AI Solicitor using real UK parking law.
+          written by our AI using real {country ? `${country} ` : ""}parking law.
         </p>
 
         <button
@@ -169,7 +182,7 @@ const DiagnosisCard = ({ analysis, onUnlock }: DiagnosisCardProps) => {
           Unlock Full Letter for £4.99
         </button>
         <p className="mt-2 text-center text-xs text-muted-foreground">
-          Save £60+ vs. solicitor fees · Instant delivery
+          Save hundreds vs. lawyer fees · Instant delivery
         </p>
       </motion.div>
     </section>

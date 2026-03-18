@@ -16,7 +16,7 @@ const stats = [
 ];
 
 const steps = [
-  { num: "1", text: "Upload your PCN or describe it" },
+  { num: "1", text: "Upload your ticket or describe it" },
   { num: "2", text: "Get a free AI legal audit instantly" },
   { num: "3", text: "Unlock your personalised appeal letter" },
 ];
@@ -188,7 +188,7 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
             </div>
             <div className="text-center">
               <p className="font-display text-sm font-semibold text-foreground">
-                Upload your PCN photo
+                Upload your parking ticket photo
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
                 Tap here or drag & drop · JPG, PNG
@@ -207,18 +207,18 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Describe your PCN details: issuing authority, date, location, contravention code, amount, and any circumstances you think are relevant..."
+              placeholder="Describe your parking ticket: issuing authority, country/city, date, location, violation code, amount, and any circumstances you think are relevant..."
               className="min-h-[130px] resize-none text-sm"
             />
             <p className="text-xs text-muted-foreground text-left">
-              Include as much detail as possible for the best results.
+              Include as much detail as possible for the best results. We support tickets from any country.
             </p>
             <Button
               onClick={handleTextSubmit}
               disabled={description.trim().length < 20}
               className="w-full"
             >
-              Analyse My PCN
+              Analyse My Ticket
             </Button>
           </div>
         )}

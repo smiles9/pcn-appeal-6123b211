@@ -5,29 +5,21 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const SYSTEM_PROMPT = `You are a senior UK parking law solicitor drafting a formal appeal letter on behalf of a motorist. 
+const SYSTEM_PROMPT = `You are a senior legal professional drafting a formal appeal letter for a parking ticket/fine on behalf of a motorist/driver.
+
+You must tailor the letter to the SPECIFIC JURISDICTION detected in the analysis. Use the correct legal language, legislation references, and appeal procedures for that country/region.
 
 Write a professional, authoritative appeal letter that:
 
-1. Uses formal legal language appropriate for a tribunal or council appeals team
-2. Cites SPECIFIC legislation with exact section/schedule references:
-   - Protection of Freedoms Act 2012 (PoFA 2012), Schedule 4
-   - Traffic Management Act 2004 (TMA 2004)
-   - The Traffic Signs Regulations and General Directions 2016 (TSRGD 2016)
-   - Deregulation Act 2015, Section 71
-   - BPA Approved Operator Scheme Code of Practice
-   - IPC Code of Practice  
-   - Road Traffic Regulation Act 1984
-   - The Parking (Code of Practice) Act 2019
-   - Civil Enforcement of Road Traffic Contraventions (Approved Devices) (England) Order 2022
-   - Consumer Rights Act 2015 (for private parking unfair terms)
-   - Human Rights Act 1998, Article 6
-3. References relevant case law where applicable (e.g., ParkingEye Ltd v Beavis [2015] UKSC 67, VCS v HMRC, Excel Parking v Heatherington)
+1. Uses formal legal language appropriate for the jurisdiction's tribunal, court, or appeals body
+2. Cites SPECIFIC legislation with exact section/schedule references relevant to the detected country/jurisdiction
+3. References relevant case law where applicable
 4. Structures each ground of appeal clearly with numbered headings
-5. Requests cancellation of the PCN with a clear legal basis
+5. Requests cancellation/dismissal of the ticket with a clear legal basis
 6. Maintains a respectful but firm professional tone
 7. Includes placeholders for [YOUR NAME] and [YOUR ADDRESS]
-8. Addresses the letter to the correct body based on PCN type
+8. Addresses the letter to the correct body based on ticket type and jurisdiction
+9. Mentions the correct appeal escalation path for the jurisdiction (e.g. Traffic Penalty Tribunal in UK, Administrative Law Judge in NYC, etc.)
 
 The letter must be genuinely useful — someone should be able to print it and send it directly.
 Do NOT use markdown formatting. Write in plain text suitable for a formal letter.`;
@@ -49,30 +41,34 @@ serve(async (req) => {
       .map((issue: any, i: number) => `${i + 1}. ${issue.title}: ${issue.description} (Ref: ${issue.legal_reference})`)
       .join("\n");
 
+    const country = analysis.pcn_details?.country || "Unknown jurisdiction";
+
     const pcnDetails = analysis.pcn_details
-      ? `PCN Number: ${analysis.pcn_details.pcn_number || "Unknown"}
+      ? `Ticket/Notice Number: ${analysis.pcn_details.pcn_number || "Unknown"}
 Date Issued: ${analysis.pcn_details.date_issued || "Unknown"}
 Location: ${analysis.pcn_details.location || "Unknown"}
-Contravention Code: ${analysis.pcn_details.contravention_code || "Unknown"}
+Violation/Contravention Code: ${analysis.pcn_details.contravention_code || "Unknown"}
 Issuing Authority: ${analysis.pcn_details.issuing_authority || "Unknown"}
-Amount: ${analysis.pcn_details.amount || "Unknown"}`
-      : "PCN details not fully available";
+Amount: ${analysis.pcn_details.amount || "Unknown"}
+Country/Jurisdiction: ${country}`
+      : "Ticket details not fully available";
 
-    const userPrompt = `Generate a formal appeal letter for the following PCN:
+    const userPrompt = `Generate a formal appeal letter for the following parking ticket:
 
-PCN Type: ${analysis.pcn_type === "council" ? "Council (TMA 2004)" : analysis.pcn_type === "private" ? "Private (PoFA 2012)" : "Unknown"}
+Jurisdiction: ${country}
+Ticket Type: ${analysis.pcn_type === "government" ? "Government/Municipal Authority" : analysis.pcn_type === "private" ? "Private Parking Operator" : "Unknown"}
 
 ${pcnDetails}
 
 Identified Legal Grounds:
 ${issuesSummary}
 
-${userDescription ? `Additional context from the motorist: "${userDescription}"` : ""}
+${userDescription ? `Additional context from the driver: "${userDescription}"` : ""}
 
 Success probability assessment: ${analysis.success_probability}%
 Overall assessment: ${analysis.summary}
 
-Write the complete appeal letter now. Make it authoritative, cite all relevant legislation precisely, and ensure it gives the motorist the strongest possible case.`;
+Write the complete appeal letter now. Use the correct laws and legal references for ${country}. Make it authoritative, cite all relevant legislation precisely, and ensure it gives the driver the strongest possible case.`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
