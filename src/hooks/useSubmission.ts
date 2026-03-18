@@ -142,7 +142,7 @@ export function useSubmission(userId: string | undefined) {
 
       await supabase.from("appeal_letters").insert({
         submission_id: submissionId,
-        user_id: userId,
+        user_id: currentUserId,
         letter_text: letter,
       });
 
