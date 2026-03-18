@@ -208,9 +208,9 @@ const AppealLetter = ({
 
           <a
             href={`mailto:${encodeURIComponent(recipientEmail.trim())}?subject=${encodeURIComponent("Formal Appeal — Parking Ticket")}&body=${encodeURIComponent(finalText)}`}
-            onClick={(e) => { if (!isValidEmail || hasUnfilledPlaceholders) e.preventDefault(); }}
-            className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${(!isValidEmail || hasUnfilledPlaceholders) ? "opacity-50 pointer-events-none" : ""}`}
-            aria-disabled={!isValidEmail || hasUnfilledPlaceholders}
+            onClick={(e) => { if (!isValidEmail || hasUnfilledName) e.preventDefault(); }}
+            className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${(!isValidEmail || hasUnfilledName) ? "opacity-50 pointer-events-none" : ""}`}
+            aria-disabled={!isValidEmail || hasUnfilledName}
           >
             <Mail className="h-4 w-4" /> {t("send_email")}
           </a>
