@@ -7,6 +7,7 @@ import MockCheckout from "@/components/MockCheckout";
 import AppealLetter from "@/components/AppealLetter";
 import AuthPage from "@/components/AuthPage";
 import AppealHistory from "@/components/AppealHistory";
+import FAQSection from "@/components/FAQSection";
 import { useSubmission } from "@/hooks/useSubmission";
 import { useAuth } from "@/hooks/useAuth";
 import { LogOut, History, Shield, X } from "lucide-react";
@@ -109,6 +110,7 @@ const Index = () => {
         <>
           <HeroSection onFileSelected={handleFileSelected} onTextSubmit={handleTextSubmit} />
           <SocialProofTicker />
+          <FAQSection />
         </>
       )}
       {stage === "analyzing" && <AnalysisProgress />}
