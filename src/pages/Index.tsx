@@ -145,6 +145,7 @@ const Index = () => {
           <SocialProofTicker />
           <FAQSection />
           <LegalGuides />
+          <SiteFooter />
         </>
       )}
       {stage === "analyzing" && <AnalysisProgress />}
