@@ -19,12 +19,25 @@ const PLACEHOLDERS = {
   postcode: "[YOUR POSTCODE]",
 };
 
+const CIRCUMSTANCE_OPTIONS = [
+  { id: "loading", label: "Loading/Unloading" },
+  { id: "blue-badge", label: "Blue Badge" },
+  { id: "breakdown", label: "Breakdown" },
+  { id: "medical", label: "Medical Emergency" },
+  { id: "obscured-signs", label: "Obscured Signs" },
+  { id: "wrong-duration", label: "Wrong Duration" },
+  { id: "paid-valid", label: "Paid & Valid Ticket" },
+  { id: "dropped-off", label: "Dropping Off Passenger" },
+];
+
 const AppealLetter = ({
   letterText: propLetter,
   defaultRecipientEmail,
   vehicleRegistration,
   pcnNumber,
   issuingAuthority,
+  onStrengthen,
+  strengthening,
 }: AppealLetterProps) => {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
