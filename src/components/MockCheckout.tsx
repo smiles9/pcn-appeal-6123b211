@@ -199,6 +199,8 @@ const MockCheckout = forwardRef<HTMLDivElement, MockCheckoutProps>(({ open, onCl
       )}
     </AnimatePresence>
   );
-};
+});
+
+MockCheckout.displayName = "MockCheckout";
 
 export default MockCheckout;
