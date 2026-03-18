@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { getPostBySlug, getAllPosts } from "@/lib/posts";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import MarkdownArticle from "@/components/MarkdownArticle";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { ArrowLeft } from "lucide-react";
 
@@ -11,8 +10,8 @@ const GuidePage = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
-        <h1 className="text-xl font-bold text-foreground mb-2">Guide not found</h1>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
+        <h1 className="mb-2 text-xl font-bold text-foreground">Guide not found</h1>
         <Link to="/" className="text-sm text-primary hover:underline">
           ← Back to home
         </Link>
@@ -51,7 +50,7 @@ const GuidePage = () => {
           <div className="mx-auto flex max-w-3xl items-center gap-2">
             <Link
               to="/"
-              className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-foreground transition-colors"
+              className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               Back
@@ -59,16 +58,14 @@ const GuidePage = () => {
             <span className="text-border">|</span>
             <Link to="/" className="flex items-center gap-1.5">
               <img src="/favicon.png" alt="Ticket Crusader" className="h-4 w-4" />
-              <span className="font-display text-xs font-bold text-primary">
-                Ticket Crusader
-              </span>
+              <span className="font-display text-xs font-bold text-primary">Ticket Crusader</span>
             </Link>
           </div>
         </header>
 
         <article className="mx-auto max-w-3xl px-4 py-8">
-          <div className="mb-6">
-            <div className="flex flex-wrap gap-1.5 mb-3">
+          <div className="mb-8">
+            <div className="mb-3 flex flex-wrap gap-1.5">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
@@ -87,29 +84,21 @@ const GuidePage = () => {
             </time>
           </div>
 
-          {/* @ts-ignore - react-markdown types */}
-          <div className="prose prose-sm max-w-none dark:prose-invert prose-headings:font-display prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-th:text-foreground prose-td:text-muted-foreground">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {post.content}
-            </ReactMarkdown>
-          </div>
+          <MarkdownArticle content={post.content} />
 
-          {/* Related guides */}
           <div className="mt-12 border-t border-border pt-8">
-            <h3 className="font-display text-sm font-semibold text-foreground mb-4">
-              More Legal Guides
-            </h3>
+            <h3 className="mb-4 font-display text-sm font-semibold text-foreground">More Legal Guides</h3>
             <div className="grid gap-3">
               {getAllPosts()
-                .filter((p) => p.slug !== post.slug)
+                .filter((relatedPost) => relatedPost.slug !== post.slug)
                 .slice(0, 3)
-                .map((p) => (
+                .map((relatedPost) => (
                   <Link
-                    key={p.slug}
-                    to={`/guides/${p.slug}`}
-                    className="rounded-lg border border-border p-3 text-sm hover:border-primary/30 transition-colors"
+                    key={relatedPost.slug}
+                    to={`/guides/${relatedPost.slug}`}
+                    className="rounded-lg border border-border p-3 text-sm transition-colors hover:border-primary/30"
                   >
-                    <span className="font-medium text-foreground">{p.title}</span>
+                    <span className="font-medium text-foreground">{relatedPost.title}</span>
                   </Link>
                 ))}
             </div>
