@@ -242,32 +242,36 @@ const MarkdownArticle = ({ content }: MarkdownArticleProps) => {
           );
         }
 
-        return (
-          <div key={`table-${index}`} className="overflow-x-auto rounded-xl border border-border bg-card">
-            <table className="min-w-full border-collapse text-left text-sm">
-              <thead>
-                <tr className="border-b border-border bg-muted/50">
-                  {block.headers.map((header, headerIndex) => (
-                    <th key={`header-${index}-${headerIndex}`} className="px-4 py-3 font-semibold text-foreground">
-                      {renderInline(header)}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {block.rows.map((row, rowIndex) => (
-                  <tr key={`row-${index}-${rowIndex}`} className="border-b border-border last:border-b-0">
-                    {row.map((cell, cellIndex) => (
-                      <td key={`cell-${index}-${rowIndex}-${cellIndex}`} className="px-4 py-3 align-top text-muted-foreground">
-                        {renderInline(cell)}
-                      </td>
+        if (block.type === "table") {
+          return (
+            <div key={`table-${index}`} className="overflow-x-auto rounded-xl border border-border bg-card">
+              <table className="min-w-full border-collapse text-left text-sm">
+                <thead>
+                  <tr className="border-b border-border bg-muted/50">
+                    {block.headers.map((header, headerIndex) => (
+                      <th key={`header-${index}-${headerIndex}`} className="px-4 py-3 font-semibold text-foreground">
+                        {renderInline(header)}
+                      </th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        );
+                </thead>
+                <tbody>
+                  {block.rows.map((row, rowIndex) => (
+                    <tr key={`row-${index}-${rowIndex}`} className="border-b border-border last:border-b-0">
+                      {row.map((cell, cellIndex) => (
+                        <td key={`cell-${index}-${rowIndex}-${cellIndex}`} className="px-4 py-3 align-top text-muted-foreground">
+                          {renderInline(cell)}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+
+        return null;
       })}
     </div>
   );
