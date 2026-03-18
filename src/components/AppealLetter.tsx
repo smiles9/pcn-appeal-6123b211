@@ -1,4 +1,4 @@
-import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle, ExternalLink } from "lucide-react";
+import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle, ExternalLink, Sparkles, Loader2 } from "lucide-react";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,8 @@ interface AppealLetterProps {
   vehicleRegistration?: string;
   pcnNumber?: string;
   issuingAuthority?: string;
+  onStrengthen?: (circumstances: string[], extraDetails: string) => Promise<void>;
+  strengthening?: boolean;
 }
 
 const PLACEHOLDERS = {
