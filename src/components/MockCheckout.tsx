@@ -199,8 +199,6 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
       )}
     </AnimatePresence>
   );
-});
-
-MockCheckout.displayName = "MockCheckout";
+};
 
 export default MockCheckout;
