@@ -58,7 +58,7 @@ const AppealLetter = ({ letterText: propLetter }: AppealLetterProps) => {
 
         <div className="rounded-2xl border border-border bg-card p-5 shadow-lg shadow-primary/5">
           <pre className="whitespace-pre-wrap font-body text-xs leading-relaxed text-foreground">
-            {letterText}
+            {text}
           </pre>
 
           <button
