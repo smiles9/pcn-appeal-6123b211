@@ -1,11 +1,5 @@
-// Runtime fetch of markdown posts from GitHub API
-// Automatically picks up new .md files pushed to the repository
-
-const GITHUB_OWNER = "smiles9";
-const GITHUB_REPO = "pcn-appeal-6123b211";
-const POSTS_DIR = "posts";
-const API_BASE = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${POSTS_DIR}`;
-const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${POSTS_DIR}`;
+// Build-time import of markdown posts using Vite glob
+// Automatically picks up new .md files added to the /posts directory
 
 export interface Post {
   title: string;
@@ -57,31 +51,18 @@ function rawToPost(raw: string): Post | null {
   };
 }
 
-// Fetch directory listing, then fetch each file's raw content
-export async function fetchAllPosts(): Promise<Post[]> {
-  const dirRes = await fetch(API_BASE, {
-    headers: { Accept: "application/vnd.github.v3+json" },
-  });
-  if (!dirRes.ok) throw new Error(`GitHub API error: ${dirRes.status}`);
+// Vite glob import – eagerly loads all .md files from /posts at build time
+const modules = import.meta.glob("/posts/*.md", { eager: true, query: "?raw", import: "default" });
 
-  const files: { name: string; download_url: string }[] = await dirRes.json();
-  const mdFiles = files.filter((f) => f.name.endsWith(".md"));
+const allPosts: Post[] = Object.values(modules)
+  .map((raw) => rawToPost(raw as string))
+  .filter((p): p is Post => p !== null)
+  .sort((a, b) => (b.date > a.date ? 1 : -1));
 
-  const posts = await Promise.all(
-    mdFiles.map(async (f) => {
-      const raw = await fetch(f.download_url || `${RAW_BASE}/${f.name}`).then((r) => r.text());
-      return rawToPost(raw);
-    })
-  );
-
-  return posts
-    .filter((p): p is Post => p !== null)
-    .sort((a, b) => (b.date > a.date ? 1 : -1));
+export function fetchAllPosts(): Post[] {
+  return allPosts;
 }
 
-// Fetch a single post by slug — fetches all then filters
-// GitHub API doesn't support querying by frontmatter, so we reuse the list
-export async function fetchPostBySlug(slug: string, allPosts?: Post[]): Promise<Post | undefined> {
-  const posts = allPosts ?? (await fetchAllPosts());
-  return posts.find((p) => p.slug === slug);
+export function fetchPostBySlug(slug: string): Post | undefined {
+  return allPosts.find((p) => p.slug === slug);
 }
