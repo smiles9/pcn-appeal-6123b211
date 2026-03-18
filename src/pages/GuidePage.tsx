@@ -38,6 +38,15 @@ const GuidePage = () => {
     publisher: { "@type": "Organization", name: "Ticket Crusader" },
     mainEntityOfPage: articleUrl,
   };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://pcn-appeal.lovable.app/" },
+      { "@type": "ListItem", position: 2, name: "Legal Guides", item: "https://pcn-appeal.lovable.app/guides" },
+      { "@type": "ListItem", position: 3, name: post.title, item: articleUrl },
+    ],
+  };
 
   return (
     <HelmetProvider>
