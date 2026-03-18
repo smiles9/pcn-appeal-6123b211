@@ -42,7 +42,9 @@ Be realistic about success probability. Base it on the strength of the grounds i
 - 20-39%: Weak grounds, appeal possible but unlikely
 - Below 20%: Very unlikely to succeed
 
-Each issue must cite the SPECIFIC law, section, and regulation number.`;
+Each issue must cite the SPECIFIC law, section, and regulation number.
+
+IMPORTANT: If you can identify the issuing authority, try to provide their appeals/challenges email address in the pcn_details.appeals_email field. For well-known operators (ParkingEye, APCOA, Excel Parking, NCP, etc.) and major UK councils, you should know their contact emails. If visible on the PCN image, extract it directly.`;
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -108,6 +110,7 @@ serve(async (req) => {
                       contravention_code: { type: "string" },
                       issuing_authority: { type: "string" },
                       amount: { type: "string" },
+                      appeals_email: { type: "string", description: "The email address for submitting appeals to this council or parking company, if known or visible on the PCN" },
                     },
                   },
                   success_probability: {

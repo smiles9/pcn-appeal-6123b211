@@ -118,7 +118,7 @@ const Index = () => {
         <DiagnosisCard analysis={analysis} onUnlock={handleUnlock} />
       )}
       {stage === "generating" && <AnalysisProgress generating />}
-      {stage === "unlocked" && <AppealLetter letterText={letterText} />}
+      {stage === "unlocked" && <AppealLetter letterText={letterText} defaultRecipientEmail={analysis?.pcn_details?.appeals_email} />}
 
       <MockCheckout
         open={checkoutOpen}

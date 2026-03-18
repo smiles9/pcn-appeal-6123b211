@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 interface AppealLetterProps {
   letterText?: string | null;
+  defaultRecipientEmail?: string;
 }
 
 const DEFAULT_LETTER = `Dear Sir/Madam,
@@ -33,9 +34,9 @@ const nextSteps = [
   "Keep all photos and correspondence as evidence",
 ];
 
-const AppealLetter = ({ letterText: propLetter }: AppealLetterProps) => {
+const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealLetterProps) => {
   const [copied, setCopied] = useState(false);
-  const [recipientEmail, setRecipientEmail] = useState("");
+  const [recipientEmail, setRecipientEmail] = useState(defaultRecipientEmail || "");
   const text = propLetter || DEFAULT_LETTER;
 
   const isValidEmail = recipientEmail.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipientEmail.trim());

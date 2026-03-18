@@ -18,6 +18,7 @@ export interface PcnAnalysis {
     contravention_code?: string;
     issuing_authority?: string;
     amount?: string;
+    appeals_email?: string;
   };
   success_probability: number;
   issues: PcnIssue[];
