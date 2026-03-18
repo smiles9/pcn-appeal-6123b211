@@ -135,6 +135,7 @@ const countryFaqs: Record<string, { flag: string; label: string; faqs: { q: stri
 const countryKeys = Object.keys(countryFaqs);
 
 const FAQSection = () => {
+  const { t } = useTranslation();
   const [activeCountry, setActiveCountry] = useState<string | null>(null);
 
   const displayedFaqs = activeCountry
