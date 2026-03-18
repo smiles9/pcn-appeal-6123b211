@@ -4,6 +4,14 @@ import { HelpCircle } from "lucide-react";
 
 const faqs = [
   {
+    q: "When can I legally refuse to pay a private parking ticket?",
+    a: "Under the Protection of Freedoms Act 2012, you don't have to pay if: the signage was inadequate or unclear, no proper Notice to Keeper was sent within 14 days, the charge exceeds a genuine pre-estimate of loss (per ParkingEye v Beavis [2015]), the operator isn't BPA/IPC accredited, or the required 10-minute grace period wasn't given.",
+  },
+  {
+    q: "When can I challenge a council-issued PCN?",
+    a: "Under the Traffic Management Act 2004 and TSRGD 2016, you can challenge if: road signs or markings were incorrect or missing, the PCN contains procedural errors (wrong date, code, or missing info), there were mitigating circumstances like a breakdown or medical emergency, the CEO didn't observe for long enough, or the contravention simply didn't occur — e.g. a valid permit was displayed.",
+  },
+  {
     q: "How does the free PCN audit work?",
     a: "Upload a photo of your parking ticket or type in the details. Our AI analyses the notice for procedural errors, signage issues, and legal technicalities — all for free. You only pay if you want the full appeal letter.",
   },
@@ -13,7 +21,7 @@ const faqs = [
   },
   {
     q: "How much does the appeal letter cost?",
-    a: "A full, professionally drafted appeal letter costs just £3 — a fraction of what you'd pay a solicitor, and far less than the fine itself.",
+    a: "A full, professionally drafted appeal letter costs just £4.99 — a fraction of what you'd pay a solicitor, and far less than the fine itself.",
   },
   {
     q: "What's the success rate?",
