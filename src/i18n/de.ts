@@ -109,4 +109,7 @@ export default {
 
   appeal_history: "Einspruchsverlauf",
   back: "Zurück",
+
+  legal_guides_title: "Rechtsratgeber",
+  legal_guides_subtitle: "Kostenlose Expertenleitfäden zur Anfechtung von Strafzetteln in verschiedenen Ländern.",
 };

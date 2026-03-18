@@ -109,4 +109,7 @@ export default {
 
   appeal_history: "Historial de recursos",
   back: "Volver",
+
+  legal_guides_title: "Guías legales",
+  legal_guides_subtitle: "Guías gratuitas de expertos para impugnar multas de estacionamiento en diferentes jurisdicciones.",
 };
