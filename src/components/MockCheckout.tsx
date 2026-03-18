@@ -1,6 +1,7 @@
-import { CreditCard, X, Lock } from "lucide-react";
+import { CreditCard, X, Lock, Tag, CheckCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "@/integrations/supabase/client";
 
 interface MockCheckoutProps {
   open: boolean;
@@ -10,14 +11,62 @@ interface MockCheckoutProps {
 
 const MockCheckout = ({ open, onClose, onSuccess }: MockCheckoutProps) => {
   const [processing, setProcessing] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoError, setPromoError] = useState("");
+  const [validatingPromo, setValidatingPromo] = useState(false);
+  const [discountPercent, setDiscountPercent] = useState(0);
+
+  const handleApplyPromo = async () => {
+    const trimmed = promoCode.trim();
+    if (!trimmed) return;
+
+    setValidatingPromo(true);
+    setPromoError("");
+
+    try {
+      const { data, error } = await supabase.functions.invoke("validate-promo", {
+        body: { code: trimmed },
+      });
+
+      if (error) throw new Error("Validation failed");
+
+      if (data.valid) {
+        setPromoApplied(true);
+        setDiscountPercent(data.discount_percent);
+        setPromoError("");
+      } else {
+        setPromoError(data.error || "Invalid promo code");
+        setPromoApplied(false);
+      }
+    } catch {
+      setPromoError("Could not validate code. Try again.");
+    } finally {
+      setValidatingPromo(false);
+    }
+  };
 
   const handlePay = () => {
     setProcessing(true);
-    setTimeout(() => {
-      setProcessing(false);
-      onSuccess();
-    }, 2000);
+    if (promoApplied && discountPercent === 100) {
+      // Free — skip payment
+      setTimeout(() => {
+        setProcessing(false);
+        onSuccess();
+      }, 800);
+    } else {
+      setTimeout(() => {
+        setProcessing(false);
+        onSuccess();
+      }, 2000);
+    }
   };
+
+  const originalPrice = 4.99;
+  const finalPrice = promoApplied
+    ? Math.max(0, originalPrice * (1 - discountPercent / 100))
+    : originalPrice;
+  const isFree = finalPrice === 0;
 
   return (
     <AnimatePresence>
@@ -46,41 +95,97 @@ const MockCheckout = ({ open, onClose, onSuccess }: MockCheckoutProps) => {
               </button>
             </div>
 
-            <div className="mt-5 space-y-3">
-              <div>
-                <label className="text-xs font-medium text-muted-foreground">Card Number</label>
-                <input
-                  type="text"
-                  placeholder="4242 4242 4242 4242"
-                  className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                />
-              </div>
-              <div className="flex gap-3">
-                <div className="flex-1">
-                  <label className="text-xs font-medium text-muted-foreground">Expiry</label>
+            {/* Promo code section */}
+            <div className="mt-4">
+              <label className="text-xs font-medium text-muted-foreground">Promo Code</label>
+              <div className="mt-1 flex gap-2">
+                <div className="relative flex-1">
+                  <Tag className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
                   <input
                     type="text"
-                    placeholder="12/28"
-                    className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    value={promoCode}
+                    onChange={(e) => {
+                      setPromoCode(e.target.value.toUpperCase());
+                      setPromoError("");
+                      if (promoApplied) {
+                        setPromoApplied(false);
+                        setDiscountPercent(0);
+                      }
+                    }}
+                    placeholder="Enter code"
+                    maxLength={50}
+                    disabled={promoApplied}
+                    className="w-full rounded-lg border border-input bg-background py-2.5 pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-60"
                   />
                 </div>
-                <div className="flex-1">
-                  <label className="text-xs font-medium text-muted-foreground">CVC</label>
-                  <input
-                    type="text"
-                    placeholder="123"
-                    className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </div>
+                <button
+                  onClick={handleApplyPromo}
+                  disabled={validatingPromo || promoApplied || !promoCode.trim()}
+                  className="rounded-lg bg-muted px-3 py-2.5 text-xs font-semibold text-foreground transition-colors hover:bg-muted/80 disabled:opacity-50"
+                >
+                  {validatingPromo ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : promoApplied ? (
+                    <CheckCircle className="h-4 w-4 text-green-500" />
+                  ) : (
+                    "Apply"
+                  )}
+                </button>
               </div>
+              {promoError && (
+                <p className="mt-1 text-xs text-destructive">{promoError}</p>
+              )}
+              {promoApplied && (
+                <p className="mt-1 text-xs text-green-600 dark:text-green-400">
+                  {discountPercent === 100
+                    ? "🎉 100% off — it's free!"
+                    : `${discountPercent}% discount applied!`}
+                </p>
+              )}
             </div>
+
+            {/* Card fields — hidden when fully free */}
+            {!isFree && (
+              <div className="mt-4 space-y-3">
+                <div>
+                  <label className="text-xs font-medium text-muted-foreground">Card Number</label>
+                  <input
+                    type="text"
+                    placeholder="4242 4242 4242 4242"
+                    className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  />
+                </div>
+                <div className="flex gap-3">
+                  <div className="flex-1">
+                    <label className="text-xs font-medium text-muted-foreground">Expiry</label>
+                    <input
+                      type="text"
+                      placeholder="12/28"
+                      className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label className="text-xs font-medium text-muted-foreground">CVC</label>
+                    <input
+                      type="text"
+                      placeholder="123"
+                      className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
 
             <button
               onClick={handlePay}
               disabled={processing}
               className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3.5 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70"
             >
-              {processing ? "Processing…" : "Pay £4.99"}
+              {processing
+                ? "Processing…"
+                : isFree
+                  ? "Unlock for Free 🎉"
+                  : `Pay £${finalPrice.toFixed(2)}`}
             </button>
 
             <p className="mt-3 flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground">
