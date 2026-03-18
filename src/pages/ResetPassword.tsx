@@ -56,9 +56,9 @@ const ResetPassword = () => {
     <div className="min-h-screen bg-background">
       <header className="flex items-center justify-center border-b border-border px-4 py-3">
         <div className="flex items-center gap-2">
-          <Shield className="h-4 w-4 text-primary" />
+          <img src="/favicon.png" alt="Ticket Crusader" className="h-5 w-5" />
           <span className="font-display text-sm font-bold tracking-tight text-primary">
-            UK Parking Ticket Crusader
+            Ticket Crusader
           </span>
         </div>
       </header>
