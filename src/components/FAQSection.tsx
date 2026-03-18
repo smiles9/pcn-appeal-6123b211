@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { motion } from "framer-motion";
 import { HelpCircle } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const generalFaqs = [
   {
