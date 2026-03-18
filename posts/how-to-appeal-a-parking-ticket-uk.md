@@ -3,6 +3,7 @@ title: "How to Appeal a Parking Ticket in the UK: A Complete Guide"
 slug: "how-to-appeal-a-parking-ticket-uk"
 description: "Learn how to successfully appeal a parking ticket (PCN) in the UK. Covers council tickets, private parking fines, deadlines, and template letters."
 date: "2025-06-01"
+lang: "en"
 author: "Ticket Crusader"
 tags: ["UK", "PCN", "appeal", "parking fine"]
 ---

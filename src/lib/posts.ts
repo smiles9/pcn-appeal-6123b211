@@ -61,8 +61,9 @@ const allPosts: Post[] = Object.values(modules)
   .filter((p): p is Post => p !== null)
   .sort((a, b) => (b.date > a.date ? 1 : -1));
 
-export function fetchAllPosts(): Post[] {
-  return allPosts;
+export function fetchAllPosts(lang?: string): Post[] {
+  if (!lang) return allPosts;
+  return allPosts.filter((p) => p.lang === lang);
 }
 
 export function fetchPostBySlug(slug: string): Post | undefined {

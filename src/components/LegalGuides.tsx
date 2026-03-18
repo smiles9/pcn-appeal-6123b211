@@ -4,8 +4,9 @@ import { fetchAllPosts } from "@/lib/posts";
 import { ArrowRight, BookOpen } from "lucide-react";
 
 const LegalGuides = () => {
-  const { t } = useTranslation();
-  const posts = fetchAllPosts();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.split("-")[0] || "en";
+  const posts = fetchAllPosts(currentLang);
 
   if (posts.length === 0) return null;
 

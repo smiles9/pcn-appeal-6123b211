@@ -3,6 +3,7 @@ title: "Strafzettel in Deutschland anfechten: Ihr Leitfaden"
 slug: "parking-ticket-appeal-germany"
 description: "Erfahren Sie, wie Sie ein Knöllchen oder Verwarnungsgeld in Deutschland erfolgreich anfechten. Fristen, Einspruchsverfahren und rechtliche Grundlagen."
 date: "2025-05-20"
+lang: "de"
 author: "Ticket Crusader"
 tags: ["Germany", "Strafzettel", "Einspruch", "Verwarnungsgeld"]
 ---
