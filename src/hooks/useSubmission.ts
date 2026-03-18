@@ -66,11 +66,12 @@ export function useSubmission(userId: string | undefined) {
       const result = analysisData as PcnAnalysis;
       setAnalysis(result);
 
+      const sessionId = userId || crypto.randomUUID();
       const { data: submission, error: dbError } = await supabase
         .from("submissions")
         .insert({
-          user_id: userId,
-          session_id: userId,
+          user_id: userId || null,
+          session_id: sessionId,
           success_probability: result.success_probability,
           issues: result.issues as any,
           status: "diagnosed",
