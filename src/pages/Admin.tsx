@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Plus, Pencil, Ban, CheckCircle, ArrowLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import AuthPage from "@/components/AuthPage";
+import AdminAnalytics from "@/components/AdminAnalytics";
 
 interface PromoCode {
   id: string;
