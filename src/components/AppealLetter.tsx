@@ -2,7 +2,11 @@ import { Copy, CheckCircle, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const letterText = `Dear Sir/Madam,
+interface AppealLetterProps {
+  letterText?: string | null;
+}
+
+const DEFAULT_LETTER = `Dear Sir/Madam,
 
 I am writing to formally appeal Penalty Charge Notice PCN-2024-AX7291 issued on 14 March 2026 at High Street, London Borough of Camden. Having conducted a thorough review of the circumstances and applicable legislation, I have identified several procedural and evidential deficiencies which render this PCN unenforceable under the Traffic Management Act 2004.
 
@@ -28,11 +32,12 @@ const nextSteps = [
   "Keep all photos and correspondence as evidence",
 ];
 
-const AppealLetter = () => {
+const AppealLetter = ({ letterText: propLetter }: AppealLetterProps) => {
   const [copied, setCopied] = useState(false);
+  const text = propLetter || DEFAULT_LETTER;
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(letterText);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -53,7 +58,7 @@ const AppealLetter = () => {
 
         <div className="rounded-2xl border border-border bg-card p-5 shadow-lg shadow-primary/5">
           <pre className="whitespace-pre-wrap font-body text-xs leading-relaxed text-foreground">
-            {letterText}
+            {text}
           </pre>
 
           <button
