@@ -120,7 +120,7 @@ const Index = () => {
               className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
             >
               <History className="h-3.5 w-3.5" />
-              History
+              {t("history")}
             </button>
             <button
               onClick={signOut}

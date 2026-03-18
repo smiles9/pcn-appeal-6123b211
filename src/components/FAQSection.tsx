@@ -164,7 +164,7 @@ const FAQSection = () => {
               : "bg-muted text-muted-foreground hover:text-foreground"
           }`}
         >
-          General
+          {t("faq_general")}
         </button>
         {countryKeys.map((key) => (
           <button
