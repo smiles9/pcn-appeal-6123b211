@@ -27,7 +27,8 @@ const Index = () => {
   const [stage, setStage] = useState<Stage>("upload");
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
-  const { analysis, letterText, submissionId, analyzeImage, generateLetter } = useSubmission(user?.id);
+  const { analysis, letterText, submissionId, analyzeImage, generateLetter, loading: submissionLoading } = useSubmission(user?.id);
+  const [strengthening, setStrengthening] = useState(false);
   const prevUserRef = useRef(user);
   const [searchParams, setSearchParams] = useSearchParams();
 
