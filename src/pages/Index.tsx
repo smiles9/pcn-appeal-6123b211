@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
 import SocialProofTicker from "@/components/SocialProofTicker";
 import AnalysisProgress from "@/components/AnalysisProgress";
@@ -12,6 +13,7 @@ import { useSubmission } from "@/hooks/useSubmission";
 import { useAuth } from "@/hooks/useAuth";
 import { LogOut, History, Shield, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { toast } from "sonner";
 
 type Stage = "upload" | "analyzing" | "diagnosis" | "generating" | "unlocked" | "history";
 
@@ -20,8 +22,32 @@ const Index = () => {
   const [stage, setStage] = useState<Stage>("upload");
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
-  const { analysis, letterText, analyzeImage, generateLetter } = useSubmission(user?.id);
+  const { analysis, letterText, submissionId, analyzeImage, generateLetter } = useSubmission(user?.id);
   const prevUserRef = useRef(user);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Handle Stripe redirect back
+  useEffect(() => {
+    const payment = searchParams.get("payment");
+    const sub = searchParams.get("submission");
+    if (payment === "success" && user) {
+      // Clear query params
+      setSearchParams({}, { replace: true });
+      toast.success("Payment successful! Generating your appeal letter…");
+      setStage("generating");
+      // Generate the letter
+      generateLetter().then((letter) => {
+        if (letter) {
+          setStage("unlocked");
+        } else {
+          setStage("diagnosis");
+        }
+      });
+    } else if (payment === "canceled") {
+      setSearchParams({}, { replace: true });
+      toast.error("Payment was canceled.");
+    }
+  }, [searchParams, user]);
 
   // When user signs in while auth modal is open, auto-proceed to checkout
   useEffect(() => {
@@ -53,20 +79,19 @@ const Index = () => {
 
   const handleUnlock = () => {
     if (!user) {
-      // Not signed in — show auth modal first
       setShowAuth(true);
       return;
     }
     setCheckoutOpen(true);
   };
 
-  // After successful auth, proceed to checkout
   const handleAuthComplete = () => {
     setShowAuth(false);
     setCheckoutOpen(true);
   };
 
-  const handlePaymentSuccess = async () => {
+  // For 100% promo codes (no Stripe redirect)
+  const handleFreeSuccess = async () => {
     setCheckoutOpen(false);
     setStage("generating");
     const letter = await generateLetter();
@@ -123,10 +148,11 @@ const Index = () => {
       <MockCheckout
         open={checkoutOpen}
         onClose={() => setCheckoutOpen(false)}
-        onSuccess={handlePaymentSuccess}
+        onSuccess={handleFreeSuccess}
+        submissionId={submissionId}
       />
 
-      {/* Auth modal — shown when unauthenticated user tries to unlock */}
+      {/* Auth modal */}
       <AnimatePresence>
         {showAuth && !user && (
           <motion.div

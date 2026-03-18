@@ -7,9 +7,10 @@ interface MockCheckoutProps {
   open: boolean;
   onClose: () => void;
   onSuccess: () => void;
+  submissionId?: string | null;
 }
 
-const MockCheckout = ({ open, onClose, onSuccess }: MockCheckoutProps) => {
+const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutProps) => {
   const [processing, setProcessing] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
@@ -46,19 +47,35 @@ const MockCheckout = ({ open, onClose, onSuccess }: MockCheckoutProps) => {
     }
   };
 
-  const handlePay = () => {
+  const handlePay = async () => {
     setProcessing(true);
+
+    // If 100% promo — skip Stripe entirely
     if (promoApplied && discountPercent === 100) {
-      // Free — skip payment
       setTimeout(() => {
         setProcessing(false);
         onSuccess();
       }, 800);
-    } else {
-      setTimeout(() => {
-        setProcessing(false);
-        onSuccess();
-      }, 2000);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase.functions.invoke("create-payment", {
+        body: {
+          submissionId,
+          promoCode: promoApplied ? promoCode.trim() : undefined,
+        },
+      });
+
+      if (error || data?.error) throw new Error(data?.error || "Payment failed");
+
+      // Redirect to Stripe Checkout
+      if (data?.url) {
+        window.location.href = data.url;
+      }
+    } catch (e) {
+      setProcessing(false);
+      setPromoError(e instanceof Error ? e.message : "Payment failed. Try again.");
     }
   };
 
@@ -144,48 +161,36 @@ const MockCheckout = ({ open, onClose, onSuccess }: MockCheckoutProps) => {
               )}
             </div>
 
-            {/* Card fields — hidden when fully free */}
-            {!isFree && (
-              <div className="mt-4 space-y-3">
-                <div>
-                  <label className="text-xs font-medium text-muted-foreground">Card Number</label>
-                  <input
-                    type="text"
-                    placeholder="4242 4242 4242 4242"
-                    className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                  />
-                </div>
-                <div className="flex gap-3">
-                  <div className="flex-1">
-                    <label className="text-xs font-medium text-muted-foreground">Expiry</label>
-                    <input
-                      type="text"
-                      placeholder="12/28"
-                      className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="text-xs font-medium text-muted-foreground">CVC</label>
-                    <input
-                      type="text"
-                      placeholder="123"
-                      className="mt-1 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    />
-                  </div>
+            {/* Price summary */}
+            <div className="mt-4 rounded-lg bg-muted/50 p-3">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Appeal Letter</span>
+                <div className="flex items-center gap-2">
+                  {promoApplied && discountPercent > 0 && (
+                    <span className="text-xs text-muted-foreground line-through">£{originalPrice.toFixed(2)}</span>
+                  )}
+                  <span className="font-bold text-foreground">
+                    {isFree ? "FREE" : `£${finalPrice.toFixed(2)}`}
+                  </span>
                 </div>
               </div>
-            )}
+            </div>
 
             <button
               onClick={handlePay}
               disabled={processing}
               className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3.5 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70"
             >
-              {processing
-                ? "Processing…"
-                : isFree
-                  ? "Unlock for Free 🎉"
-                  : `Pay £${finalPrice.toFixed(2)}`}
+              {processing ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Redirecting to Stripe…
+                </>
+              ) : isFree ? (
+                "Unlock for Free 🎉"
+              ) : (
+                `Pay £${finalPrice.toFixed(2)}`
+              )}
             </button>
 
             <p className="mt-3 flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground">
