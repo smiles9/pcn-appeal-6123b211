@@ -28,6 +28,16 @@ const Index = () => {
     }
   }, [analyzeImage]);
 
+  const handleTextSubmit = useCallback(async (description: string) => {
+    setStage("analyzing");
+    const result = await analyzeImage(undefined, description);
+    if (result) {
+      setStage("diagnosis");
+    } else {
+      setStage("upload");
+    }
+  }, [analyzeImage]);
+
   const handleUnlock = () => setCheckoutOpen(true);
 
   const handlePaymentSuccess = async () => {
