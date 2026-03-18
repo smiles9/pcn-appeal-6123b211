@@ -56,7 +56,7 @@ export function useSubmission(userId: string | undefined) {
     }
   }, [userId, submissionId]);
 
-  const analyzeImage = async (file?: File, userDescription?: string) => {
+  const analyzeImage = useCallback(async (file?: File, userDescription?: string) => {
     if (!file && !userDescription) {
       toast.error("Please upload a photo or describe your PCN");
       return null;
@@ -109,9 +109,9 @@ export function useSubmission(userId: string | undefined) {
       setLoading(false);
       return null;
     }
-  };
+  }, [userId]);
 
-  const generateLetter = async (userDescription?: string) => {
+  const generateLetter = useCallback(async (userDescription?: string) => {
     if (!analysis || !submissionId || !userId) {
       console.error("generateLetter guard failed:", { hasAnalysis: !!analysis, submissionId, userId });
       toast.error("Missing data to generate letter. Please try again.");
@@ -151,7 +151,7 @@ export function useSubmission(userId: string | undefined) {
       setLoading(false);
       return null;
     }
-  };
+  }, [analysis, submissionId, userId]);
 
   return {
     submissionId,
