@@ -24,15 +24,6 @@ export interface PcnAnalysis {
   summary: string;
 }
 
-function getSessionId(): string {
-  let id = localStorage.getItem("ptc_session_id");
-  if (!id) {
-    id = crypto.randomUUID();
-    localStorage.setItem("ptc_session_id", id);
-  }
-  return id;
-}
-
 async function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -42,7 +33,7 @@ async function fileToBase64(file: File): Promise<string> {
   });
 }
 
-export function useSubmission() {
+export function useSubmission(userId: string | undefined) {
   const [submissionId, setSubmissionId] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<PcnAnalysis | null>(null);
   const [letterText, setLetterText] = useState<string | null>(null);
@@ -50,35 +41,33 @@ export function useSubmission() {
   const [error, setError] = useState<string | null>(null);
 
   const analyzeImage = async (file: File, userDescription?: string) => {
+    if (!userId) {
+      toast.error("Please sign in first");
+      return null;
+    }
+
     setLoading(true);
     setError(null);
 
     try {
-      // Convert image to base64
       const imageBase64 = await fileToBase64(file);
 
-      // Call AI analysis edge function
       const { data: analysisData, error: fnError } = await supabase.functions.invoke("analyze-pcn", {
         body: { imageBase64, userDescription },
       });
 
-      if (fnError) {
-        throw new Error(fnError.message || "Analysis failed");
-      }
-
-      if (analysisData.error) {
-        throw new Error(analysisData.error);
-      }
+      if (fnError) throw new Error(fnError.message || "Analysis failed");
+      if (analysisData.error) throw new Error(analysisData.error);
 
       const result = analysisData as PcnAnalysis;
       setAnalysis(result);
 
-      // Save to database
-      const sessionId = getSessionId();
+      // Save to database with user_id
       const { data: submission, error: dbError } = await supabase
         .from("submissions")
         .insert({
-          session_id: sessionId,
+          user_id: userId,
+          session_id: userId,
           success_probability: result.success_probability,
           issues: result.issues as any,
           status: "diagnosed",
@@ -104,36 +93,29 @@ export function useSubmission() {
   };
 
   const generateLetter = async (userDescription?: string) => {
-    if (!analysis || !submissionId) return null;
+    if (!analysis || !submissionId || !userId) return null;
     setLoading(true);
     setError(null);
 
     try {
-      // Update submission status
       await supabase
         .from("submissions")
         .update({ status: "paid" })
         .eq("id", submissionId);
 
-      // Call AI letter generation
       const { data: letterData, error: fnError } = await supabase.functions.invoke("generate-appeal", {
         body: { analysis, userDescription },
       });
 
-      if (fnError) {
-        throw new Error(fnError.message || "Letter generation failed");
-      }
-
-      if (letterData.error) {
-        throw new Error(letterData.error);
-      }
+      if (fnError) throw new Error(fnError.message || "Letter generation failed");
+      if (letterData.error) throw new Error(letterData.error);
 
       const letter = letterData.letter;
       setLetterText(letter);
 
-      // Save to database
       await supabase.from("appeal_letters").insert({
         submission_id: submissionId,
+        user_id: userId,
         letter_text: letter,
       });
 
