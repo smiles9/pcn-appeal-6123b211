@@ -14,6 +14,7 @@ import PrivacyPage from "./pages/PrivacyPage.tsx";
 import RefundPage from "./pages/RefundPage.tsx";
 
 const GuidePage = lazy(() => import("./pages/GuidePage.tsx"));
+const GuidesIndex = lazy(() => import("./pages/GuidesIndex.tsx"));
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,14 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route
+              path="/guides"
+              element={
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <GuidesIndex />
+                </Suspense>
+              }
+            />
             <Route
               path="/guides/:slug"
               element={
