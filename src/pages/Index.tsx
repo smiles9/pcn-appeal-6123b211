@@ -14,6 +14,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { LogOut, History, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 type Stage = "upload" | "analyzing" | "diagnosis" | "generating" | "unlocked" | "history";
 
