@@ -1,12 +1,33 @@
 import { useParams, Link } from "react-router-dom";
-import { getPostBySlug, getAllPosts } from "@/lib/posts";
+import { useQuery } from "@tanstack/react-query";
+import { fetchAllPosts, fetchPostBySlug } from "@/lib/posts";
 import MarkdownArticle from "@/components/MarkdownArticle";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 
 const GuidePage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? getPostBySlug(slug) : undefined;
+
+  const { data: posts = [] } = useQuery({
+    queryKey: ["posts"],
+    queryFn: fetchAllPosts,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const { data: post, isLoading } = useQuery({
+    queryKey: ["post", slug],
+    queryFn: () => fetchPostBySlug(slug!, posts.length ? posts : undefined),
+    enabled: !!slug,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -30,6 +51,8 @@ const GuidePage = () => {
     publisher: { "@type": "Organization", name: "Ticket Crusader" },
     mainEntityOfPage: articleUrl,
   };
+
+  const relatedPosts = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
     <HelmetProvider>
@@ -86,13 +109,11 @@ const GuidePage = () => {
 
           <MarkdownArticle content={post.content} />
 
-          <div className="mt-12 border-t border-border pt-8">
-            <h3 className="mb-4 font-display text-sm font-semibold text-foreground">More Legal Guides</h3>
-            <div className="grid gap-3">
-              {getAllPosts()
-                .filter((relatedPost) => relatedPost.slug !== post.slug)
-                .slice(0, 3)
-                .map((relatedPost) => (
+          {relatedPosts.length > 0 && (
+            <div className="mt-12 border-t border-border pt-8">
+              <h3 className="mb-4 font-display text-sm font-semibold text-foreground">More Legal Guides</h3>
+              <div className="grid gap-3">
+                {relatedPosts.map((relatedPost) => (
                   <Link
                     key={relatedPost.slug}
                     to={`/guides/${relatedPost.slug}`}
@@ -101,8 +122,9 @@ const GuidePage = () => {
                     <span className="font-medium text-foreground">{relatedPost.title}</span>
                   </Link>
                 ))}
+              </div>
             </div>
-          </div>
+          )}
         </article>
       </div>
     </HelmetProvider>

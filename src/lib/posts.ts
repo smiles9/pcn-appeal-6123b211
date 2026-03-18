@@ -1,16 +1,19 @@
-// Build-time import of all markdown posts from /posts folder
-// When new .md files are added via GitHub sync, they'll be picked up on next build
+// Runtime fetch of markdown posts from GitHub API
+// Automatically picks up new .md files pushed to the repository
 
-interface PostMeta {
+const GITHUB_OWNER = "smiles9";
+const GITHUB_REPO = "pcn-appeal-6123b211";
+const POSTS_DIR = "posts";
+const API_BASE = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${POSTS_DIR}`;
+const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/main/${POSTS_DIR}`;
+
+export interface Post {
   title: string;
   slug: string;
   description: string;
   date: string;
   author: string;
   tags: string[];
-}
-
-export interface Post extends PostMeta {
   content: string;
 }
 
@@ -24,11 +27,9 @@ function parseFrontmatter(raw: string): { meta: Record<string, any>; content: st
     if (idx === -1) continue;
     const key = line.slice(0, idx).trim();
     let value = line.slice(idx + 1).trim();
-    // Handle quoted strings
     if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
       value = value.slice(1, -1);
     }
-    // Handle arrays like ["a", "b"]
     if (value.startsWith("[")) {
       try {
         meta[key] = JSON.parse(value);
@@ -42,29 +43,45 @@ function parseFrontmatter(raw: string): { meta: Record<string, any>; content: st
   return { meta, content: match[2].trim() };
 }
 
-// Vite glob import — runs at build time
-const modules = import.meta.glob("/posts/*.md", { query: "?raw", eager: true, import: "default" }) as Record<string, string>;
-
-const posts: Post[] = Object.values(modules)
-  .map((raw) => {
-    const { meta, content } = parseFrontmatter(raw);
-    return {
-      title: meta.title || "Untitled",
-      slug: meta.slug || "",
-      description: meta.description || "",
-      date: meta.date || "",
-      author: meta.author || "",
-      tags: meta.tags || [],
-      content,
-    } as Post;
-  })
-  .filter((p) => p.slug)
-  .sort((a, b) => (b.date > a.date ? 1 : -1));
-
-export function getAllPosts(): Post[] {
-  return posts;
+function rawToPost(raw: string): Post | null {
+  const { meta, content } = parseFrontmatter(raw);
+  if (!meta.slug) return null;
+  return {
+    title: meta.title || "Untitled",
+    slug: meta.slug,
+    description: meta.description || "",
+    date: meta.date || "",
+    author: meta.author || "",
+    tags: meta.tags || [],
+    content,
+  };
 }
 
-export function getPostBySlug(slug: string): Post | undefined {
+// Fetch directory listing, then fetch each file's raw content
+export async function fetchAllPosts(): Promise<Post[]> {
+  const dirRes = await fetch(API_BASE, {
+    headers: { Accept: "application/vnd.github.v3+json" },
+  });
+  if (!dirRes.ok) throw new Error(`GitHub API error: ${dirRes.status}`);
+
+  const files: { name: string; download_url: string }[] = await dirRes.json();
+  const mdFiles = files.filter((f) => f.name.endsWith(".md"));
+
+  const posts = await Promise.all(
+    mdFiles.map(async (f) => {
+      const raw = await fetch(f.download_url || `${RAW_BASE}/${f.name}`).then((r) => r.text());
+      return rawToPost(raw);
+    })
+  );
+
+  return posts
+    .filter((p): p is Post => p !== null)
+    .sort((a, b) => (b.date > a.date ? 1 : -1));
+}
+
+// Fetch a single post by slug — fetches all then filters
+// GitHub API doesn't support querying by frontmatter, so we reuse the list
+export async function fetchPostBySlug(slug: string, allPosts?: Post[]): Promise<Post | undefined> {
+  const posts = allPosts ?? (await fetchAllPosts());
   return posts.find((p) => p.slug === slug);
 }
