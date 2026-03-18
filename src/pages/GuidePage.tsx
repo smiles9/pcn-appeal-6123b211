@@ -61,6 +61,7 @@ const GuidePage = () => {
           <meta property="og:type" content="article" />
           <meta property="article:published_time" content={post.date} />
           <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+          <script type="application/ld+json">{JSON.stringify(breadcrumbLd)}</script>
         </Helmet>
 
         <header className="border-b border-border px-4 py-3">
