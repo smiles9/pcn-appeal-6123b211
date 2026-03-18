@@ -1,4 +1,4 @@
-import { Shield, Upload, FileText, CheckCircle, Clock, TrendingUp, Star } from "lucide-react";
+import { Shield, Upload, FileText, CheckCircle, Clock, TrendingUp, Star, Globe } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -224,12 +224,24 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
         )}
       </motion.div>
 
+      {/* Global coverage badge */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.55 }}
+        className="mt-5 flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-2"
+      >
+        <span className="text-base leading-none">🇺🇸🇬🇧🇩🇪🇫🇷🇦🇺🇨🇦</span>
+        <span className="text-xs font-semibold text-foreground">Works in 50+ countries</span>
+        <Globe className="h-3.5 w-3.5 text-muted-foreground" />
+      </motion.div>
+
       {/* Trust bar */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
-        className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground"
+        className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground"
       >
         <span className="flex items-center gap-1">
           <Shield className="h-3.5 w-3.5 text-success" /> 256-bit encrypted
