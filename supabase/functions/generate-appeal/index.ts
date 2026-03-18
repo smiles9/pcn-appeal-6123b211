@@ -29,6 +29,7 @@ For all jurisdictions:
 5. Requests cancellation/dismissal of the ticket with a clear legal basis
 6. Maintains a respectful but firm professional tone
 7. Includes placeholders for [YOUR NAME], [YOUR ADDRESS], and [YOUR POSTCODE] ONLY. Do NOT include [YOUR PHONE NUMBER], [YOUR EMAIL ADDRESS], or any other placeholders — we do not collect those.
+8. Use the provided current date for the letter date — do NOT use a placeholder for the date.
 8. Addresses the letter to the correct body based on ticket type and jurisdiction
 9. Mentions the correct appeal escalation path
 
