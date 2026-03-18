@@ -83,7 +83,7 @@ const Index = () => {
         <div className="flex items-center gap-2">
           <Shield className="h-4 w-4 text-primary" />
           <span className="font-display text-sm font-bold tracking-tight text-primary">
-            ParkShield
+            Ticket Crusader
           </span>
         </div>
         {user && (
