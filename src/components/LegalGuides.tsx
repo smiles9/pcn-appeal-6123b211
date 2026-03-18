@@ -1,24 +1,11 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "@tanstack/react-query";
 import { fetchAllPosts } from "@/lib/posts";
-import { ArrowRight, BookOpen, Loader2 } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 
 const LegalGuides = () => {
   const { t } = useTranslation();
-  const { data: posts = [], isLoading } = useQuery({
-    queryKey: ["posts"],
-    queryFn: fetchAllPosts,
-    staleTime: 5 * 60 * 1000, // cache 5 min
-  });
-
-  if (isLoading) {
-    return (
-      <section className="mx-auto max-w-3xl px-4 py-12 flex justify-center">
-        <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-      </section>
-    );
-  }
+  const posts = fetchAllPosts();
 
   if (posts.length === 0) return null;
 

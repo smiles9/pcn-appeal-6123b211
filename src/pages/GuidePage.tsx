@@ -1,33 +1,13 @@
 import { useParams, Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { fetchAllPosts, fetchPostBySlug } from "@/lib/posts";
+import { fetchPostBySlug, fetchAllPosts } from "@/lib/posts";
 import MarkdownArticle from "@/components/MarkdownArticle";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 const GuidePage = () => {
   const { slug } = useParams<{ slug: string }>();
-
-  const { data: posts = [] } = useQuery({
-    queryKey: ["posts"],
-    queryFn: fetchAllPosts,
-    staleTime: 5 * 60 * 1000,
-  });
-
-  const { data: post, isLoading } = useQuery({
-    queryKey: ["post", slug],
-    queryFn: () => fetchPostBySlug(slug!, posts.length ? posts : undefined),
-    enabled: !!slug,
-    staleTime: 5 * 60 * 1000,
-  });
-
-  if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-      </div>
-    );
-  }
+  const post = slug ? fetchPostBySlug(slug) : undefined;
+  const allPosts = fetchAllPosts();
 
   if (!post) {
     return (
@@ -52,7 +32,7 @@ const GuidePage = () => {
     mainEntityOfPage: articleUrl,
   };
 
-  const relatedPosts = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
     <HelmetProvider>
