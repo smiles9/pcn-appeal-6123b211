@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import HeroSection from "@/components/HeroSection";
 import AnalysisProgress from "@/components/AnalysisProgress";
 import DiagnosisCard from "@/components/DiagnosisCard";
