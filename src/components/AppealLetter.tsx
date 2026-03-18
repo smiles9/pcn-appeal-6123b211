@@ -62,9 +62,16 @@ const AppealLetter = ({ letterText: propLetter }: AppealLetterProps) => {
             {text}
           </pre>
 
+          <a
+            href={`mailto:?subject=${encodeURIComponent("Formal Appeal — Penalty Charge Notice")}&body=${encodeURIComponent(text)}`}
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+          >
+            <Mail className="h-4 w-4" /> Send via Email
+          </a>
+
           <button
             onClick={handleCopy}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 font-display text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 font-display text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98]"
           >
             {copied ? (
               <>
