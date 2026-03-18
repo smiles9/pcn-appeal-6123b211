@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import HeroSection from "@/components/HeroSection";
+import SocialProofTicker from "@/components/SocialProofTicker";
 import AnalysisProgress from "@/components/AnalysisProgress";
 import DiagnosisCard from "@/components/DiagnosisCard";
 import MockCheckout from "@/components/MockCheckout";
