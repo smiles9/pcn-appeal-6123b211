@@ -19,6 +19,7 @@ import { useTranslation } from "react-i18next";
 type Stage = "upload" | "analyzing" | "diagnosis" | "generating" | "unlocked" | "history";
 
 const Index = () => {
+  const { t } = useTranslation();
   const { user, loading: authLoading, signOut } = useAuth();
   const [stage, setStage] = useState<Stage>("upload");
   const [checkoutOpen, setCheckoutOpen] = useState(false);
