@@ -1,4 +1,4 @@
-import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle } from "lucide-react";
+import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle, ExternalLink } from "lucide-react";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -26,7 +26,9 @@ const AppealLetter = ({
 }: AppealLetterProps) => {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
-  const [recipientEmail, setRecipientEmail] = useState(defaultRecipientEmail || "");
+  const defaultIsUrl = (defaultRecipientEmail || "").startsWith("http");
+  const [recipientEmail, setRecipientEmail] = useState(defaultIsUrl ? "" : (defaultRecipientEmail || ""));
+  const [appealsUrl, setAppealsUrl] = useState(defaultIsUrl ? defaultRecipientEmail! : "");
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [postcode, setPostcode] = useState("");
@@ -188,6 +190,24 @@ const AppealLetter = ({
           <pre className="whitespace-pre-wrap font-body text-xs leading-relaxed text-foreground">
             {finalText}
           </pre>
+
+          {/* Appeals URL - shown as link if detected */}
+          {appealsUrl && (
+            <div className="mt-4">
+              <label className="text-[11px] font-medium text-muted-foreground">
+                {t("appeals_portal", "Appeals portal")}
+              </label>
+              <a
+                href={appealsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 flex items-center gap-2 rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-primary hover:bg-muted/50 transition-colors"
+              >
+                <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                <span className="truncate">{appealsUrl}</span>
+              </a>
+            </div>
+          )}
 
           <div className="mt-4">
             <label className="text-[11px] font-medium text-muted-foreground">
