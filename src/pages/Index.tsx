@@ -62,9 +62,9 @@ const Index = () => {
     prevUserRef.current = user;
   }, [user, showAuth]);
 
-  const handleFileSelected = useCallback(async (file: File) => {
+  const handleFilesSelected = useCallback(async (files: File[]) => {
     setStage("analyzing");
-    const result = await analyzeImage(file);
+    const result = await analyzeImage(files);
     setStage(result ? "diagnosis" : "upload");
   }, [analyzeImage]);
 
