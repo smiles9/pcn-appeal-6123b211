@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { usePosts } from "@/hooks/usePosts";
-import { ArrowRight, BookOpen, Loader2 } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 
 const LegalGuides = () => {
   const { t } = useTranslation();

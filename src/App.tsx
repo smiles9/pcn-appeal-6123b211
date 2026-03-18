@@ -28,6 +28,14 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route
+              path="/guides"
+              element={
+                <Suspense fallback={<div className="min-h-screen bg-background" />}>
+                  <GuidesIndex />
+                </Suspense>
+              }
+            />
+            <Route
               path="/guides/:slug"
               element={
                 <Suspense fallback={<div className="min-h-screen bg-background" />}>
