@@ -110,6 +110,7 @@ const Index = () => {
         <>
           <HeroSection onFileSelected={handleFileSelected} onTextSubmit={handleTextSubmit} />
           <SocialProofTicker />
+          <FAQSection />
         </>
       )}
       {stage === "analyzing" && <AnalysisProgress />}
