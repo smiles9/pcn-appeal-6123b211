@@ -112,6 +112,15 @@ const AuthPage = ({ onSuccess }: AuthPageProps) => {
           </button>
         </form>
 
+        {isLogin && (
+          <button
+            onClick={handleForgotPassword}
+            className="mt-3 block w-full text-center text-xs font-medium text-primary hover:underline"
+          >
+            Forgot your password?
+          </button>
+        )}
+
         <p className="mt-4 text-center text-xs text-muted-foreground">
           {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
           <button
