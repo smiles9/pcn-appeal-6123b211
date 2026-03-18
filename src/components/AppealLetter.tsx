@@ -191,6 +191,24 @@ const AppealLetter = ({
             {finalText}
           </pre>
 
+          {/* Appeals URL - shown as link if detected */}
+          {appealsUrl && (
+            <div className="mt-4">
+              <label className="text-[11px] font-medium text-muted-foreground">
+                {t("appeals_portal", "Appeals portal")}
+              </label>
+              <a
+                href={appealsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 flex items-center gap-2 rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-primary hover:bg-muted/50 transition-colors"
+              >
+                <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+                <span className="truncate">{appealsUrl}</span>
+              </a>
+            </div>
+          )}
+
           <div className="mt-4">
             <label className="text-[11px] font-medium text-muted-foreground">
               {t("authority_email")}
