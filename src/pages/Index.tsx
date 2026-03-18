@@ -88,7 +88,7 @@ const Index = () => {
   };
 
   // For 100% promo codes (no Stripe redirect)
-  const handleFreeSuccess = async () => {
+  const handleFreeSuccess = useCallback(async () => {
     setCheckoutOpen(false);
     setStage("generating");
     const letter = await generateLetter();
@@ -97,7 +97,7 @@ const Index = () => {
     } else {
       setStage("diagnosis");
     }
-  };
+  }, [generateLetter]);
 
   return (
     <div className="min-h-screen bg-background">
