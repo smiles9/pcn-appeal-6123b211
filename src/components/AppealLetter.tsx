@@ -176,11 +176,11 @@ const AppealLetter = ({
           </motion.div>
         )}
 
-        {/* Warning if placeholders still unfilled */}
-        {hasUnfilledPlaceholders && (
+        {/* Warning if name still unfilled */}
+        {hasUnfilledName && (
           <div className="mb-3 flex items-center gap-2 rounded-lg bg-destructive/10 px-3 py-2 text-xs text-destructive">
             <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-            {t("fill_details_warning", "Please fill in your name and address above before sending.")}
+            {t("fill_name_warning", "Please fill in your name above before sending.")}
           </div>
         )}
 
