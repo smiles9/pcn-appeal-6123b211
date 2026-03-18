@@ -112,8 +112,12 @@ export function useSubmission(userId: string | undefined) {
   }, [userId]);
 
   const generateLetter = useCallback(async (userDescription?: string) => {
-    if (!analysis || !submissionId || !userId) {
-      console.error("generateLetter guard failed:", { hasAnalysis: !!analysis, submissionId, userId });
+    // Get fresh userId from auth session to avoid stale closures
+    const { data: { session } } = await supabase.auth.getSession();
+    const currentUserId = session?.user?.id || userId;
+    
+    if (!analysis || !submissionId || !currentUserId) {
+      console.error("generateLetter guard failed:", { hasAnalysis: !!analysis, submissionId, currentUserId, userId });
       toast.error("Missing data to generate letter. Please try again.");
       return null;
     }
@@ -138,7 +142,7 @@ export function useSubmission(userId: string | undefined) {
 
       await supabase.from("appeal_letters").insert({
         submission_id: submissionId,
-        user_id: userId,
+        user_id: currentUserId,
         letter_text: letter,
       });
 
