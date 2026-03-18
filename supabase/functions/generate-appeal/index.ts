@@ -75,6 +75,7 @@ Identified Legal Grounds:
 ${issuesSummary}
 
 ${userDescription ? `Additional context from the driver: "${userDescription}"` : ""}
+${circumstances && circumstances.length > 0 ? `The driver has also indicated the following mitigating circumstances that MUST be incorporated as additional grounds in the letter: ${circumstances.join(", ")}. Weave these into the appeal with appropriate legal backing.` : ""}
 
 Success probability assessment: ${analysis.success_probability}%
 Overall assessment: ${analysis.summary}
