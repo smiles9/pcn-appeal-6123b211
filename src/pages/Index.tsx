@@ -62,9 +62,9 @@ const Index = () => {
     prevUserRef.current = user;
   }, [user, showAuth]);
 
-  const handleFileSelected = useCallback(async (file: File) => {
+  const handleFilesSelected = useCallback(async (files: File[]) => {
     setStage("analyzing");
-    const result = await analyzeImage(file);
+    const result = await analyzeImage(files);
     setStage(result ? "diagnosis" : "upload");
   }, [analyzeImage]);
 
@@ -133,7 +133,7 @@ const Index = () => {
       {stage === "history" && <AppealHistory onBack={() => setStage("upload")} />}
       {stage === "upload" && (
         <>
-          <HeroSection onFileSelected={handleFileSelected} onTextSubmit={handleTextSubmit} />
+          <HeroSection onFilesSelected={handleFilesSelected} onTextSubmit={handleTextSubmit} />
           <SocialProofTicker />
           <FAQSection />
           <LegalGuides />

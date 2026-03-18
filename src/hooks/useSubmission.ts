@@ -56,8 +56,8 @@ export function useSubmission(userId: string | undefined) {
     }
   }, [userId, submissionId]);
 
-  const analyzeImage = useCallback(async (file?: File, userDescription?: string) => {
-    if (!file && !userDescription) {
+  const analyzeImage = useCallback(async (files?: File[], userDescription?: string) => {
+    if ((!files || files.length === 0) && !userDescription) {
       toast.error("Please upload a photo or describe your PCN");
       return null;
     }
@@ -66,13 +66,13 @@ export function useSubmission(userId: string | undefined) {
     setError(null);
 
     try {
-      let imageBase64: string | undefined;
-      if (file) {
-        imageBase64 = await fileToBase64(file);
+      let imagesBase64: string[] = [];
+      if (files && files.length > 0) {
+        imagesBase64 = await Promise.all(files.map(fileToBase64));
       }
 
       const { data: analysisData, error: fnError } = await supabase.functions.invoke("analyze-pcn", {
-        body: { imageBase64, userDescription },
+        body: { imagesBase64, userDescription },
       });
 
       if (fnError) throw new Error(fnError.message || "Analysis failed");

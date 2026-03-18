@@ -76,27 +76,35 @@ serve(async (req) => {
   }
 
   try {
-    const { imageBase64, userDescription } = await req.json();
+    const { imagesBase64, imageBase64, userDescription } = await req.json();
 
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
+    // Support both old single-image and new multi-image format
+    const images: string[] = imagesBase64 && imagesBase64.length > 0
+      ? imagesBase64
+      : imageBase64
+        ? [imageBase64]
+        : [];
+
     const userContent: any[] = [];
 
-    if (imageBase64) {
+    for (const img of images) {
       userContent.push({
         type: "image_url",
-        image_url: { url: imageBase64 },
+        image_url: { url: img },
       });
     }
 
+    const imageCount = images.length;
     userContent.push({
       type: "text",
       text: userDescription
-        ? `Analyze this parking ticket/fine. The user describes: "${userDescription}". First detect the country/jurisdiction, then identify all possible legal grounds for appeal under the applicable local laws.`
-        : "Analyze this parking ticket/fine image. First detect the country/jurisdiction from visual clues. Extract all details visible (ticket number, date, location, violation code, issuing authority, amount, etc.) and identify all possible legal grounds for appeal under the applicable local laws.",
+        ? `Analyze this parking ticket/fine. The user describes: "${userDescription}".${imageCount > 1 ? ` ${imageCount} images provided (front and back of ticket).` : ""} First detect the country/jurisdiction, then identify all possible legal grounds for appeal under the applicable local laws.`
+        : `Analyze this parking ticket/fine image${imageCount > 1 ? "s" : ""}.${imageCount > 1 ? ` ${imageCount} images provided (likely front and back of the same ticket).` : ""} First detect the country/jurisdiction from visual clues. Extract all details visible (ticket number, date, location, violation code, issuing authority, amount, etc.) and identify all possible legal grounds for appeal under the applicable local laws.`,
     });
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
