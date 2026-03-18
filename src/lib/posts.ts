@@ -47,6 +47,7 @@ function rawToPost(raw: string): Post | null {
     description: meta.description || "",
     date: meta.date || "",
     author: meta.author || "",
+    lang: meta.lang || "en",
     tags: meta.tags || [],
     content,
   };
