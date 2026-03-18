@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { fetchAllPosts } from "@/lib/posts";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { usePosts } from "@/hooks/usePosts";
+import { ArrowRight, BookOpen, Loader2 } from "lucide-react";
 
 const LegalGuides = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language?.split("-")[0] || "en";
-  const posts = fetchAllPosts(currentLang);
+  const { posts, isLoading } = usePosts(currentLang);
+
+  if (isLoading) {
+    return (
+      <section className="mx-auto max-w-3xl px-4 py-12">
+        <div className="flex items-center justify-center gap-2 text-muted-foreground">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          <span className="text-sm">Loading guides…</span>
+        </div>
+      </section>
+    );
+  }
 
   if (posts.length === 0) return null;
 

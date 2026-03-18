@@ -1,13 +1,20 @@
 import { useParams, Link } from "react-router-dom";
-import { fetchPostBySlug, fetchAllPosts } from "@/lib/posts";
+import { usePost } from "@/hooks/usePosts";
 import MarkdownArticle from "@/components/MarkdownArticle";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 
 const GuidePage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const post = slug ? fetchPostBySlug(slug) : undefined;
-  const allPosts = fetchAllPosts();
+  const { post, relatedPosts, isLoading } = usePost(slug);
+
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <Loader2 className="h-6 w-6 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -31,8 +38,6 @@ const GuidePage = () => {
     publisher: { "@type": "Organization", name: "Ticket Crusader" },
     mainEntityOfPage: articleUrl,
   };
-
-  const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
     <HelmetProvider>
