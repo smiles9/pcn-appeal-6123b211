@@ -109,4 +109,7 @@ export default {
 
   appeal_history: "Historique des contestations",
   back: "Retour",
+
+  legal_guides_title: "Guides juridiques",
+  legal_guides_subtitle: "Guides gratuits d'experts pour contester les amendes de stationnement dans différentes juridictions.",
 };
