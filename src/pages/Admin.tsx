@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Plus, Pencil, Ban, CheckCircle, ArrowLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import AuthPage from "@/components/AuthPage";
+import AdminAnalytics from "@/components/AdminAnalytics";
 
 interface PromoCode {
   id: string;
@@ -147,7 +148,9 @@ const Admin = () => {
         <span className="font-display text-sm font-bold text-foreground">Promo Code Admin</span>
       </header>
 
-      <div className="mx-auto max-w-2xl p-4">
+      <div className="mx-auto max-w-2xl p-4 space-y-6">
+        {/* Analytics Dashboard */}
+        <AdminAnalytics />
         {/* Add button */}
         <div className="mb-4 flex items-center justify-between">
           <h2 className="font-display text-base font-bold text-foreground">
