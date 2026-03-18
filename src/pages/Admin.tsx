@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { Shield, Plus, Pencil, Ban, CheckCircle, ArrowLeft, Loader2 } from "lucide-react";
+import { Plus, Pencil, Ban, CheckCircle, ArrowLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import AuthPage from "@/components/AuthPage";
 
@@ -124,7 +124,7 @@ const Admin = () => {
   if (!isAdmin) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-background">
-        <Shield className="h-12 w-12 text-muted-foreground" />
+        <img src="/favicon.png" alt="Ticket Crusader" className="h-12 w-12" />
         <h1 className="font-display text-lg font-bold text-foreground">Access Denied</h1>
         <p className="text-sm text-muted-foreground">You don't have admin privileges.</p>
         <button
@@ -143,7 +143,7 @@ const Admin = () => {
         <button onClick={() => navigate("/")} className="text-muted-foreground hover:text-foreground">
           <ArrowLeft className="h-4 w-4" />
         </button>
-        <Shield className="h-4 w-4 text-primary" />
+        <img src="/favicon.png" alt="Ticket Crusader" className="h-4 w-4" />
         <span className="font-display text-sm font-bold text-foreground">Promo Code Admin</span>
       </header>
 
