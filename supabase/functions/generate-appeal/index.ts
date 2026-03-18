@@ -65,8 +65,11 @@ Amount: ${analysis.pcn_details.amount || "Unknown"}
 Country/Jurisdiction: ${country}`
       : "Ticket details not fully available";
 
+    const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
     const userPrompt = `Generate a formal appeal letter for the following parking ticket:
 
+Today's date (use this as the letter date): ${today}
 Jurisdiction: ${country}
 Ticket Type: ${analysis.pcn_type === "government" ? "Government/Municipal Authority" : analysis.pcn_type === "private" ? "Private Parking Operator" : "Unknown"}
 
