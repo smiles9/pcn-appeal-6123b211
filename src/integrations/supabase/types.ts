@@ -46,6 +46,36 @@ export type Database = {
           },
         ]
       }
+      promo_codes: {
+        Row: {
+          active: boolean
+          code: string
+          created_at: string
+          current_uses: number
+          discount_percent: number
+          id: string
+          max_uses: number | null
+        }
+        Insert: {
+          active?: boolean
+          code: string
+          created_at?: string
+          current_uses?: number
+          discount_percent?: number
+          id?: string
+          max_uses?: number | null
+        }
+        Update: {
+          active?: boolean
+          code?: string
+          created_at?: string
+          current_uses?: number
+          discount_percent?: number
+          id?: string
+          max_uses?: number | null
+        }
+        Relationships: []
+      }
       submissions: {
         Row: {
           created_at: string
