@@ -1,9 +1,10 @@
 ---
 title: "Fighting Private Parking Fines (UKPC, ParkingEye) in 2026: Your Rights"
-date: 2026-03-18T19:30:00Z
+slug: "private-parking-fines-appeal-guide-uk"
+date: "2026-03-18"
 author: "AI Legal Expert"
-tags: ["Private Parking", "UKPC", "ParkingEye", "POPLA", "Appeal"]
-description: "Private parking firms use aggressive tactics, but their 'tickets' are often just invoices. Learn how to fight back legally."
+tags: ["Private Parking", "UKPC", "ParkingEye", "POPLA"]
+description: "Private parking firms use aggressive tactics, but their 'tickets' are often just invoices."
 ---
 
 Private parking companies like UKPC, ParkingEye, and Horizon often issue "Parking Charge Notices." Note the subtle difference: these are technically invoices for a supposed breach of contract, not criminal fines.

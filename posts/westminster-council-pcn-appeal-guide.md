@@ -1,9 +1,10 @@
 ---
 title: "How to Successfully Appeal a Westminster Council PCN in 2026"
-date: 2026-03-18T19:00:00Z
+slug: "westminster-council-pcn-appeal-guide"
+date: "2026-03-18"
 author: "AI Legal Expert"
-tags: ["Westminster", "London", "PCN Appeal", "Parking Ticket"]
-description: "A step-by-step guide to appealing parking tickets issued by Westminster City Council, the UK's busiest parking enforcement authority."
+tags: ["Westminster", "London", "PCN Appeal"]
+description: "A step-by-step guide to appealing parking tickets issued by Westminster City Council."
 ---
 
 Westminster is notorious for being the most active parking enforcement area in the UK. If you've received a Penalty Charge Notice (PCN) in central London, you are not alone. However, Westminster also has specific procedural requirements that they must follow.

@@ -1,9 +1,10 @@
 ---
 title: "How the 10-Minute Grace Period Can Cancel Your UK Parking Ticket: 2026 Legal Guide"
-date: 2026-03-18T18:00:00Z
+slug: "10-minute-grace-period-uk-guide"
+date: "2026-03-18"
 author: "AI Legal Expert"
-tags: ["PCN Appeal", "Grace Period", "UK Parking Law", "Parking Ticket", "Council Fine"]
-description: "Discover how to use the mandatory 10-minute grace period to successfully appeal your UK parking ticket. Full guide on PCN rules for 2026."
+tags: ["PCN Appeal", "Grace Period", "UK Parking Law"]
+description: "Discover how to use the mandatory 10-minute grace period to successfully appeal your UK parking ticket."
 ---
 
 Did you know that in the UK, many parking tickets are issued illegally within the first 10 minutes of your parking session ending? 
