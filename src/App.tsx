@@ -9,6 +9,9 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ResetPassword from "./pages/ResetPassword.tsx";
 import Admin from "./pages/Admin.tsx";
+import TermsPage from "./pages/TermsPage.tsx";
+import PrivacyPage from "./pages/PrivacyPage.tsx";
+import RefundPage from "./pages/RefundPage.tsx";
 
 const GuidePage = lazy(() => import("./pages/GuidePage.tsx"));
 
@@ -31,6 +34,9 @@ const App = () => (
                 </Suspense>
               }
             />
+            <Route path="/terms" element={<TermsPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/refund" element={<RefundPage />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />

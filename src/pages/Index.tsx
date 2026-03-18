@@ -9,6 +9,7 @@ import AppealLetter from "@/components/AppealLetter";
 import AuthPage from "@/components/AuthPage";
 import AppealHistory from "@/components/AppealHistory";
 import FAQSection from "@/components/FAQSection";
+import SiteFooter from "@/components/SiteFooter";
 import LegalGuides from "@/components/LegalGuides";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useSubmission } from "@/hooks/useSubmission";
