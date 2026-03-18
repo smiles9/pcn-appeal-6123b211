@@ -28,7 +28,7 @@ For all jurisdictions:
 4. Structures each ground of appeal clearly with numbered headings
 5. Requests cancellation/dismissal of the ticket with a clear legal basis
 6. Maintains a respectful but firm professional tone
-7. Includes placeholders for [YOUR NAME] and [YOUR ADDRESS]
+7. Includes placeholders for [YOUR NAME], [YOUR ADDRESS], and [YOUR POSTCODE] ONLY. Do NOT include [YOUR PHONE NUMBER], [YOUR EMAIL ADDRESS], or any other placeholders — we do not collect those.
 8. Addresses the letter to the correct body based on ticket type and jurisdiction
 9. Mentions the correct appeal escalation path
 

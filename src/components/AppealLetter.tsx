@@ -1,4 +1,4 @@
-import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle } from "lucide-react";
+import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle, ExternalLink } from "lucide-react";
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
