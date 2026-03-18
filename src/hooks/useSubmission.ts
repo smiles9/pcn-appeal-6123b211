@@ -112,7 +112,7 @@ export function useSubmission(userId: string | undefined) {
     }
   }, [userId]);
 
-  const generateLetter = useCallback(async (userDescription?: string) => {
+  const generateLetter = useCallback(async (userDescription?: string, circumstances?: string[]) => {
     // Get fresh userId from auth session to avoid stale closures
     const { data: { session } } = await supabase.auth.getSession();
     const currentUserId = session?.user?.id || userId;
