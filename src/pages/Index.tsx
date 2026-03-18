@@ -100,6 +100,29 @@ const Index = () => {
     }
   };
 
+  const handleStrengthen = async (circumstances: string[], extraDetails: string) => {
+    setStrengthening(true);
+    const labels = circumstances.map((id) => {
+      const map: Record<string, string> = {
+        "loading": "Loading/Unloading",
+        "blue-badge": "Blue Badge holder",
+        "breakdown": "Vehicle breakdown",
+        "medical": "Medical emergency",
+        "obscured-signs": "Obscured or missing signs",
+        "wrong-duration": "Incorrect duration recorded",
+        "paid-valid": "Had a paid and valid ticket",
+        "dropped-off": "Dropping off a passenger",
+      };
+      return map[id] || id;
+    });
+    const desc = [
+      labels.length > 0 ? `Mitigating circumstances: ${labels.join(", ")}.` : "",
+      extraDetails.trim(),
+    ].filter(Boolean).join(" ");
+    await generateLetter(desc, circumstances);
+    setStrengthening(false);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <header className="flex items-center justify-between border-b border-border px-4 py-3">
