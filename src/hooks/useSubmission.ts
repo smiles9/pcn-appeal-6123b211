@@ -1,5 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 export interface PcnIssue {
@@ -40,6 +40,20 @@ export function useSubmission(userId: string | undefined) {
   const [letterText, setLetterText] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // When a user signs in, claim any anonymous submission
+  useEffect(() => {
+    if (userId && submissionId) {
+      supabase
+        .from("submissions")
+        .update({ user_id: userId })
+        .eq("id", submissionId)
+        .is("user_id", null)
+        .then(({ error }) => {
+          if (error) console.error("Failed to link submission to user:", error);
+        });
+    }
+  }, [userId, submissionId]);
 
   const analyzeImage = async (file?: File, userDescription?: string) => {
     if (!file && !userDescription) {
