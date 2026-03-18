@@ -29,18 +29,34 @@ const HeroSection = ({ onFilesSelected, onTextSubmit }: HeroSectionProps) => {
     { num: "3", text: t("step_3") },
   ];
 
+  const addFiles = useCallback((newFiles: File[]) => {
+    setSelectedFiles((prev) => {
+      const combined = [...prev, ...newFiles].slice(0, 5);
+      return combined;
+    });
+  }, []);
+
+  const removeFile = useCallback((index: number) => {
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
+  }, []);
+
   const handleDrop = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
-      const file = e.dataTransfer.files[0];
-      if (file) onFileSelected(file);
+      const files = Array.from(e.dataTransfer.files).filter((f) => f.type.startsWith("image/"));
+      if (files.length) addFiles(files);
     },
-    [onFileSelected]
+    [addFiles]
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) onFileSelected(file);
+    const files = Array.from(e.target.files || []);
+    if (files.length) addFiles(files);
+    if (inputRef.current) inputRef.current.value = "";
+  };
+
+  const handleSubmitPhotos = () => {
+    if (selectedFiles.length > 0) onFilesSelected(selectedFiles);
   };
 
   const handleTextSubmit = () => {
