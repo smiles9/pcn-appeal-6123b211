@@ -1,4 +1,4 @@
-import { Shield, Upload, FileText, CheckCircle, Clock, TrendingUp, Star, Globe } from "lucide-react";
+import { Upload, FileText, CheckCircle, Clock, TrendingUp, Star, Globe, Shield } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -66,7 +66,7 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
           transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
           className="relative mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent shadow-lg"
         >
-          <Shield className="h-7 w-7 text-accent-foreground" />
+          <img src="/favicon.png" alt="Ticket Crusader" className="h-8 w-8" />
         </motion.div>
 
         <motion.h1
