@@ -46,7 +46,7 @@ const AppealLetter = ({
   }, [rawText, fullName, address, postcode]);
 
   const isValidEmail = recipientEmail.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipientEmail.trim());
-  const hasUnfilledPlaceholders = finalText.includes("[YOUR NAME]") || finalText.includes("[YOUR ADDRESS]");
+  const hasUnfilledName = finalText.includes("[YOUR NAME]");
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(finalText);
