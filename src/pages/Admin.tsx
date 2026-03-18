@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useIsAdmin } from "@/hooks/useIsAdmin";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-import { Shield, Plus, Pencil, Ban, CheckCircle, ArrowLeft, Loader2 } from "lucide-react";
+import { Plus, Pencil, Ban, CheckCircle, ArrowLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import AuthPage from "@/components/AuthPage";
 
