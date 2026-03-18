@@ -2,12 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ticketcrusader.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://ticketcrusader.com/" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://ticketcrusader.com/?lang=de" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://ticketcrusader.com/?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://ticketcrusader.com/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://ticketcrusader.com/" />
+    <loc>https://pcn-appeal.lovable.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pcn-appeal.lovable.app/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://pcn-appeal.lovable.app/?lang=de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pcn-appeal.lovable.app/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://pcn-appeal.lovable.app/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://pcn-appeal.lovable.app/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
