@@ -47,6 +47,8 @@ const AppealLetter = ({
   const [fullName, setFullName] = useState("");
   const [address, setAddress] = useState("");
   const [postcode, setPostcode] = useState("");
+  const [selectedCircumstances, setSelectedCircumstances] = useState<string[]>([]);
+  const [extraDetails, setExtraDetails] = useState("");
 
   const rawText = propLetter || "";
 
