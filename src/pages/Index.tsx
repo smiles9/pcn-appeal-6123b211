@@ -103,7 +103,7 @@ const Index = () => {
       </header>
 
       {stage === "history" && <AppealHistory onBack={() => setStage("upload")} />}
-      {stage === "upload" && <HeroSection onFileSelected={handleFileSelected} />}
+      {stage === "upload" && <HeroSection onFileSelected={handleFileSelected} onTextSubmit={handleTextSubmit} />}
       {stage === "analyzing" && <AnalysisProgress />}
       {stage === "diagnosis" && analysis && (
         <DiagnosisCard analysis={analysis} onUnlock={handleUnlock} />
