@@ -1,31 +1,34 @@
 import { FileSearch, Scale, BookOpen, Wand2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface AnalysisProgressProps {
   generating?: boolean;
 }
 
-const analyzeSteps = [
-  { icon: FileSearch, label: "Extracting PCN details from image…" },
-  { icon: Scale, label: "Cross-referencing UK parking legislation…" },
-  { icon: BookOpen, label: "Identifying legal grounds for appeal…" },
-];
-
-const generateSteps = [
-  { icon: Wand2, label: "Drafting your appeal letter…" },
-  { icon: Scale, label: "Citing relevant case law & legislation…" },
-  { icon: BookOpen, label: "Finalising professional letter…" },
-];
-
 const AnalysisProgress = ({ generating = false }: AnalysisProgressProps) => {
+  const { t } = useTranslation();
+
+  const analyzeSteps = [
+    { icon: FileSearch, label: t("step_extracting") },
+    { icon: Scale, label: t("step_crossref") },
+    { icon: BookOpen, label: t("step_identifying") },
+  ];
+
+  const generateSteps = [
+    { icon: Wand2, label: t("step_drafting") },
+    { icon: Scale, label: t("step_citing") },
+    { icon: BookOpen, label: t("step_finalising") },
+  ];
+
   const steps = generating ? generateSteps : analyzeSteps;
 
   return (
     <section className="flex flex-col items-center px-4 py-16 text-center">
       <h2 className="font-display text-xl font-bold text-foreground">
-        {generating ? "Generating Appeal Letter" : "AI Legal Analysis"}
+        {generating ? t("generating_title") : t("analysis_title")}
       </h2>
       <p className="mt-2 text-sm text-muted-foreground">
-        {generating ? "Our AI Solicitor is writing your letter…" : "Analysing your PCN against UK parking law…"}
+        {generating ? t("generating_subtitle") : t("analysis_subtitle")}
       </p>
 
       <div className="mt-6 w-full max-w-sm">

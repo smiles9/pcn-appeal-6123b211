@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { motion } from "framer-motion";
 import { HelpCircle } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const generalFaqs = [
   {
@@ -134,6 +135,7 @@ const countryFaqs: Record<string, { flag: string; label: string; faqs: { q: stri
 const countryKeys = Object.keys(countryFaqs);
 
 const FAQSection = () => {
+  const { t } = useTranslation();
   const [activeCountry, setActiveCountry] = useState<string | null>(null);
 
   const displayedFaqs = activeCountry
@@ -149,7 +151,7 @@ const FAQSection = () => {
     >
       <div className="mb-4 flex items-center gap-2">
         <HelpCircle className="h-4 w-4 text-primary" />
-        <h2 className="text-sm font-bold text-foreground">Frequently Asked Questions</h2>
+        <h2 className="text-sm font-bold text-foreground">{t("faq_title")}</h2>
       </div>
 
       {/* Country filter tabs */}
@@ -162,7 +164,7 @@ const FAQSection = () => {
               : "bg-muted text-muted-foreground hover:text-foreground"
           }`}
         >
-          General
+          {t("faq_general")}
         </button>
         {countryKeys.map((key) => (
           <button

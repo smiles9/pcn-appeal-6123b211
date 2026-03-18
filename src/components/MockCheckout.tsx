@@ -2,6 +2,7 @@ import { CreditCard, X, Lock, Tag, CheckCircle, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
+import { useTranslation } from "react-i18next";
 
 interface MockCheckoutProps {
   open: boolean;
@@ -11,6 +12,7 @@ interface MockCheckoutProps {
 }
 
 const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutProps) => {
+  const { t } = useTranslation();
   const [processing, setProcessing] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
@@ -50,7 +52,6 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
   const handlePay = async () => {
     setProcessing(true);
 
-    // If 100% promo — skip Stripe entirely
     if (promoApplied && discountPercent === 100) {
       setTimeout(() => {
         setProcessing(false);
@@ -69,7 +70,6 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
 
       if (error || data?.error) throw new Error(data?.error || "Payment failed");
 
-      // Redirect to Stripe Checkout
       if (data?.url) {
         window.location.href = data.url;
       }
@@ -104,7 +104,7 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
               <div className="flex items-center gap-2">
                 <CreditCard className="h-5 w-5 text-primary" />
                 <span className="font-display text-sm font-bold text-foreground">
-                  Secure Checkout
+                  {t("secure_checkout")}
                 </span>
               </div>
               <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
@@ -112,9 +112,8 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
               </button>
             </div>
 
-            {/* Promo code section */}
             <div className="mt-4">
-              <label className="text-xs font-medium text-muted-foreground">Promo Code</label>
+              <label className="text-xs font-medium text-muted-foreground">{t("promo_label")}</label>
               <div className="mt-1 flex gap-2">
                 <div className="relative flex-1">
                   <Tag className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted-foreground" />
@@ -129,7 +128,7 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
                         setDiscountPercent(0);
                       }
                     }}
-                    placeholder="Enter code"
+                    placeholder={t("promo_placeholder")}
                     maxLength={50}
                     disabled={promoApplied}
                     className="w-full rounded-lg border border-input bg-background py-2.5 pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-60"
@@ -145,7 +144,7 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
                   ) : promoApplied ? (
                     <CheckCircle className="h-4 w-4 text-green-500" />
                   ) : (
-                    "Apply"
+                    t("apply")
                   )}
                 </button>
               </div>
@@ -155,22 +154,21 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
               {promoApplied && (
                 <p className="mt-1 text-xs text-green-600 dark:text-green-400">
                   {discountPercent === 100
-                    ? "🎉 100% off — it's free!"
-                    : `${discountPercent}% discount applied!`}
+                    ? t("promo_free")
+                    : t("promo_discount", { percent: discountPercent })}
                 </p>
               )}
             </div>
 
-            {/* Price summary */}
             <div className="mt-4 rounded-lg bg-muted/50 p-3">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Appeal Letter</span>
+                <span className="text-muted-foreground">{t("appeal_letter")}</span>
                 <div className="flex items-center gap-2">
                   {promoApplied && discountPercent > 0 && (
                     <span className="text-xs text-muted-foreground line-through">£{originalPrice.toFixed(2)}</span>
                   )}
                   <span className="font-bold text-foreground">
-                    {isFree ? "FREE" : `£${finalPrice.toFixed(2)}`}
+                    {isFree ? t("free") : `£${finalPrice.toFixed(2)}`}
                   </span>
                 </div>
               </div>
@@ -184,17 +182,17 @@ const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutPr
               {processing ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  Redirecting to Stripe…
+                  {t("redirecting")}
                 </>
               ) : isFree ? (
-                "Unlock for Free 🎉"
+                t("unlock_free")
               ) : (
-                `Pay £${finalPrice.toFixed(2)}`
+                t("pay_amount", { amount: finalPrice.toFixed(2) })
               )}
             </button>
 
             <p className="mt-3 flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground">
-              <Lock className="h-3 w-3" /> Secured by Stripe · 256-bit encryption
+              <Lock className="h-3 w-3" /> {t("secured_stripe")}
             </p>
           </motion.div>
         </motion.div>

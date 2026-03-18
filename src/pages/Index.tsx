@@ -9,15 +9,18 @@ import AppealLetter from "@/components/AppealLetter";
 import AuthPage from "@/components/AuthPage";
 import AppealHistory from "@/components/AppealHistory";
 import FAQSection from "@/components/FAQSection";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useSubmission } from "@/hooks/useSubmission";
 import { useAuth } from "@/hooks/useAuth";
 import { LogOut, History, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 type Stage = "upload" | "analyzing" | "diagnosis" | "generating" | "unlocked" | "history";
 
 const Index = () => {
+  const { t } = useTranslation();
   const { user, loading: authLoading, signOut } = useAuth();
   const [stage, setStage] = useState<Stage>("upload");
   const [checkoutOpen, setCheckoutOpen] = useState(false);
@@ -111,23 +114,26 @@ const Index = () => {
             Ticket Crusader
           </span>
         </div>
-        {user && (
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setStage(stage === "history" ? "upload" : "history")}
-              className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-            >
-              <History className="h-3.5 w-3.5" />
-              History
-            </button>
-            <button
-              onClick={signOut}
-              className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-            >
-              <LogOut className="h-3.5 w-3.5" />
-            </button>
-          </div>
-        )}
+        <div className="flex items-center gap-1">
+          <LanguageSwitcher />
+          {user && (
+            <>
+              <button
+                onClick={() => setStage(stage === "history" ? "upload" : "history")}
+                className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              >
+                <History className="h-3.5 w-3.5" />
+                {t("history")}
+              </button>
+              <button
+                onClick={signOut}
+                className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              >
+                <LogOut className="h-3.5 w-3.5" />
+              </button>
+            </>
+          )}
+        </div>
       </header>
 
       {stage === "history" && <AppealHistory onBack={() => setStage("upload")} />}
