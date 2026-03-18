@@ -3,12 +3,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { Mail, Lock, Chrome } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslation } from "react-i18next";
 
 interface AuthPageProps {
   onSuccess?: () => void;
 }
 
 const AuthPage = ({ onSuccess }: AuthPageProps) => {
+  const { t } = useTranslation();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -69,31 +71,29 @@ const AuthPage = ({ onSuccess }: AuthPageProps) => {
     <section className="flex flex-col items-center px-4 py-12">
       <div className="w-full max-w-sm">
         <h2 className="font-display text-2xl font-bold text-center text-foreground">
-          {isLogin ? "Welcome Back" : "Create Account"}
+          {isLogin ? t("welcome_back") : t("create_account")}
         </h2>
         <p className="mt-2 text-center text-sm text-muted-foreground">
-          {isLogin ? "Sign in to access your appeals" : "Sign up to save your appeal history"}
+          {isLogin ? t("sign_in_subtitle") : t("sign_up_subtitle")}
         </p>
 
-        {/* Google Sign In */}
         <button
           onClick={handleGoogleAuth}
           className="mt-6 flex w-full items-center justify-center gap-3 rounded-xl border border-border bg-card px-4 py-3 font-display text-sm font-semibold text-foreground shadow-sm transition-colors hover:bg-muted"
         >
           <Chrome className="h-5 w-5" />
-          Continue with Google
+          {t("continue_google")}
         </button>
 
         <div className="my-5 flex items-center gap-3">
           <div className="h-px flex-1 bg-border" />
-          <span className="text-xs text-muted-foreground">or</span>
+          <span className="text-xs text-muted-foreground">{t("or")}</span>
           <div className="h-px flex-1 bg-border" />
         </div>
 
-        {/* Email Form */}
         <form onSubmit={handleEmailAuth} className="space-y-3">
           <div>
-            <label className="text-xs font-medium text-muted-foreground">Email</label>
+            <label className="text-xs font-medium text-muted-foreground">{t("email")}</label>
             <div className="relative mt-1">
               <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
@@ -108,7 +108,7 @@ const AuthPage = ({ onSuccess }: AuthPageProps) => {
           </div>
 
           <div>
-            <label className="text-xs font-medium text-muted-foreground">Password</label>
+            <label className="text-xs font-medium text-muted-foreground">{t("password")}</label>
             <div className="relative mt-1">
               <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
@@ -128,7 +128,7 @@ const AuthPage = ({ onSuccess }: AuthPageProps) => {
             disabled={loading}
             className="w-full rounded-xl bg-primary px-4 py-3 font-display text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
           >
-            {loading ? "Please wait…" : isLogin ? "Sign In" : "Create Account"}
+            {loading ? t("please_wait") : isLogin ? t("sign_in") : t("create_account")}
           </button>
         </form>
 
@@ -137,17 +137,17 @@ const AuthPage = ({ onSuccess }: AuthPageProps) => {
             onClick={handleForgotPassword}
             className="mt-3 block w-full text-center text-xs font-medium text-primary hover:underline"
           >
-            Forgot your password?
+            {t("forgot_password")}
           </button>
         )}
 
         <p className="mt-4 text-center text-xs text-muted-foreground">
-          {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
+          {isLogin ? t("no_account") : t("have_account")}{" "}
           <button
             onClick={() => setIsLogin(!isLogin)}
             className="font-semibold text-primary hover:underline"
           >
-            {isLogin ? "Sign up" : "Sign in"}
+            {isLogin ? t("sign_up") : t("sign_in")}
           </button>
         </p>
       </div>

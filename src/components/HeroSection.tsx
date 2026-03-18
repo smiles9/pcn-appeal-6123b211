@@ -3,28 +3,30 @@ import { useCallback, useRef, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface HeroSectionProps {
   onFileSelected: (file: File) => void;
   onTextSubmit: (description: string) => void;
 }
 
-const stats = [
-  { icon: TrendingUp, value: "73%", label: "Success Rate" },
-  { icon: Clock, value: "30s", label: "AI Analysis" },
-  { icon: Star, value: "87K+", label: "Fines Challenged" },
-];
-
-const steps = [
-  { num: "1", text: "Upload your ticket or describe it" },
-  { num: "2", text: "Get a free AI legal audit instantly" },
-  { num: "3", text: "Unlock your personalised appeal letter" },
-];
-
 const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
+  const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [mode, setMode] = useState<"photo" | "text">("photo");
   const [description, setDescription] = useState("");
+
+  const stats = [
+    { icon: TrendingUp, value: "73%", label: t("stat_success_rate") },
+    { icon: Clock, value: "30s", label: t("stat_ai_analysis") },
+    { icon: Star, value: "87K+", label: t("stat_fines_challenged") },
+  ];
+
+  const steps = [
+    { num: "1", text: t("step_1") },
+    { num: "2", text: t("step_2") },
+    { num: "3", text: t("step_3") },
+  ];
 
   const handleDrop = useCallback(
     (e: React.DragEvent) => {
@@ -54,7 +56,6 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
         animate={{ opacity: 1 }}
         className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-primary px-5 py-8 mt-4 text-center"
       >
-        {/* Subtle pattern overlay */}
         <div className="absolute inset-0 opacity-[0.06]" style={{
           backgroundImage: "radial-gradient(circle at 1px 1px, hsl(var(--primary-foreground)) 1px, transparent 0)",
           backgroundSize: "20px 20px",
@@ -75,9 +76,9 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
           transition={{ delay: 0.15 }}
           className="relative font-display text-2xl font-extrabold leading-tight text-primary-foreground sm:text-3xl"
         >
-          Don't Pay That
+          {t("hero_title_1")}
           <br />
-          Parking Fine Yet!
+          {t("hero_title_2")}
         </motion.h1>
 
         <motion.p
@@ -86,11 +87,11 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
           transition={{ delay: 0.25 }}
           className="relative mt-2.5 text-sm font-medium text-primary-foreground/80"
         >
-          Get a{" "}
+          {t("hero_subtitle_prefix")}{" "}
           <span className="inline-block rounded-md bg-accent/20 px-1.5 py-0.5 font-bold text-accent">
-            Free AI Legal Audit
+            {t("hero_subtitle_highlight")}
           </span>{" "}
-          in 30 seconds
+          {t("hero_subtitle_suffix")}
         </motion.p>
 
         {/* Stats row */}
@@ -125,7 +126,7 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
         className="mt-6 w-full max-w-sm"
       >
         <div className="flex items-center gap-3">
-          {steps.map((step, i) => (
+          {steps.map((step) => (
             <div key={step.num} className="flex flex-1 items-start gap-2">
               <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-accent-foreground">
                 {step.num}
@@ -154,7 +155,7 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
           }`}
         >
           <Upload className="h-3.5 w-3.5" />
-          Upload Photo
+          {t("upload_photo")}
         </button>
         <button
           onClick={() => setMode("text")}
@@ -165,7 +166,7 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
           }`}
         >
           <FileText className="h-3.5 w-3.5" />
-          Describe It
+          {t("describe_it")}
         </button>
       </motion.div>
 
@@ -188,10 +189,10 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
             </div>
             <div className="text-center">
               <p className="font-display text-sm font-semibold text-foreground">
-                Upload your parking ticket photo
+                {t("upload_title")}
               </p>
               <p className="mt-1 text-xs text-muted-foreground">
-                Tap here or drag & drop · JPG, PNG
+                {t("upload_hint")}
               </p>
             </div>
             <input
@@ -207,18 +208,18 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Describe your parking ticket: issuing authority, country/city, date, location, violation code, amount, and any circumstances you think are relevant..."
+              placeholder={t("text_placeholder")}
               className="min-h-[130px] resize-none text-sm"
             />
             <p className="text-xs text-muted-foreground text-left">
-              Include as much detail as possible for the best results. We support tickets from any country.
+              {t("text_hint")}
             </p>
             <Button
               onClick={handleTextSubmit}
               disabled={description.trim().length < 20}
               className="w-full"
             >
-              Analyse My Ticket
+              {t("analyse_button")}
             </Button>
           </div>
         )}
@@ -234,7 +235,7 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
         <div className="rounded-xl border border-border bg-card p-4">
           <div className="flex items-center justify-center gap-1.5 mb-3">
             <Globe className="h-4 w-4 text-accent" />
-            <span className="text-xs font-bold text-foreground">Trusted in 50+ Countries</span>
+            <span className="text-xs font-bold text-foreground">{t("trusted_countries")}</span>
           </div>
           <div className="grid grid-cols-5 gap-1.5">
             {[
@@ -252,7 +253,7 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
             ))}
           </div>
           <p className="mt-2.5 text-center text-[10px] text-muted-foreground">
-            Average appeal success rates · Auto-detects your jurisdiction
+            {t("country_rates_note")}
           </p>
         </div>
       </motion.div>
@@ -265,11 +266,11 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
         className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground"
       >
         <span className="flex items-center gap-1">
-          <Shield className="h-3.5 w-3.5 text-success" /> 256-bit encrypted
+          <Shield className="h-3.5 w-3.5 text-success" /> {t("encrypted")}
         </span>
         <span className="hidden sm:inline">·</span>
         <span className="flex items-center gap-1">
-          <CheckCircle className="h-3.5 w-3.5 text-success" /> No payment required
+          <CheckCircle className="h-3.5 w-3.5 text-success" /> {t("no_payment")}
         </span>
       </motion.div>
     </section>

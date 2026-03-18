@@ -1,6 +1,7 @@
-import { Copy, CheckCircle, ChevronRight, Mail } from "lucide-react";
+import { Copy, CheckCircle, Mail } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface AppealLetterProps {
   letterText?: string | null;
@@ -26,15 +27,8 @@ Yours faithfully,
 [Your Name]
 [Your Address]`;
 
-const nextSteps = [
-  "Send the letter using the button below, or print and post it",
-  "Address it to the issuing authority shown on your ticket",
-  "Submit within the deadline stated on your ticket",
-  "If rejected, check your local escalation options (tribunal, court, or ombudsman)",
-  "Keep all photos and correspondence as evidence",
-];
-
 const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealLetterProps) => {
+  const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const [recipientEmail, setRecipientEmail] = useState(defaultRecipientEmail || "");
   const text = propLetter || DEFAULT_LETTER;
@@ -47,6 +41,14 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
     setTimeout(() => setCopied(false), 2500);
   };
 
+  const nextSteps = [
+    t("next_step_1"),
+    t("next_step_2"),
+    t("next_step_3"),
+    t("next_step_4"),
+    t("next_step_5"),
+  ];
+
   return (
     <section className="px-4 pb-12">
       <motion.div
@@ -57,7 +59,7 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
         <div className="flex items-center gap-2 mb-4">
           <CheckCircle className="h-5 w-5 text-success" />
           <h2 className="font-display text-lg font-bold text-foreground">
-            Your Appeal Letter
+            {t("your_appeal")}
           </h2>
         </div>
 
@@ -68,7 +70,7 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
 
           <div className="mt-4">
             <label className="text-[11px] font-medium text-muted-foreground">
-              Issuing authority email address
+              {t("authority_email")}
             </label>
             <div className="mt-1 flex items-center gap-0 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
               <Mail className="ml-3 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
@@ -76,7 +78,7 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
                 type="email"
                 value={recipientEmail}
                 onChange={(e) => setRecipientEmail(e.target.value)}
-                placeholder="e.g. appeals@authority.gov"
+                placeholder={t("email_placeholder")}
                 maxLength={255}
                 className="w-full bg-transparent px-2.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
               />
@@ -89,7 +91,7 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
             className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${!isValidEmail ? "opacity-50 pointer-events-none" : ""}`}
             aria-disabled={!isValidEmail}
           >
-            <Mail className="h-4 w-4" /> Send via Email
+            <Mail className="h-4 w-4" /> {t("send_email")}
           </a>
 
           <button
@@ -98,20 +100,19 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
           >
             {copied ? (
               <>
-                <CheckCircle className="h-4 w-4" /> Copied!
+                <CheckCircle className="h-4 w-4" /> {t("copied")}
               </>
             ) : (
               <>
-                <Copy className="h-4 w-4" /> Copy to Clipboard
+                <Copy className="h-4 w-4" /> {t("copy_clipboard")}
               </>
             )}
           </button>
         </div>
 
-        {/* Next Steps */}
         <div className="mt-6 rounded-2xl border border-border bg-card p-5">
           <h3 className="font-display text-sm font-bold text-foreground">
-            What to Do Next
+            {t("next_steps_title")}
           </h3>
           <ol className="mt-3 space-y-2.5">
             {nextSteps.map((step, i) => (

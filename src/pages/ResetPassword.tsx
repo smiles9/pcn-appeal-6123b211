@@ -3,8 +3,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { Lock } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -12,14 +14,12 @@ const ResetPassword = () => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Listen for the PASSWORD_RECOVERY event
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
       if (event === "PASSWORD_RECOVERY") {
         setReady(true);
       }
     });
 
-    // Also check if we already have a session from the recovery link
     const hash = window.location.hash;
     if (hash.includes("type=recovery")) {
       setReady(true);
@@ -66,20 +66,20 @@ const ResetPassword = () => {
       <section className="flex flex-col items-center px-4 py-12">
         <div className="w-full max-w-sm">
           <h2 className="font-display text-2xl font-bold text-center text-foreground">
-            Set New Password
+            {t("set_new_password")}
           </h2>
           <p className="mt-2 text-center text-sm text-muted-foreground">
-            Enter your new password below
+            {t("enter_new_password")}
           </p>
 
           {!ready ? (
             <div className="mt-8 text-center text-sm text-muted-foreground">
-              Verifying recovery link…
+              {t("verifying_link")}
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="mt-6 space-y-3">
               <div>
-                <label className="text-xs font-medium text-muted-foreground">New Password</label>
+                <label className="text-xs font-medium text-muted-foreground">{t("new_password")}</label>
                 <div className="relative mt-1">
                   <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <input
@@ -95,7 +95,7 @@ const ResetPassword = () => {
               </div>
 
               <div>
-                <label className="text-xs font-medium text-muted-foreground">Confirm Password</label>
+                <label className="text-xs font-medium text-muted-foreground">{t("confirm_password")}</label>
                 <div className="relative mt-1">
                   <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                   <input
@@ -115,7 +115,7 @@ const ResetPassword = () => {
                 disabled={loading}
                 className="w-full rounded-xl bg-primary px-4 py-3 font-display text-sm font-bold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60"
               >
-                {loading ? "Updating…" : "Update Password"}
+                {loading ? t("updating") : t("update_password")}
               </button>
             </form>
           )}
