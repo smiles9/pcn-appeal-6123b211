@@ -46,7 +46,7 @@ const AppealLetter = ({
   }, [rawText, fullName, address, postcode]);
 
   const isValidEmail = recipientEmail.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipientEmail.trim());
-  const hasUnfilledPlaceholders = finalText.includes("[YOUR NAME]") || finalText.includes("[YOUR ADDRESS]");
+  const hasUnfilledName = finalText.includes("[YOUR NAME]");
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(finalText);
@@ -113,7 +113,7 @@ const AppealLetter = ({
 
               <div>
                 <label className="text-[11px] font-medium text-muted-foreground">
-                  {t("your_address", "Your address")}
+                  {t("your_address", "Your address")} <span className="text-muted-foreground/60">({t("optional", "optional")})</span>
                 </label>
                 <div className="mt-1 flex items-center gap-0 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
                   <MapPin className="ml-3 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
@@ -130,7 +130,7 @@ const AppealLetter = ({
 
               <div>
                 <label className="text-[11px] font-medium text-muted-foreground">
-                  {t("your_postcode", "Postcode / ZIP")}
+                  {t("your_postcode", "Postcode / ZIP")} <span className="text-muted-foreground/60">({t("optional", "optional")})</span>
                 </label>
                 <div className="mt-1 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
                   <input
@@ -176,11 +176,11 @@ const AppealLetter = ({
           </motion.div>
         )}
 
-        {/* Warning if placeholders still unfilled */}
-        {hasUnfilledPlaceholders && (
+        {/* Warning if name still unfilled */}
+        {hasUnfilledName && (
           <div className="mb-3 flex items-center gap-2 rounded-lg bg-destructive/10 px-3 py-2 text-xs text-destructive">
             <AlertCircle className="h-3.5 w-3.5 shrink-0" />
-            {t("fill_details_warning", "Please fill in your name and address above before sending.")}
+            {t("fill_name_warning", "Please fill in your name above before sending.")}
           </div>
         )}
 
@@ -208,9 +208,9 @@ const AppealLetter = ({
 
           <a
             href={`mailto:${encodeURIComponent(recipientEmail.trim())}?subject=${encodeURIComponent("Formal Appeal — Parking Ticket")}&body=${encodeURIComponent(finalText)}`}
-            onClick={(e) => { if (!isValidEmail || hasUnfilledPlaceholders) e.preventDefault(); }}
-            className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${(!isValidEmail || hasUnfilledPlaceholders) ? "opacity-50 pointer-events-none" : ""}`}
-            aria-disabled={!isValidEmail || hasUnfilledPlaceholders}
+            onClick={(e) => { if (!isValidEmail || hasUnfilledName) e.preventDefault(); }}
+            className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${(!isValidEmail || hasUnfilledName) ? "opacity-50 pointer-events-none" : ""}`}
+            aria-disabled={!isValidEmail || hasUnfilledName}
           >
             <Mail className="h-4 w-4" /> {t("send_email")}
           </a>
