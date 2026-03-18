@@ -132,7 +132,7 @@ export function useSubmission(userId: string | undefined) {
         .eq("id", submissionId);
 
       const { data: letterData, error: fnError } = await supabase.functions.invoke("generate-appeal", {
-        body: { analysis, userDescription },
+        body: { analysis, userDescription, circumstances },
       });
 
       if (fnError) throw new Error(fnError.message || "Letter generation failed");

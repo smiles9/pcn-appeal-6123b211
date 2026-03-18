@@ -152,6 +152,8 @@ const Index = () => {
           vehicleRegistration={analysis?.pcn_details?.vehicle_registration}
           pcnNumber={analysis?.pcn_details?.pcn_number}
           issuingAuthority={analysis?.pcn_details?.issuing_authority}
+          onStrengthen={handleStrengthen}
+          strengthening={strengthening}
         />
       )}
 
