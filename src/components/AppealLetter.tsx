@@ -130,7 +130,7 @@ const AppealLetter = ({
 
               <div>
                 <label className="text-[11px] font-medium text-muted-foreground">
-                  {t("your_postcode", "Postcode / ZIP")}
+                  {t("your_postcode", "Postcode / ZIP")} <span className="text-muted-foreground/60">({t("optional", "optional")})</span>
                 </label>
                 <div className="mt-1 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
                   <input
