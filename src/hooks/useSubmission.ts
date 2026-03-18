@@ -41,11 +41,6 @@ export function useSubmission(userId: string | undefined) {
   const [error, setError] = useState<string | null>(null);
 
   const analyzeImage = async (file?: File, userDescription?: string) => {
-    if (!userId) {
-      toast.error("Please sign in first");
-      return null;
-    }
-
     if (!file && !userDescription) {
       toast.error("Please upload a photo or describe your PCN");
       return null;

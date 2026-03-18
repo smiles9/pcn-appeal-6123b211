@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import HeroSection from "@/components/HeroSection";
 import AnalysisProgress from "@/components/AnalysisProgress";
 import DiagnosisCard from "@/components/DiagnosisCard";
@@ -8,7 +8,8 @@ import AuthPage from "@/components/AuthPage";
 import AppealHistory from "@/components/AppealHistory";
 import { useSubmission } from "@/hooks/useSubmission";
 import { useAuth } from "@/hooks/useAuth";
-import { LogOut, History, Shield } from "lucide-react";
+import { LogOut, History, Shield, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Stage = "upload" | "analyzing" | "diagnosis" | "generating" | "unlocked" | "history";
 
@@ -16,7 +17,17 @@ const Index = () => {
   const { user, loading: authLoading, signOut } = useAuth();
   const [stage, setStage] = useState<Stage>("upload");
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   const { analysis, letterText, analyzeImage, generateLetter } = useSubmission(user?.id);
+  const prevUserRef = useRef(user);
+
+  // When user signs in while auth modal is open, auto-proceed to checkout
+  useEffect(() => {
+    if (!prevUserRef.current && user && showAuth) {
+      handleAuthComplete();
+    }
+    prevUserRef.current = user;
+  }, [user, showAuth]);
 
   const handleFileSelected = useCallback(async (file: File) => {
     setStage("analyzing");
@@ -38,7 +49,20 @@ const Index = () => {
     }
   }, [analyzeImage]);
 
-  const handleUnlock = () => setCheckoutOpen(true);
+  const handleUnlock = () => {
+    if (!user) {
+      // Not signed in — show auth modal first
+      setShowAuth(true);
+      return;
+    }
+    setCheckoutOpen(true);
+  };
+
+  // After successful auth, proceed to checkout
+  const handleAuthComplete = () => {
+    setShowAuth(false);
+    setCheckoutOpen(true);
+  };
 
   const handlePaymentSuccess = async () => {
     setCheckoutOpen(false);
@@ -51,31 +75,6 @@ const Index = () => {
     }
   };
 
-  if (authLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <div className="text-sm text-muted-foreground">Loading…</div>
-      </div>
-    );
-  }
-
-  // Show auth page if not logged in
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-background">
-        <header className="flex items-center justify-center border-b border-border px-4 py-3">
-          <div className="flex items-center gap-2">
-            <Shield className="h-4 w-4 text-primary" />
-            <span className="font-display text-sm font-bold tracking-tight text-primary">
-              UK Parking Ticket Crusader
-            </span>
-          </div>
-        </header>
-        <AuthPage />
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-background">
       <header className="flex items-center justify-between border-b border-border px-4 py-3">
@@ -85,21 +84,23 @@ const Index = () => {
             UK Parking Ticket Crusader
           </span>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setStage(stage === "history" ? "upload" : "history")}
-            className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <History className="h-3.5 w-3.5" />
-            History
-          </button>
-          <button
-            onClick={signOut}
-            className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-          >
-            <LogOut className="h-3.5 w-3.5" />
-          </button>
-        </div>
+        {user && (
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setStage(stage === "history" ? "upload" : "history")}
+              className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            >
+              <History className="h-3.5 w-3.5" />
+              History
+            </button>
+            <button
+              onClick={signOut}
+              className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        )}
       </header>
 
       {stage === "history" && <AppealHistory onBack={() => setStage("upload")} />}
@@ -116,6 +117,35 @@ const Index = () => {
         onClose={() => setCheckoutOpen(false)}
         onSuccess={handlePaymentSuccess}
       />
+
+      {/* Auth modal — shown when unauthenticated user tries to unlock */}
+      <AnimatePresence>
+        {showAuth && !user && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/40"
+          >
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              className="relative mx-4 w-full max-w-md rounded-2xl bg-card shadow-2xl"
+            >
+              <button
+                onClick={() => setShowAuth(false)}
+                className="absolute right-3 top-3 z-10 rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <div className="p-1">
+                <AuthPage />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
