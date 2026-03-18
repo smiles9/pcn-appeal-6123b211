@@ -32,11 +32,12 @@ const nextSteps = [
   "Keep all photos and correspondence as evidence",
 ];
 
-const AppealLetter = () => {
+const AppealLetter = ({ letterText: propLetter }: AppealLetterProps) => {
   const [copied, setCopied] = useState(false);
+  const text = propLetter || DEFAULT_LETTER;
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(letterText);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
