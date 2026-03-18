@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 interface AppealLetterProps {
   letterText?: string | null;
+  defaultRecipientEmail?: string;
 }
 
 const DEFAULT_LETTER = `Dear Sir/Madam,
