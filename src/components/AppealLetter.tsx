@@ -26,8 +26,9 @@ Yours faithfully,
 [Your Address]`;
 
 const nextSteps = [
-  "Print or copy the letter above",
-  "Post it to the address on your PCN within 28 days",
+  "Send the letter using the button below, or print and post it",
+  "Address it to the issuing authority shown on your PCN",
+  "Submit within 28 days of receiving the PCN",
   "If rejected, escalate to the Traffic Penalty Tribunal — it's free",
   "Keep all photos and correspondence as evidence",
 ];
