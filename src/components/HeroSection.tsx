@@ -224,16 +224,37 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
         )}
       </motion.div>
 
-      {/* Global coverage badge */}
+      {/* Top countries showcase */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.55 }}
-        className="mt-5 flex items-center gap-2 rounded-full border border-border bg-muted/50 px-4 py-2"
+        className="mt-5 w-full max-w-sm"
       >
-        <span className="text-base leading-none">🇺🇸🇬🇧🇩🇪🇫🇷🇦🇺🇨🇦</span>
-        <span className="text-xs font-semibold text-foreground">Works in 50+ countries</span>
-        <Globe className="h-3.5 w-3.5 text-muted-foreground" />
+        <div className="rounded-xl border border-border bg-card p-4">
+          <div className="flex items-center justify-center gap-1.5 mb-3">
+            <Globe className="h-4 w-4 text-accent" />
+            <span className="text-xs font-bold text-foreground">Trusted in 50+ Countries</span>
+          </div>
+          <div className="grid grid-cols-5 gap-1.5">
+            {[
+              { flag: "🇬🇧", name: "UK", rate: "78%" },
+              { flag: "🇺🇸", name: "USA", rate: "65%" },
+              { flag: "🇦🇺", name: "AUS", rate: "72%" },
+              { flag: "🇨🇦", name: "CAN", rate: "68%" },
+              { flag: "🇩🇪", name: "DEU", rate: "61%" },
+            ].map((c) => (
+              <div key={c.name} className="flex flex-col items-center rounded-lg bg-muted/60 px-1 py-2">
+                <span className="text-lg leading-none">{c.flag}</span>
+                <span className="mt-1 text-[10px] font-bold text-foreground">{c.rate}</span>
+                <span className="text-[9px] text-muted-foreground">{c.name}</span>
+              </div>
+            ))}
+          </div>
+          <p className="mt-2.5 text-center text-[10px] text-muted-foreground">
+            Average appeal success rates · Auto-detects your jurisdiction
+          </p>
+        </div>
       </motion.div>
 
       {/* Trust bar */}
