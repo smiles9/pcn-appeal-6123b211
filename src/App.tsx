@@ -14,6 +14,7 @@ import PrivacyPage from "./pages/PrivacyPage.tsx";
 import RefundPage from "./pages/RefundPage.tsx";
 
 const GuidePage = lazy(() => import("./pages/GuidePage.tsx"));
+const GuidesIndex = lazy(() => import("./pages/GuidesIndex.tsx"));
 
 const queryClient = new QueryClient();
 
