@@ -39,9 +39,9 @@ const AppealLetter = ({
   // Build the final letter with user details filled in
   const finalText = useMemo(() => {
     let text = rawText;
-    if (fullName.trim()) text = text.replaceAll(PLACEHOLDERS.name, fullName.trim());
-    if (address.trim()) text = text.replaceAll(PLACEHOLDERS.address, address.trim());
-    if (postcode.trim()) text = text.replaceAll(PLACEHOLDERS.postcode, postcode.trim());
+    if (fullName.trim()) text = text.split(PLACEHOLDERS.name).join(fullName.trim());
+    if (address.trim()) text = text.split(PLACEHOLDERS.address).join(address.trim());
+    if (postcode.trim()) text = text.split(PLACEHOLDERS.postcode).join(postcode.trim());
     return text;
   }, [rawText, fullName, address, postcode]);
 
