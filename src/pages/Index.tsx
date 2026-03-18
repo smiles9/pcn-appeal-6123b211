@@ -19,6 +19,15 @@ const Index = () => {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   const { analysis, letterText, analyzeImage, generateLetter } = useSubmission(user?.id);
+  const prevUserRef = useRef(user);
+
+  // When user signs in while auth modal is open, auto-proceed to checkout
+  useEffect(() => {
+    if (!prevUserRef.current && user && showAuth) {
+      handleAuthComplete();
+    }
+    prevUserRef.current = user;
+  }, [user, showAuth]);
 
   const handleFileSelected = useCallback(async (file: File) => {
     setStage("analyzing");
