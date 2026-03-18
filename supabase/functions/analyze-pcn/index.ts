@@ -144,6 +144,7 @@ serve(async (req) => {
                       amount: { type: "string" },
                       country: { type: "string", description: "Detected country/jurisdiction (e.g. United Kingdom, United States - California, Germany, Australia - NSW)" },
                       appeals_email: { type: "string", description: "Email address or web portal URL for submitting appeals, if known or visible on the ticket" },
+                      vehicle_registration: { type: "string", description: "Vehicle registration/license plate number if visible on the ticket" },
                     },
                   },
                   success_probability: {

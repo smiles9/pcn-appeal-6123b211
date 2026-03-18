@@ -20,6 +20,7 @@ export interface PcnAnalysis {
     amount?: string;
     appeals_email?: string;
     country?: string;
+    vehicle_registration?: string;
   };
   success_probability: number;
   issues: PcnIssue[];

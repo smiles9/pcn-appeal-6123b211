@@ -145,7 +145,15 @@ const Index = () => {
         <DiagnosisCard analysis={analysis} onUnlock={handleUnlock} />
       )}
       {stage === "generating" && <AnalysisProgress generating />}
-      {stage === "unlocked" && <AppealLetter letterText={letterText} defaultRecipientEmail={analysis?.pcn_details?.appeals_email} />}
+      {stage === "unlocked" && (
+        <AppealLetter
+          letterText={letterText}
+          defaultRecipientEmail={analysis?.pcn_details?.appeals_email}
+          vehicleRegistration={analysis?.pcn_details?.vehicle_registration}
+          pcnNumber={analysis?.pcn_details?.pcn_number}
+          issuingAuthority={analysis?.pcn_details?.issuing_authority}
+        />
+      )}
 
       <MockCheckout
         open={checkoutOpen}

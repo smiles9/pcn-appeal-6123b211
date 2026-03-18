@@ -1,42 +1,55 @@
-import { Copy, CheckCircle, Mail } from "lucide-react";
-import { useState } from "react";
+import { Copy, CheckCircle, Mail, User, MapPin, AlertCircle } from "lucide-react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 interface AppealLetterProps {
   letterText?: string | null;
   defaultRecipientEmail?: string;
+  vehicleRegistration?: string;
+  pcnNumber?: string;
+  issuingAuthority?: string;
 }
 
-const DEFAULT_LETTER = `Dear Sir/Madam,
+const PLACEHOLDERS = {
+  name: "[YOUR NAME]",
+  address: "[YOUR ADDRESS]",
+  postcode: "[YOUR POSTCODE]",
+};
 
-I am writing to formally appeal the parking ticket referenced above. Having conducted a thorough review of the circumstances and applicable legislation, I have identified several procedural and evidential deficiencies which render this ticket unenforceable.
-
-GROUND 1: INVALID SIGNAGE
-The traffic sign at the enforcement location does not comply with the applicable signage regulations for this jurisdiction. I have photographic evidence confirming non-compliance.
-
-GROUND 2: PROCEDURAL ERROR
-The ticket contains procedural irregularities that do not meet the statutory requirements for valid enforcement.
-
-GROUND 3: GRACE PERIOD / TIMING VIOLATION
-The enforcement action was taken in violation of the applicable grace period or timing requirements.
-
-I respectfully request that this ticket be cancelled on the grounds stated above. Should you wish to discuss this matter further, I am available at the contact details provided.
-
-Yours faithfully,
-[Your Name]
-[Your Address]`;
-
-const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealLetterProps) => {
+const AppealLetter = ({
+  letterText: propLetter,
+  defaultRecipientEmail,
+  vehicleRegistration,
+  pcnNumber,
+  issuingAuthority,
+}: AppealLetterProps) => {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const [recipientEmail, setRecipientEmail] = useState(defaultRecipientEmail || "");
-  const text = propLetter || DEFAULT_LETTER;
+  const [fullName, setFullName] = useState("");
+  const [address, setAddress] = useState("");
+  const [postcode, setPostcode] = useState("");
+
+  const rawText = propLetter || "";
+
+  // Check which placeholders exist in the letter
+  const hasPlaceholders = rawText.includes(PLACEHOLDERS.name) || rawText.includes(PLACEHOLDERS.address) || rawText.includes(PLACEHOLDERS.postcode);
+
+  // Build the final letter with user details filled in
+  const finalText = useMemo(() => {
+    let text = rawText;
+    if (fullName.trim()) text = text.split(PLACEHOLDERS.name).join(fullName.trim());
+    if (address.trim()) text = text.split(PLACEHOLDERS.address).join(address.trim());
+    if (postcode.trim()) text = text.split(PLACEHOLDERS.postcode).join(postcode.trim());
+    return text;
+  }, [rawText, fullName, address, postcode]);
 
   const isValidEmail = recipientEmail.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipientEmail.trim());
+  const hasUnfilledPlaceholders = finalText.includes("[YOUR NAME]") || finalText.includes("[YOUR ADDRESS]");
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(finalText);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -63,9 +76,117 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
           </h2>
         </div>
 
+        {/* Personal details form - shown prominently */}
+        {hasPlaceholders && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-4 rounded-2xl border-2 border-primary/30 bg-primary/5 p-4"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <User className="h-4 w-4 text-primary" />
+              <h3 className="font-display text-sm font-bold text-foreground">
+                {t("personalise_letter", "Complete your details")}
+              </h3>
+            </div>
+            <p className="text-xs text-muted-foreground mb-3">
+              {t("personalise_hint", "Fill in your details below — they'll be inserted into your letter automatically.")}
+            </p>
+
+            <div className="space-y-2.5">
+              <div>
+                <label className="text-[11px] font-medium text-muted-foreground">
+                  {t("your_full_name", "Your full name")} *
+                </label>
+                <div className="mt-1 flex items-center gap-0 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
+                  <User className="ml-3 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="John Smith"
+                    maxLength={100}
+                    className="w-full bg-transparent px-2.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[11px] font-medium text-muted-foreground">
+                  {t("your_address", "Your address")}
+                </label>
+                <div className="mt-1 flex items-center gap-0 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
+                  <MapPin className="ml-3 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                  <input
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="123 Main Street, London"
+                    maxLength={200}
+                    className="w-full bg-transparent px-2.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[11px] font-medium text-muted-foreground">
+                  {t("your_postcode", "Postcode / ZIP")}
+                </label>
+                <div className="mt-1 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
+                  <input
+                    type="text"
+                    value={postcode}
+                    onChange={(e) => setPostcode(e.target.value)}
+                    placeholder="SW1A 1AA"
+                    maxLength={20}
+                    className="w-full bg-transparent px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Auto-detected info */}
+            {(vehicleRegistration || pcnNumber) && (
+              <div className="mt-3 rounded-lg bg-muted/50 p-3">
+                <p className="text-[11px] font-medium text-muted-foreground mb-1.5">
+                  {t("auto_detected", "Auto-detected from your ticket:")}
+                </p>
+                <div className="space-y-1 text-xs text-foreground">
+                  {vehicleRegistration && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">{t("vehicle_reg", "Vehicle Reg")}</span>
+                      <span className="font-mono font-medium">{vehicleRegistration}</span>
+                    </div>
+                  )}
+                  {pcnNumber && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">{t("ticket_ref", "Ticket Ref")}</span>
+                      <span className="font-mono font-medium">{pcnNumber}</span>
+                    </div>
+                  )}
+                  {issuingAuthority && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">{t("authority", "Authority")}</span>
+                      <span className="font-medium">{issuingAuthority}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </motion.div>
+        )}
+
+        {/* Warning if placeholders still unfilled */}
+        {hasUnfilledPlaceholders && (
+          <div className="mb-3 flex items-center gap-2 rounded-lg bg-destructive/10 px-3 py-2 text-xs text-destructive">
+            <AlertCircle className="h-3.5 w-3.5 shrink-0" />
+            {t("fill_details_warning", "Please fill in your name and address above before sending.")}
+          </div>
+        )}
+
         <div className="rounded-2xl border border-border bg-card p-5 shadow-lg shadow-primary/5">
           <pre className="whitespace-pre-wrap font-body text-xs leading-relaxed text-foreground">
-            {text}
+            {finalText}
           </pre>
 
           <div className="mt-4">
@@ -86,10 +207,10 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
           </div>
 
           <a
-            href={`mailto:${encodeURIComponent(recipientEmail.trim())}?subject=${encodeURIComponent("Formal Appeal — Parking Ticket")}&body=${encodeURIComponent(text)}`}
-            onClick={(e) => { if (!isValidEmail) e.preventDefault(); }}
-            className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${!isValidEmail ? "opacity-50 pointer-events-none" : ""}`}
-            aria-disabled={!isValidEmail}
+            href={`mailto:${encodeURIComponent(recipientEmail.trim())}?subject=${encodeURIComponent("Formal Appeal — Parking Ticket")}&body=${encodeURIComponent(finalText)}`}
+            onClick={(e) => { if (!isValidEmail || hasUnfilledPlaceholders) e.preventDefault(); }}
+            className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${(!isValidEmail || hasUnfilledPlaceholders) ? "opacity-50 pointer-events-none" : ""}`}
+            aria-disabled={!isValidEmail || hasUnfilledPlaceholders}
           >
             <Mail className="h-4 w-4" /> {t("send_email")}
           </a>
