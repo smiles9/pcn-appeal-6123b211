@@ -151,7 +151,7 @@ const FAQSection = () => {
     >
       <div className="mb-4 flex items-center gap-2">
         <HelpCircle className="h-4 w-4 text-primary" />
-        <h2 className="text-sm font-bold text-foreground">Frequently Asked Questions</h2>
+        <h2 className="text-sm font-bold text-foreground">{t("faq_title")}</h2>
       </div>
 
       {/* Country filter tabs */}
