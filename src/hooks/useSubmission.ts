@@ -112,7 +112,11 @@ export function useSubmission(userId: string | undefined) {
   };
 
   const generateLetter = async (userDescription?: string) => {
-    if (!analysis || !submissionId || !userId) return null;
+    if (!analysis || !submissionId || !userId) {
+      console.error("generateLetter guard failed:", { hasAnalysis: !!analysis, submissionId, userId });
+      toast.error("Missing data to generate letter. Please try again.");
+      return null;
+    }
     setLoading(true);
     setError(null);
 
