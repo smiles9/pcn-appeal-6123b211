@@ -120,4 +120,8 @@ export default {
   // History
   appeal_history: "Appeal History",
   back: "Back",
+
+  // Legal guides
+  legal_guides_title: "Legal Guides",
+  legal_guides_subtitle: "Free expert guides on fighting parking fines across different jurisdictions.",
 };
