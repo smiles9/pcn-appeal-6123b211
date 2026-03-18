@@ -65,9 +65,28 @@ const AppealLetter = ({ letterText: propLetter }: AppealLetterProps) => {
             {text}
           </pre>
 
+          <div className="mt-4">
+            <label className="text-[11px] font-medium text-muted-foreground">
+              Council / parking company email address
+            </label>
+            <div className="mt-1 flex items-center gap-0 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
+              <Mail className="ml-3 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+              <input
+                type="email"
+                value={recipientEmail}
+                onChange={(e) => setRecipientEmail(e.target.value)}
+                placeholder="e.g. appeals@council.gov.uk"
+                maxLength={255}
+                className="w-full bg-transparent px-2.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
+              />
+            </div>
+          </div>
+
           <a
-            href={`mailto:?subject=${encodeURIComponent("Formal Appeal — Penalty Charge Notice")}&body=${encodeURIComponent(text)}`}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            href={`mailto:${encodeURIComponent(recipientEmail.trim())}?subject=${encodeURIComponent("Formal Appeal — Penalty Charge Notice")}&body=${encodeURIComponent(text)}`}
+            onClick={(e) => { if (!isValidEmail) e.preventDefault(); }}
+            className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${!isValidEmail ? "opacity-50 pointer-events-none" : ""}`}
+            aria-disabled={!isValidEmail}
           >
             <Mail className="h-4 w-4" /> Send via Email
           </a>
