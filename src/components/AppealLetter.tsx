@@ -9,18 +9,18 @@ interface AppealLetterProps {
 
 const DEFAULT_LETTER = `Dear Sir/Madam,
 
-I am writing to formally appeal Penalty Charge Notice PCN-2024-AX7291 issued on 14 March 2026 at High Street, London Borough of Camden. Having conducted a thorough review of the circumstances and applicable legislation, I have identified several procedural and evidential deficiencies which render this PCN unenforceable under the Traffic Management Act 2004.
+I am writing to formally appeal the parking ticket referenced above. Having conducted a thorough review of the circumstances and applicable legislation, I have identified several procedural and evidential deficiencies which render this ticket unenforceable.
 
-GROUND 1: INVALID SIGNAGE LOCATION
-The traffic sign at the enforcement location is positioned approximately 3.2 metres from the nearest parking bay. This exceeds the maximum distance permitted under The Traffic Signs Regulations and General Directions 2016 (TSRGD), Schedule 12, Part 5, regulation 8.3, which stipulates that regulatory signs must be placed within 2 metres of the relevant restriction. I have photographic evidence confirming this measurement.
+GROUND 1: INVALID SIGNAGE
+The traffic sign at the enforcement location does not comply with the applicable signage regulations for this jurisdiction. I have photographic evidence confirming non-compliance.
 
-GROUND 2: INCORRECT DATE FORMAT
-The PCN displays the date in a format that is non-compliant with the requirements set out in the Traffic Management Act 2004, Schedule 1, Paragraph 2(4). The date should be expressed in the format DD/MM/YYYY. The failure to adhere to this prescribed format constitutes a procedural irregularity.
+GROUND 2: PROCEDURAL ERROR
+The ticket contains procedural irregularities that do not meet the statutory requirements for valid enforcement.
 
-GROUND 3: GRACE PERIOD VIOLATION
-Under the Deregulation Act 2015, Section 71, a mandatory 10-minute observation period is required before a PCN may be issued to a stationary vehicle. CCTV evidence and the CEO's notes indicate that enforcement action was taken within 7 minutes of the alleged contravention commencing. This is a direct breach of the statutory grace period.
+GROUND 3: GRACE PERIOD / TIMING VIOLATION
+The enforcement action was taken in violation of the applicable grace period or timing requirements.
 
-I respectfully request that this PCN be cancelled on the grounds stated above. Should you wish to discuss this matter further, I am available at the contact details provided.
+I respectfully request that this ticket be cancelled on the grounds stated above. Should you wish to discuss this matter further, I am available at the contact details provided.
 
 Yours faithfully,
 [Your Name]
@@ -28,9 +28,9 @@ Yours faithfully,
 
 const nextSteps = [
   "Send the letter using the button below, or print and post it",
-  "Address it to the issuing authority shown on your PCN",
-  "Submit within 28 days of receiving the PCN",
-  "If rejected, escalate to the Traffic Penalty Tribunal — it's free",
+  "Address it to the issuing authority shown on your ticket",
+  "Submit within the deadline stated on your ticket",
+  "If rejected, check your local escalation options (tribunal, court, or ombudsman)",
   "Keep all photos and correspondence as evidence",
 ];
 
@@ -68,7 +68,7 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
 
           <div className="mt-4">
             <label className="text-[11px] font-medium text-muted-foreground">
-              Council / parking company email address
+              Issuing authority email address
             </label>
             <div className="mt-1 flex items-center gap-0 rounded-lg border border-input bg-background focus-within:ring-2 focus-within:ring-primary">
               <Mail className="ml-3 h-3.5 w-3.5 shrink-0 text-muted-foreground" />
@@ -76,7 +76,7 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
                 type="email"
                 value={recipientEmail}
                 onChange={(e) => setRecipientEmail(e.target.value)}
-                placeholder="e.g. appeals@council.gov.uk"
+                placeholder="e.g. appeals@authority.gov"
                 maxLength={255}
                 className="w-full bg-transparent px-2.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
               />
@@ -84,7 +84,7 @@ const AppealLetter = ({ letterText: propLetter, defaultRecipientEmail }: AppealL
           </div>
 
           <a
-            href={`mailto:${encodeURIComponent(recipientEmail.trim())}?subject=${encodeURIComponent("Formal Appeal — Penalty Charge Notice")}&body=${encodeURIComponent(text)}`}
+            href={`mailto:${encodeURIComponent(recipientEmail.trim())}?subject=${encodeURIComponent("Formal Appeal — Parking Ticket")}&body=${encodeURIComponent(text)}`}
             onClick={(e) => { if (!isValidEmail) e.preventDefault(); }}
             className={`mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 font-display text-sm font-bold text-accent-foreground shadow-md shadow-accent/20 transition-transform hover:scale-[1.02] active:scale-[0.98] ${!isValidEmail ? "opacity-50 pointer-events-none" : ""}`}
             aria-disabled={!isValidEmail}
