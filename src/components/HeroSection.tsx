@@ -1,12 +1,25 @@
-import { Shield, Upload, FileText } from "lucide-react";
+import { Shield, Upload, FileText, CheckCircle, Clock, TrendingUp, Star } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 interface HeroSectionProps {
   onFileSelected: (file: File) => void;
   onTextSubmit: (description: string) => void;
 }
+
+const stats = [
+  { icon: TrendingUp, value: "73%", label: "Success Rate" },
+  { icon: Clock, value: "30s", label: "AI Analysis" },
+  { icon: Star, value: "87K+", label: "Fines Challenged" },
+];
+
+const steps = [
+  { num: "1", text: "Upload your PCN or describe it" },
+  { num: "2", text: "Get a free AI legal audit instantly" },
+  { num: "3", text: "Unlock your personalised appeal letter" },
+];
 
 const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -34,25 +47,109 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
   };
 
   return (
-    <section className="flex flex-col items-center px-4 pt-12 pb-8 text-center">
-      <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary">
-        <Shield className="h-8 w-8 text-primary-foreground" />
-      </div>
+    <section className="flex flex-col items-center px-4 pb-8">
+      {/* Hero banner */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-primary px-5 py-8 mt-4 text-center"
+      >
+        {/* Subtle pattern overlay */}
+        <div className="absolute inset-0 opacity-[0.06]" style={{
+          backgroundImage: "radial-gradient(circle at 1px 1px, hsl(var(--primary-foreground)) 1px, transparent 0)",
+          backgroundSize: "20px 20px",
+        }} />
 
-      <h1 className="font-display text-3xl font-extrabold leading-tight text-foreground sm:text-4xl">
-        Don't Pay That Fine Yet!
-      </h1>
-      <p className="mt-3 max-w-md text-lg font-medium text-muted-foreground">
-        Get a <span className="text-gradient-gold font-bold">Free AI Legal Audit</span> in 30 Seconds.
-      </p>
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
+          className="relative mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent shadow-lg"
+        >
+          <Shield className="h-7 w-7 text-accent-foreground" />
+        </motion.div>
+
+        <motion.h1
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.15 }}
+          className="relative font-display text-2xl font-extrabold leading-tight text-primary-foreground sm:text-3xl"
+        >
+          Don't Pay That
+          <br />
+          Parking Fine Yet!
+        </motion.h1>
+
+        <motion.p
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.25 }}
+          className="relative mt-2.5 text-sm font-medium text-primary-foreground/80"
+        >
+          Get a{" "}
+          <span className="inline-block rounded-md bg-accent/20 px-1.5 py-0.5 font-bold text-accent">
+            Free AI Legal Audit
+          </span>{" "}
+          in 30 seconds
+        </motion.p>
+
+        {/* Stats row */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.35 }}
+          className="relative mt-6 grid grid-cols-3 gap-2"
+        >
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex flex-col items-center rounded-xl bg-primary-foreground/10 px-2 py-2.5 backdrop-blur-sm"
+            >
+              <stat.icon className="mb-1 h-4 w-4 text-accent" />
+              <span className="font-display text-lg font-bold text-primary-foreground">
+                {stat.value}
+              </span>
+              <span className="text-[10px] font-medium text-primary-foreground/60">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* How it works */}
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="mt-6 w-full max-w-sm"
+      >
+        <div className="flex items-center gap-3">
+          {steps.map((step, i) => (
+            <div key={step.num} className="flex flex-1 items-start gap-2">
+              <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-accent-foreground">
+                {step.num}
+              </div>
+              <p className="text-[11px] leading-tight text-muted-foreground">
+                {step.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Mode toggle */}
-      <div className="mt-8 flex rounded-lg border border-border bg-muted p-1 gap-1">
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.45 }}
+        className="mt-6 flex rounded-lg border border-border bg-muted p-1 gap-1"
+      >
         <button
           onClick={() => setMode("photo")}
           className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
             mode === "photo"
-              ? "bg-background text-foreground shadow-sm"
+              ? "bg-card text-foreground shadow-sm"
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
@@ -63,67 +160,85 @@ const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
           onClick={() => setMode("text")}
           className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
             mode === "text"
-              ? "bg-background text-foreground shadow-sm"
+              ? "bg-card text-foreground shadow-sm"
               : "text-muted-foreground hover:text-foreground"
           }`}
         >
           <FileText className="h-3.5 w-3.5" />
           Describe It
         </button>
-      </div>
+      </motion.div>
 
-      {mode === "photo" ? (
-        <div
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={handleDrop}
-          onClick={() => inputRef.current?.click()}
-          className="mt-5 flex w-full max-w-sm cursor-pointer flex-col items-center gap-3 rounded-xl border-2 border-dashed border-accent bg-card p-8 transition-colors hover:border-accent/80 hover:bg-muted/50"
-        >
-          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/15">
-            <Upload className="h-6 w-6 text-accent" />
-          </div>
-          <p className="font-display text-sm font-semibold text-foreground">
-            Upload your PCN photo
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Tap here or drag & drop · JPG, PNG
-          </p>
-          <input
-            ref={inputRef}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleChange}
-          />
-        </div>
-      ) : (
-        <div className="mt-5 flex w-full max-w-sm flex-col gap-3">
-          <Textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Describe your PCN details: issuing authority, date, location, contravention code, amount, and any circumstances you think are relevant..."
-            className="min-h-[140px] resize-none text-sm"
-          />
-          <p className="text-xs text-muted-foreground text-left">
-            Include as much detail as possible: PCN number, date, location, contravention, amount, and why you think it's unfair.
-          </p>
-          <Button
-            onClick={handleTextSubmit}
-            disabled={description.trim().length < 20}
-            className="w-full"
+      {/* Upload / Text input */}
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="w-full max-w-sm mt-4"
+      >
+        {mode === "photo" ? (
+          <div
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={handleDrop}
+            onClick={() => inputRef.current?.click()}
+            className="group flex w-full cursor-pointer flex-col items-center gap-3 rounded-xl border-2 border-dashed border-accent/50 bg-card p-7 transition-all hover:border-accent hover:shadow-md"
           >
-            Analyse My PCN
-          </Button>
-        </div>
-      )}
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 transition-colors group-hover:bg-accent/20">
+              <Upload className="h-5 w-5 text-accent" />
+            </div>
+            <div className="text-center">
+              <p className="font-display text-sm font-semibold text-foreground">
+                Upload your PCN photo
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Tap here or drag & drop · JPG, PNG
+              </p>
+            </div>
+            <input
+              ref={inputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleChange}
+            />
+          </div>
+        ) : (
+          <div className="flex w-full flex-col gap-3">
+            <Textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Describe your PCN details: issuing authority, date, location, contravention code, amount, and any circumstances you think are relevant..."
+              className="min-h-[130px] resize-none text-sm"
+            />
+            <p className="text-xs text-muted-foreground text-left">
+              Include as much detail as possible for the best results.
+            </p>
+            <Button
+              onClick={handleTextSubmit}
+              disabled={description.trim().length < 20}
+              className="w-full"
+            >
+              Analyse My PCN
+            </Button>
+          </div>
+        )}
+      </motion.div>
 
-      <div className="mt-6 flex items-center gap-4 text-xs text-muted-foreground">
+      {/* Trust bar */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground"
+      >
         <span className="flex items-center gap-1">
           <Shield className="h-3.5 w-3.5 text-success" /> 256-bit encrypted
         </span>
-        <span>·</span>
-        <span>87,000+ fines challenged</span>
-      </div>
+        <span className="hidden sm:inline">·</span>
+        <span className="flex items-center gap-1">
+          <CheckCircle className="h-3.5 w-3.5 text-success" /> No payment required
+        </span>
+      </motion.div>
     </section>
   );
 };
