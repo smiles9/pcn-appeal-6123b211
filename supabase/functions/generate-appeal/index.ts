@@ -29,6 +29,7 @@ For all jurisdictions:
 5. Requests cancellation/dismissal of the ticket with a clear legal basis
 6. Maintains a respectful but firm professional tone
 7. Includes placeholders for [YOUR NAME], [YOUR ADDRESS], and [YOUR POSTCODE] ONLY. Do NOT include [YOUR PHONE NUMBER], [YOUR EMAIL ADDRESS], or any other placeholders — we do not collect those.
+8. Use the provided current date for the letter date — do NOT use a placeholder for the date.
 8. Addresses the letter to the correct body based on ticket type and jurisdiction
 9. Mentions the correct appeal escalation path
 
@@ -64,8 +65,11 @@ Amount: ${analysis.pcn_details.amount || "Unknown"}
 Country/Jurisdiction: ${country}`
       : "Ticket details not fully available";
 
+    const today = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+
     const userPrompt = `Generate a formal appeal letter for the following parking ticket:
 
+Today's date (use this as the letter date): ${today}
 Jurisdiction: ${country}
 Ticket Type: ${analysis.pcn_type === "government" ? "Government/Municipal Authority" : analysis.pcn_type === "private" ? "Private Parking Operator" : "Unknown"}
 
