@@ -99,12 +99,15 @@ serve(async (req) => {
       });
     }
 
+    const now = new Date().toISOString();
+    const todayStr = `Today's date and time is ${now}.`;
+
     const imageCount = images.length;
     userContent.push({
       type: "text",
       text: userDescription
-        ? `Analyze this parking ticket/fine. The user describes: "${userDescription}".${imageCount > 1 ? ` ${imageCount} images provided (front and back of ticket).` : ""} First detect the country/jurisdiction, then identify all possible legal grounds for appeal under the applicable local laws.`
-        : `Analyze this parking ticket/fine image${imageCount > 1 ? "s" : ""}.${imageCount > 1 ? ` ${imageCount} images provided (likely front and back of the same ticket).` : ""} First detect the country/jurisdiction from visual clues. Extract all details visible (ticket number, date, location, violation code, issuing authority, amount, etc.) and identify all possible legal grounds for appeal under the applicable local laws.`,
+        ? `${todayStr} Analyze this parking ticket/fine. The user describes: "${userDescription}".${imageCount > 1 ? ` ${imageCount} images provided (front and back of ticket).` : ""} First detect the country/jurisdiction, then identify all possible legal grounds for appeal under the applicable local laws. Use today's date to accurately assess any time-based issues (e.g. whether the ticket was issued recently, deadline calculations, grace periods).`
+        : `${todayStr} Analyze this parking ticket/fine image${imageCount > 1 ? "s" : ""}.${imageCount > 1 ? ` ${imageCount} images provided (likely front and back of the same ticket).` : ""} First detect the country/jurisdiction from visual clues. Extract all details visible (ticket number, date, location, violation code, issuing authority, amount, etc.) and identify all possible legal grounds for appeal under the applicable local laws. Use today's date to accurately assess any time-based issues (e.g. whether the ticket was issued recently, deadline calculations, grace periods).`,
     });
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
