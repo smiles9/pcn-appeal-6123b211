@@ -1,5 +1,5 @@
 import { CreditCard, X, Lock, Tag, CheckCircle, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "react-i18next";
@@ -11,7 +11,7 @@ interface MockCheckoutProps {
   submissionId?: string | null;
 }
 
-const MockCheckout = ({ open, onClose, onSuccess, submissionId }: MockCheckoutProps) => {
+const MockCheckout = forwardRef<HTMLDivElement, MockCheckoutProps>(({ open, onClose, onSuccess, submissionId }, ref) => {
   const { t } = useTranslation();
   const [processing, setProcessing] = useState(false);
   const [promoCode, setPromoCode] = useState("");
