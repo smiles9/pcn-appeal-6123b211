@@ -10,11 +10,12 @@ interface HeroSectionProps {
   onTextSubmit: (description: string) => void;
 }
 
-const HeroSection = ({ onFileSelected, onTextSubmit }: HeroSectionProps) => {
+const HeroSection = ({ onFilesSelected, onTextSubmit }: HeroSectionProps) => {
   const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const [mode, setMode] = useState<"photo" | "text">("photo");
   const [description, setDescription] = useState("");
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const stats = [
     { icon: TrendingUp, value: "73%", label: t("stat_success_rate") },
