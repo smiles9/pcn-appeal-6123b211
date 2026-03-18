@@ -1,4 +1,4 @@
-import { Shield, Upload, FileText, CheckCircle, Clock, TrendingUp, Star, Globe } from "lucide-react";
+import { Upload, FileText, CheckCircle, Clock, TrendingUp, Star, Globe, Shield } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
