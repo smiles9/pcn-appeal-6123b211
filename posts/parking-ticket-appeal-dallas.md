@@ -20,7 +20,7 @@ Most Dallas parking tickets are civil violations. You have **15 days** from the 
 *   **Lower Greenville:** Strict residential permit zones and valet-only lanes.
 *   **Uptown:** Meter expiration is the #1 cause of tickets here.
 
-## 3. How to Appeal (Step-by-Step)
+## 3. The 3-Step "Deep Strike" Defense (Appeal to Court) (Step-by-Step)
 1.  **Online Portal:** Visit the [Dallas Dispute Citation System](https://prdwmq.etimspayments.com/pbw/include/dallas/dispute_request.jsp).
 2.  **Enter Details:** You will need your citation number and vehicle registration (license plate).
 3.  **Submit Evidence:** Upload photos of signs, broken meters, or your valid permit.

@@ -22,7 +22,7 @@ The charge is compulsory for anyone entering the terminal drop-off zones. Automa
 *   **South Terminal Drop-off:** High congestion often leads to "overstaying" the 10-minute window.
 *   **Red Routes:** Strictly no stopping anywhere on airport approach roads.
 
-## 3. How to Appeal an NCP Gatwick PCN
+## 3. The 3-Step "Deep Strike" Defense (Appeal to Court) an NCP Gatwick PCN
 1.  **Do Not Pay:** Paying is seen as an admission of liability.
 2.  **Locate Your PCN:** You will need the reference number (usually starting with 'CP').
 3.  **Online Portal:** Go to the [NCP Appeal Portal](https://www.ncp.co.uk/help-centre/gatwick-airport/) or follow the link on the Gatwick transport page.
@@ -42,4 +42,4 @@ Gatwick is governed by Airport Byelaws, meaning it is not "relevant land" under 
 |Can I ignore this ticket?|No. NCP is aggressive in debt collection. Always appeal or pay.|||
 
 ---
-*Received a Gatwick PCN? [Get an AI-powered technical audit of your ticket for common legal loopholes.](/) / AI Audit*
+**Appeal Rejection?** If your first appeal was rejected, don't panic. Our [2026 Court Guide](/) includes specific defense templates for court escalations. [Analyze your ticket now](/).

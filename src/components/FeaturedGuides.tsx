@@ -9,17 +9,17 @@ const FeaturedGuides = () => {
   const featured = [
     {
       city: "Manchester",
-      title: "Manchester T2 (APCOA) Trap",
+      title: "Manchester T2 (Full Defense)",
       slug: "manchester-airport-pcn-appeal-guide",
-      description: "How to beat the new barrier-less £100 fines using the 'Non-Relevant Land' defense.",
-      tag: "Trending",
+      description: "Includes initial appeal + court-stage escalation templates for 2026.",
+      tag: "Deep Strike",
     },
     {
       city: "Gatwick",
-      title: "Gatwick Drop-off Charge",
+      title: "Gatwick (Court-Ready)",
       slug: "parking-ticket-appeal-gatwick",
-      description: "Contesting NCP drop-off PCNs. Beating the 24-hour payment window trap.",
-      tag: "New",
+      description: "Don't just appeal—get ready for the legal defense against NCP.",
+      tag: "Escalation",
     },
     {
       city: "Heathrow",

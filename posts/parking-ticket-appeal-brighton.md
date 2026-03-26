@@ -21,4 +21,4 @@ The entry signs at Brighton Centre are frequently obscured by shadows or height.
 ## 3. High Value Appeals
 Brighton fines often jump from £60 to £170 very quickly. If you've received a 'Final Notice' from a debt collector (like DRP), don't panic. They cannot take you to court without the parking company's permission, which they rarely get for single tickets with strong defenses.
 
-*Received a Brighton fine? [Run a free Eidos Audit on your PCN now.](/) / AI Audit*
+**Appeal Rejection?** If your first appeal was rejected, don't panic. Our [2026 Court Guide](/) includes specific defense templates for court escalations. [Analyze your ticket now](/).

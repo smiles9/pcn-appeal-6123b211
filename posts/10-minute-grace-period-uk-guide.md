@@ -27,7 +27,7 @@ The 10-minute window begins the moment your paid-for parking time expires.
 
 If the timestamp on your ticket shows it was issued at 2:05 PM, that ticket is likely **invalid and should be cancelled immediately upon appeal.**
 
-## 3. How to Appeal Using the Grace Period
+## 3. The 3-Step "Deep Strike" Defense (Appeal to Court) Using the Grace Period
 
 To win your appeal based on this technicality, you need to provide evidence:
 1. **Your Original Ticket**: A photo showing the expiry time.

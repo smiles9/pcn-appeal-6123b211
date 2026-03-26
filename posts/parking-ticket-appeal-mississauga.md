@@ -22,7 +22,7 @@ Received a parking ticket in Mississauga? Don't pay it immediately. Under Missis
 - **Streetsville:** Popular dining destination where time-limit violations are frequently issued.
 - **Mississauga Hospital (Trillium):** Heavy enforcement in surrounding residential streets and hospital-managed lots.
 
-## 3. How to Appeal Your Mississauga Ticket
+## 3. The 3-Step "Deep Strike" Defense (Appeal to Court) Your Mississauga Ticket
 In Mississauga, disputes are handled through a **Screening Officer**. You must request a review within **15 days** of the ticket being issued.
 
 ### Step-by-Step Appeal Process:

@@ -133,7 +133,7 @@ The British Parking Association (BPA) code of practice requires a **grace period
 --- 
 
 **Looking for other PCN guides?** Explore our [Heathrow T5 Guide](/guides/parking-ticket-appeal-heathrow-t5) or [Gatwick Airport Tips](/guides/parking-ticket-appeal-gatwick).
-*Received a Heathrow PCN? [Get an AI-powered technical audit of your ticket for common legal loopholes.](/) / AI Audit*
+**Appeal Rejection?** If your first appeal was rejected, don't panic. Our [2026 Court Guide](/) includes specific defense templates for court escalations. [Analyze your ticket now](/).
 
 --- 
 
