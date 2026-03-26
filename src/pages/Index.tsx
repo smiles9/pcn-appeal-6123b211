@@ -10,6 +10,7 @@ import AuthPage from "@/components/AuthPage";
 import AppealHistory from "@/components/AppealHistory";
 import FAQSection from "@/components/FAQSection";
 import SiteFooter from "@/components/SiteFooter";
+import FeaturedGuides from "@/components/FeaturedGuides";
 import LegalGuides from "@/components/LegalGuides";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useSubmission } from "@/hooks/useSubmission";
@@ -159,6 +160,7 @@ const Index = () => {
         <>
           <HeroSection onFilesSelected={handleFilesSelected} onTextSubmit={handleTextSubmit} />
           <SocialProofTicker />
+          <FeaturedGuides />
           <FAQSection />
           <LegalGuides />
           <SiteFooter />
