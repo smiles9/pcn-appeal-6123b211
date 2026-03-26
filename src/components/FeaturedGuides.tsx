@@ -22,11 +22,32 @@ const FeaturedGuides = () => {
       tag: "New",
     },
     {
+      city: "Heathrow",
+      title: "Heathrow T5 (McDonald's) Trap",
+      slug: "parking-ticket-appeal-heathrow-t5",
+      description: "How to appeal the common validation failure at Heathrow Terminal 5 retail.",
+      tag: "Hot",
+    },
+    {
+      city: "Luton",
+      title: "Luton Airport PCN",
+      slug: "parking-ticket-appeal-luton",
+      description: "Appealing drop-off and short-stay fines at Luton (LTN) airport.",
+      tag: "Active",
+    },
+    {
       city: "Dallas",
       title: "Dallas Fort Worth (DFW)",
       slug: "parking-ticket-appeal-dallas",
       description: "International parking enforcement strategies for major US airport hubs.",
       tag: "Global",
+    },
+    {
+      city: "Sacramento",
+      title: "Sacramento Midtown",
+      slug: "parking-ticket-appeal-sacramento",
+      description: "Expert tactics for beating California municipal and private parking tickets.",
+      tag: "US West",
     },
   ];
 
