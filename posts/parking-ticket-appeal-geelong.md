@@ -21,23 +21,35 @@ This guide explains how to navigate the Victorian appeals system and the specifi
 In Victoria, the first step to contesting a parking fine is an **Internal Review**. This is a formal request for the City of Greater Geelong to reconsider the infringement.
 
 ### 1. Request an Internal Review
+
 The most common way to appeal is online through the **City of Greater Geelong's 'Fines' portal**.
 
 **What to include in your appeal:**
+
 *   **The Infringement Number:** Found on your ticket.
+
 *   **A clear explanation:** Use one of the five statutory grounds (see below).
+
 *   **Supporting Evidence:** Photos of the scene, GPS logs, medical certificates, or towing receipts.
+
 *   **A Statutory Declaration:** If you are nominating another driver or providing witness testimony.
 
 ### 2. Statutory Grounds for Review (Victoria)
+
 Under the *Infringements Act 2006*, you must base your appeal on one of these grounds:
+
 1.  **Contrary to Law:** The officer made a legal error (e.g., you were legally parked).
+
 2.  **Mistake of Identity:** You were not the driver and the vehicle was not yours.
+
 3.  **Special Circumstances:** You have a mental or intellectual disability, disorder, disease, or illness, or are experiencing homelessness or family violence.
+
 4.  **Exceptional Circumstances:** A one-off event that was outside your control (e.g., a medical emergency or vehicle breakdown).
+
 5.  **Caution is more appropriate:** You admit the offence but believe a warning should be given (often used for minor first-time offences).
 
 ### 3. Magistrates' Court Election
+
 If your internal review is rejected, your final option is to **elect to go to court**. This moves the matter to the Geelong Magistrates' Court on Railway Terrace. Only take this step if you have strong evidence that the fine was issued unlawfully, as the court can impose higher fines and professional costs.
 
 ## Common Grounds for Success in Geelong
@@ -45,19 +57,29 @@ If your internal review is rejected, your final option is to **elect to go to co
 The following situations often result in a withdrawal or a caution in Geelong:
 
 1.  **Obscured Signage:** In areas like Little Malop Street or the Geelong Waterfront, signs can sometimes be obscured by trees or temporary event signage. If you can prove the sign was not clearly visible, the fine is often withdrawn.
+
 2.  **Vehicle Breakdown:** If your car suffered a mechanical failure (e.g., flat battery, engine failure). You must provide a receipt from a mechanic or a roadside assistance provider like the RACV.
+
 3.  **Medical Emergency:** If you had to park urgently to attend to a medical crisis. A letter from a doctor or Geelong Hospital (University Hospital Geelong) is required.
+
 4.  **Faulty Parking Meter:** If the meter or the 'EasyPark' app was malfunctioning. You must provide the meter number and evidence of the failure (e.g., a screenshot of the app error).
 
 ## Geelong Specifics: High-Enforcement Zones
+
 *   **Geelong CBD (Malop St, Moorabool St):** High enforcement of 'No Stopping' and 'Loading Zones' during business hours.
+
 *   **Geelong Waterfront (Eastern Beach):** Rangers are extremely active here, especially on weekends and during the summer months. Check for 'Special Event' parking signs.
+
 *   **Deakin University (Waterfront Campus):** The university area is strictly monitored. Ensure you have a valid permit or have paid through the correct app.
 
 ## What Happens Next?
+
 Once you lodge your review, the City of Greater Geelong will place the fine **on hold**. You will receive a letter with one of three outcomes:
+
 1.  **Penalty Withdrawn:** No fine to pay, no record of the offence.
+
 2.  **Official Warning:** The offence is recorded, but you don't have to pay the fine. This is common for first-time offenders with valid excuses.
+
 3.  **Penalty Confirmed:** You must pay the fine by the new due date or elect to go to court.
 
 ## Get a Free Legal Audit
@@ -65,3 +87,23 @@ Once you lodge your review, the City of Greater Geelong will place the fine **on
 Got a parking ticket? Don'\''t just pay it. Our AI can analyse your ticket against over 200 legal checkpoints and draft a professional appeal letter for you.
 
 [Audit My Ticket Now (Free)](/)
+
+To win an appeal against **Geelong** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it's a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
+
+**Looking for more help?**
+
+*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+
+*   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
+
+*   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
+
+---
+
+## ⚡ AEO Direct Answer: How to win this appeal?
+To win an appeal against **Geelong** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
+
+**Looking for more help?**
+*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+*   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
+*   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)

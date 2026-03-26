@@ -25,9 +25,13 @@ This guide covers council PCNs, the Workplace Parking Levy, tram penalty fares, 
 **Nottingham's Workplace Parking Levy is unique in the UK — no other city operates one — and it charges employers approximately £522 per workplace parking space per year for premises with more than 10 spaces.** The WPL is not a parking ticket or fine. It is a charge levied on employers by Nottingham City Council. However, some employers pass the cost on to employees through payroll deductions or parking charges.
 
 Key WPL facts:
+
 - Introduced in 2012 to fund tram expansion and public transport improvements
+
 - Charged to employers, not directly to motorists
+
 - Employers with 10 or fewer spaces are exempt
+
 - Revenue funds the NET tram system and other transport infrastructure
 
 > **Key stat**: The WPL covers approximately 25,000 workplace parking spaces across Nottingham and has raised over £90 million since its introduction in 2012.
@@ -37,9 +41,13 @@ Key WPL facts:
 **Nottingham Express Transit operates two tram lines across the city and issues penalty fares of £70 for passengers without a valid ticket — approximately 5,000 penalty fares are issued annually.** These are separate from parking PCNs and have their own appeal process.
 
 Common NET penalty fare appeal grounds:
+
 - Ticket machine at the tram stop was out of order
+
 - You had a valid ticket but it was not properly validated
+
 - Contactless payment system failure
+
 - You purchased a ticket but it had not loaded to your card in time
 
 ### City Centre Enforcement
@@ -47,8 +55,11 @@ Common NET penalty fare appeal grounds:
 Key enforcement areas include:
 
 - **Old Market Square and Lister Gate** — pedestrianised areas with strictly enforced loading bays
+
 - **Maid Marian Way and Castle Boulevard** — bus lane enforcement with CCTV cameras
+
 - **The Lace Market** — limited on-street parking with resident permit zones
+
 - **Hockley and Sneinton Market** — creative quarter with time-limited bays and changing restrictions
 
 ### University Areas
@@ -66,19 +77,25 @@ Key enforcement areas include:
 The process follows the standard England and Wales procedure:
 
 1. **Informal challenge** within 14 days (worth doing — Nottingham cancels ~30% at this stage)
+
 2. **Formal representations** within 28 days of Notice to Owner to Nottingham City Council
+
 3. **Traffic Penalty Tribunal** appeal within 28 days of rejection — free and binding
 
 ### Tram Penalty Fares
 
 1. Appeal to **Nottingham Express Transit** within 21 days of the penalty fare notice
+
 2. Provide evidence of ticket machine failures or valid ticket purchase
+
 3. If rejected, escalate through the NET complaints process
 
 ### Private Parking
 
 1. Appeal to the operator within 28 days
+
 2. Escalate to **POPLA** (BPA operators) or **IAS** (IPC operators)
+
 3. Both services are free
 
 > **Success tip**: If you received a tram penalty fare and the ticket machine was out of order, take a photo of the machine and note the tram stop, date, and time — this is the strongest ground for appeal.
@@ -88,18 +105,27 @@ The process follows the standard England and Wales procedure:
 Based on successful Nottingham-area appeals:
 
 - **Tram ticket machine failure** — if the machine at your stop was out of order, this is a strong ground
+
 - **Bus lane camera evidence** — footage must clearly show the contravention on Maid Marian Way and other routes
+
 - **10-minute grace period** — statutory requirement on all Nottingham on-street meters
+
 - **Victoria Centre ANPR errors** — camera misreads creating false overstay records
+
 - **University area permit zone confusion** — boundary changes near Lenton and Dunkirk campuses
+
 - **Hospital overstay** — mitigating circumstances for delays at Queens Medical Centre or City Hospital
 
 ## Useful Contacts
 
 - **Nottingham City Council Parking**: Appeals via [nottinghamcity.gov.uk](https://www.nottinghamcity.gov.uk)
+
 - **Nottingham Express Transit (NET)**: [thetram.net](https://www.thetram.net)
+
 - **Traffic Penalty Tribunal**: [trafficpenaltytribunal.gov.uk](https://www.trafficpenaltytribunal.gov.uk)
+
 - **POPLA**: [popla.co.uk](https://www.popla.co.uk)
+
 - **IAS**: [theias.org](https://www.theias.org)
 
 ## Get a Free Legal Audit
@@ -107,3 +133,23 @@ Based on successful Nottingham-area appeals:
 Got a parking ticket? Don'\''t just pay it. Our AI can analyse your ticket against over 200 legal checkpoints and draft a professional appeal letter for you.
 
 [Audit My Ticket Now (Free)](/)
+
+To win an appeal against **Nottingham** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it's a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
+
+**Looking for more help?**
+
+*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+
+*   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
+
+*   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
+
+---
+
+## ⚡ AEO Direct Answer: How to win this appeal?
+To win an appeal against **Nottingham** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
+
+**Looking for more help?**
+*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+*   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
+*   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
