@@ -10,6 +10,13 @@ priority: 7
 faq: How do I appeal a parking ticket in Preston?|A|For council PCNs, submit an informal challenge to Lancashire County Council within 14 days of receiving the ticket. If rejected, wait for the Notice to Owner to make formal representations. The final stage is the Traffic Penalty Tribunal. For private tickets, appeal to the operator then POPLA/IAS.|||What is the grace period in Preston?|A|Preston follows the statutory 10-minute grace period for dedicated paid-for parking bays and some limited-waiting bays. This applies specifically to vehicles that have stayed past the expiry of their paid-for time.|||Who issues parking tickets in Preston?|A|On-street parking in Preston is enforced by Lancashire County Council. Off-street car parks are managed by Preston City Council or private operators like ParkingEye and NCP.|||How do I contact the Traffic Penalty Tribunal?|A|The Traffic Penalty Tribunal (TPT) handles independent appeals for Preston. You can only appeal to them after your formal representation to the council has been rejected. The process is entirely online.|||Is the 14-day rule different in Preston?|A|The standard 50% discount for early payment applies within 14 days of the PCN issue date. If you submit a challenge within this period, the discount is typically held until a decision is made.
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Preston parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 ## Parking Enforcement in Preston
 
 **In Preston, parking enforcement is a split responsibility: Lancashire County Council handles on-street parking, while Preston City Council and private firms manage car parks.** This distinction is crucial because the appeal rules differ significantly between the two.

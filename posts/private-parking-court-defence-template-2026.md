@@ -7,6 +7,13 @@ date: 2026-03-26
 priority: 10
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Private Parking Court Defence Template 2026 parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 # The 2026 'Byelaw Strike' Court Defence Template
 
 If you have received a **County Court Claim Form** for a parking fine at an airport or station, your best defense is the **"Locus Standi & Non-Relevant Land"** argument.

@@ -10,6 +10,13 @@ priority: 7
 faq: How do I appeal a parking ticket in Milton Keynes?|A|For council PCNs, submit an informal challenge to Milton Keynes City Council within 14 days of receiving the ticket. If rejected, wait for the Notice to Owner to make formal representations. The final stage is the Traffic Penalty Tribunal. For private tickets, appeal to the operator then POPLA/IAS.|||What is the grace period in Milton Keynes?|A|Milton Keynes City Council follows the statutory 10-minute grace period for dedicated paid-for parking bays and some limited-waiting bays. This applies to vehicles that have stayed past the expiry of their paid-for time.|||Who issues parking tickets in Milton Keynes?|A|On-street and council car parks are enforced by Milton Keynes City Council. Private operators like Milton Keynes Development Partnership (MKDP) use firms like Saba or Smart Parking for many lots near the shopping center.|||How do I contact the Traffic Penalty Tribunal?|A|The Traffic Penalty Tribunal (TPT) handles independent appeals for Milton Keynes. You can only appeal to them after your formal representation to the council has been rejected. The process is entirely online.|||Is the 14-day rule different in Milton Keynes?|A|The standard 50% discount for early payment applies within 14 days of the PCN issue date. If you submit a challenge within this period, the discount is typically held until a decision is made.
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Milton Keynes parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 ## Parking Enforcement in Milton Keynes
 
 **In Milton Keynes, parking enforcement is managed by the City Council, but large areas near the shopping center (CMK) are managed by private operators on behalf of the Milton Keynes Development Partnership.** This distinction is crucial because the appeal rules differ significantly between the two.

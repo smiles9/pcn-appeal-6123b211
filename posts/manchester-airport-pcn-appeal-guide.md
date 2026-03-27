@@ -10,6 +10,13 @@ priority: 10
 faq: How do I appeal a Manchester Airport parking fine?|A|Submit an appeal as the registered keeper to APCOA via their online portal. Do not name the driver. State that airport land is not "relevant land" under POFA 2012 and that you are not liable. If rejected, take the case to POPLA.|||Is the Manchester Airport drop-off fee legal?|A|While the airport can charge a fee, the enforcement of "fines" (PCNs) by APCOA is governed by contract law and bylaws. Many of these are successfully challenged on the basis of "no keeper liability."|||What is the "Keeper Only" appeal strategy?|A|Under the Protection of Freedoms Act (POFA) 2012, a private company can only hold a keeper liable if the land is "relevant land." Most airport land is subject to bylaws and therefore not "relevant land," meaning APCOA cannot transfer the driver's debt to the keeper.|||I accidentally drove through the T2 drop-off zone, can I appeal?|A|Yes. Manchester Airport Terminal 2 recently moved to a barrier-less system. Many drivers make a "wrong turn" and enter the zone without intending to drop off. This is a common and successful ground for appeal if handled correctly.|||How much is the fine for not paying the Manchester Airport drop-off fee?|A|The initial charge is usually £5, but if unpaid within the 24-hour window, APCOA issues a PCN for £100 (often rising to £170 if ignored). These are the charges our guide helps you avoid.|||Can APCOA take me to court for an airport fine?|A|It is rare for APCOA to initiate court proceedings for a single airport PCN, especially when a strong "No Keeper Liability" defense has been lodged. However, you should always follow the formal appeals process rather than ignoring the letters.
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Manchester Airport parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 # Manchester Airport (APCOA) Parking Appeal Guide (2026)
 
 **Manchester Airport is one of the most litigious parking environments in the UK.** With the introduction of the new **barrier-less drop-off system at Terminal 2 (T2)** and a strict 24-hour payment window, thousands of drivers are being hit with £100+ fines (Parking Charge Notices) for simple mistakes or wrong turns.

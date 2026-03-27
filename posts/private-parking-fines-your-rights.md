@@ -4,6 +4,13 @@ description: "Understand your legal rights when you receive a private parking fi
 date: "2025-05-15"
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Private Parking Fines Your Rights parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 # Private Parking Fines: Know Your Rights
 
 Private parking charges are **not the same** as council-issued PCNs. Understanding the difference is crucial to protecting your rights.

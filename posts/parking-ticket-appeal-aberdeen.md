@@ -10,6 +10,13 @@ priority: 7
 faq: How do I appeal a parking ticket in Aberdeen?|A|Submit an informal challenge to Aberdeen City Council within 14 days of receiving the PCN. If rejected, wait for the Notice to Owner to make formal representations. The final stage is the First-tier Tribunal for Scotland (Transport Appeals). For private tickets, appeal directly to the operator then POPLA/IAS.|||What is the grace period in Aberdeen?|A|Aberdeen City Council applies a 10-minute grace period to all dedicated paid-for parking bays and some limited-waiting bays. This means a PCN cannot be issued until 10 minutes after your paid-for time has expired.|||Who issues parking tickets in Aberdeen?|A|Aberdeen City Council (Parking Services) handles on-street and council-managed car parks. Private companies like Smart Parking, NCP, and Euro Car Parks operate many city-center sites and retail parks.|||Does Aberdeen enforce bus lanes with CCTV?|A|Yes, Aberdeen is aggressive in bus lane enforcement using CCTV. Common sites include King Street, Union Street, and Holburn Street. These carry a £60 penalty (£30 if paid within 14 days).|||How do I contact the Scottish Transport Appeals tribunal?|A|The First-tier Tribunal for Scotland (Transport Appeals) handles independent adjudications for Aberdeen. You can only appeal to them after your formal representation to Aberdeen City Council has been rejected.
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Aberdeen parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 ## Parking Enforcement in Aberdeen
 
 **In Aberdeen, the City Council handles on-street parking and council-run car parks through a team of Civil Enforcement Officers (CEOs).** The city is known for its strict bus lane enforcement and numerous Controlled Parking Zones (CPZs).

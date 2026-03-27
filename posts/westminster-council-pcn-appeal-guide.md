@@ -4,6 +4,13 @@ description: "A step-by-step guide to appealing parking tickets issued by Westmi
 date: 2026-03-18T19:00:00Z
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Westminster Council parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 Westminster is notorious for being the most active parking enforcement area in the UK. If you've received a Penalty Charge Notice (PCN) in central London, you are not alone. However, Westminster also has specific procedural requirements that they must follow.
 
 ## Common Grounds for Appeal in Westminster

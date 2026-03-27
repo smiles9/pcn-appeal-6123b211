@@ -2,6 +2,13 @@
 title: "Gatwick Airport PCN Appeal Guide: How to Contest Drop-off Charges in 2026"
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Gatwick parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 # Gatwick Airport PCN Appeal Guide
 
 Gatwick Airport (LGW) operates a strict drop-off charge system. If you fail to pay the £6 charge by midnight the following day, you will receive a £100 PCN (Parking Charge Notice) from NCP.

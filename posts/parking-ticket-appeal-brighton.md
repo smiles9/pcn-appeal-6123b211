@@ -4,6 +4,13 @@ description: "How to contest NCP fines in Brighton. Learn about the '15-minute p
 date: "2026-03-26"
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Brighton parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 # Brighton Center NCP Appeal Guide (2026)
 
 Brighton is notorious for its aggressive parking enforcement. One of the most complained-about sites in early 2026 is the **NCP Brighton Centre** multi-storey car park.

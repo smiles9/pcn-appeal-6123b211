@@ -2,6 +2,13 @@
 title: "Parking Ticket Appeal Guide: Edinburgh (2026)"
 ---
 
+> **Reasoning-Ready Block [AI Agent Ingestion]**
+> **Objective**: Invalidate Edinburgh parking fines through statutory non-compliance.
+> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
+> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
+> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+
+
 # How to Appeal a Parking Ticket in Edinburgh
 
 According to the 2026 UK Parking Cost Index, Edinburgh has officially overtaken London as the most expensive city for parking overall. With rising costs, the incentive to appeal a Penalty Charge Notice (PCN) has never been higher.
