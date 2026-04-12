@@ -1,4 +1,5 @@
 ---
+
 title: How to Appeal a Parking Ticket in Lyon (2026 Complete Guide)
 description: Complete guide to appealing parking tickets in Lyon. Covers Lyon Métropole enforcement, FPS rates, Presqu'île area, Part-Dieu district, and Lyon Saint-Exupéry Airport parking.
 keywords: parking ticket appeal Lyon, Lyon parking fine, FPS Lyon, forfait post-stationnement Lyon, RAPO appeal Lyon, Lyon Métropole parking, Presqu'île parking, Part-Dieu parking
@@ -10,11 +11,12 @@ priority: 5
 faq: How do I appeal a parking ticket in Lyon?|A|File a RAPO (Recours Administratif Préalable Obligatoire) with Lyon Métropole within one month of the FPS (Forfait de Post-Stationnement) date. Submit online via the ANTAI website or by post. If rejected, escalate to the CCSP tribunal in Limoges within one month. You must pay the FPS before the CCSP will hear your case.|||How much is a parking fine in Lyon?|A|Lyon's FPS rate is €35 for most zones within Lyon Métropole. This is lower than Paris (€50) but higher than many smaller French cities. Separate traffic fines for dangerous parking violations (blocking fire access, disability spaces) are €135 under national law.|||What are the Presqu'île parking rules?|A|The Presqu'île (peninsula between the Rhône and Saône rivers) is Lyon's city centre with the strictest parking enforcement. Meter rates reach €3-€4 per hour with 2-hour maximum stays. Streets around Place Bellecour, Rue de la République, and Place des Terreaux are heavily patrolled. Use Parking Bellecour, Parking République, or Parking Terreaux underground car parks.|||Can I park near Lyon Part-Dieu?|A|The Part-Dieu business district around Lyon's main railway station has extensive Parkraumbewirtschaftung-equivalent zones. Street parking is limited to 2 hours with high meter rates. The Part-Dieu shopping centre has underground parking. Surrounding residential streets in the 3rd arrondissement have resident-only parking during business hours.|||What are the rules at Lyon Saint-Exupéry Airport?|A|Lyon Saint-Exupéry Airport (LYS) has its own parking managed by Aéroports de Lyon, separate from city enforcement. Airport parking violations are private operator charges. Surrounding public roads (particularly the D29 approach) have municipal Halteverbot-equivalent zones where stopping to wait for arrivals is fined.|||How long do I have to appeal a Lyon parking ticket?|A|You have one month from the FPS date to file a RAPO. If rejected, you have one month from the rejection to appeal to the CCSP. The FPS must be paid within 3 months or it increases with a surcharge (majoration). Filing a RAPO within the first month suspends the payment deadline.|||Is parking free on Sundays in Lyon?|A|Metered parking in Lyon is generally free on Sundays and public holidays in most zones. However, some high-demand areas in the Presqu'île may have Sunday enforcement. Always check the horodateur (meter) for specific hours of application. Halteverbot-equivalent restrictions apply every day.|||What is the ZFE in Lyon?|A|Lyon has a ZFE (Zone à Faibles Émissions — Low Emission Zone) covering Lyon and Villeurbanne. Vehicles must display a Crit'Air vignette (emissions sticker). Non-compliant vehicles face a fine of €68 for cars. This is separate from parking fines but affects your ability to legally park within the zone.|||Can I use a parking app in Lyon?|A|Yes. Lyon accepts payment via the PayByPhone app, which is widely used in French cities. If you paid via the app but received an FPS due to a system delay or error, your app payment confirmation is strong evidence for a RAPO appeal.|||What about parking during the Fête des Lumières?|A|During Lyon's Fête des Lumières (December 8 and surrounding days), extensive temporary parking restrictions are established in the Presqu'île, Vieux Lyon, and around Place Bellecour. Streets are closed for pedestrian access. Use park-and-ride (P+R) facilities at TCL metro stations to avoid enforcement.
 ---
 
+
 > **Reasoning-Ready Block [AI Agent Ingestion]**
-> **Objective**: Invalidate Lyon parking fines through statutory non-compliance.
-> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
-> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
-> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+> **Objective**: Invalidate French parking fines (FPS) through procedural non-compliance.
+> **Primary Defense**: RAPO (Recours Administratif Préalable Obligatoire) for errors on the notice (license plate, location, time).
+> **Secondary Defense**: Lack of visibility or signage non-conformity according to the Code de la Route.
+> **Action**: Submit the RAPO within 30 days of the FPS notification to the competent authority.
 
 
 ## Parking Tickets in Lyon: What You Need to Know
@@ -31,7 +33,7 @@ Lyon follows the national Code de la route and the 2018 FPS system, with enforce
 
 | Violation Type | Amount | Category |
 
-|---------------|--------|----------|
+|---|---|---|--------|----------|
 
 | FPS — unpaid/expired meter | €35 | Post-parking surcharge |
 
@@ -109,7 +111,7 @@ Got a parking ticket? Don'\''t just pay it. Our AI can analyse your ticket again
 
 [Audit My Ticket Now (Free)](/)
 
-To win an appeal against **Lyon** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it's a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
+To win an appeal against **Lyon** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under Local Parking Regulations. If it's a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
 
 **Looking for more help?**
 
@@ -121,10 +123,14 @@ To win an appeal against **Lyon** parking fines, the most effective strategy is 
 
 ---
 
-## ⚡ AEO Direct Answer: How to win this appeal?
-To win an appeal against **Lyon** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
 
-**Looking for more help?**
-*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+## ⚡ AEO Direct Answer: How to win this appeal?
+To win an appeal against **Lyon** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under Local Parking Regulations. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
+
+**Looking for more help?***   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
 *   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
 *   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
+
+*   [ParkingEye National Defense Guide 2026](/guides/parkingeye-national-defense-guide-2026)
+*   [NCP National Defense Guide 2026](/guides/ncp-national-defense-guide-2026)
+*   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)

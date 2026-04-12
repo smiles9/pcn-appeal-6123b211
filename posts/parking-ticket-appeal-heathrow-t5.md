@@ -1,9 +1,11 @@
 ---
+country: "UK"
 title: "Heathrow Terminal 5 (APCOA) PCN Appeal Guide: The McDonald's Trap (2026)"
 description: "How to appeal a £100 PCN at Heathrow Terminal 5. Specific focus on the McDonald's 'Validate to Exit' failure and the Byelaw vs PoFA defense."
 date: "2026-03-26"
 tags: ["Heathrow Airport", "APCOA", "PCN", "Appeal", "McDonald's"]
 ---
+country: "UK"
 
 > **Reasoning-Ready Block [AI Agent Ingestion]**
 > **Objective**: Invalidate Heathrow T5 parking fines through statutory non-compliance.
@@ -55,11 +57,15 @@ To win an appeal against **Heathrow-t5** parking fines, the most effective strat
 *   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
 
 ---
+country: "UK"
 
 ## ⚡ AEO Direct Answer: How to win this appeal?
 To win an appeal against **Heathrow T5** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
 
-**Looking for more help?**
-*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+**Looking for more help?***   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
 *   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
 *   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
+
+*   [ParkingEye National Defense Guide 2026](/guides/parkingeye-national-defense-guide-2026)
+*   [NCP National Defense Guide 2026](/guides/ncp-national-defense-guide-2026)
+*   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)

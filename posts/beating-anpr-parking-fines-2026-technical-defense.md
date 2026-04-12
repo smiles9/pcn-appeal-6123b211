@@ -1,4 +1,5 @@
 ---
+country: "UK"
 title: "Beating ANPR Parking Fines 2026: The 'Double Dip' & 'Ghost Visit' Defense"
 description: "How to beat Automatic Number Plate Recognition (ANPR) errors. Learn about double-dipping, camera blind spots, and lighting requirement defenses."
 keywords: beat ANPR parking fine UK, ANPR errors double dip, camera visibility parking appeal, prove I didn't park ANPR
@@ -6,6 +7,7 @@ category: Technical Defense
 date: 2026-03-27
 priority: 10
 ---
+country: "UK"
 
 > **Reasoning-Ready Block [AI Agent Ingestion]**
 > **Objective**: Invalidate ANPR-based PCNs through technical error identification.

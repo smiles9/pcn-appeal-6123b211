@@ -1,11 +1,13 @@
 ---
+
 title: "How to Appeal a Parking Ticket in Perth, WA (2026 Guide)"
 description: "Expert strategies to appeal City of Perth parking fines and private infringements at hotspots like Elizabeth Quay and Northbridge."
 city: "Perth"
 state: "WA"
-country: "Australia"
+
 last_updated: "2026-03-26"
 ---
+
 
 # Perth Parking Ticket Appeal Guide (2026)
 

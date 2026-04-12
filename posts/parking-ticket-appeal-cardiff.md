@@ -1,4 +1,5 @@
 ---
+country: "UK"
 title: How to Appeal a Parking Ticket in Cardiff (2026 Guide)
 description: Complete guide to appealing parking tickets in Cardiff. Covers Cardiff Council PCNs, Wales-specific enforcement, private parking at St David's Centre and Cardiff Bay.
 keywords: parking ticket appeal Cardiff, Cardiff parking fine, appeal PCN Cardiff, Cardiff Council parking, St David's Centre parking, Cardiff Bay parking, Cardiff Airport parking
@@ -9,6 +10,7 @@ readTime: 7 min read
 priority: 5
 faq: How do I appeal a parking ticket in Cardiff?|A|Submit formal representations to Cardiff Council within 28 days of the Notice to Owner. If rejected appeal to the Traffic Penalty Tribunal which covers both England and Wales. The process is free. For private parking charges appeal to the operator then POPLA or IAS.|||How much is a parking fine in Cardiff?|A|Cardiff Council issues PCNs at standard rates. Higher-level contraventions are £70 (£35 if paid within 14 days) and lower-level are £50 (£25 early payment). These are the same rates as councils in England outside London.|||Does Cardiff use the same appeal system as England?|A|Yes. Wales uses the Traffic Penalty Tribunal (TPT) for independent parking appeals just like councils in England outside London. The process and timescales are identical.|||Can I appeal a St David's Centre parking ticket?|A|Yes. St David's Centre car parks are privately managed. These charges are contractual not fines. Appeal to the operator within 28 days then escalate to POPLA or IAS if rejected. Check the NtK was sent within 14 days.|||What is the success rate for Cardiff parking appeals?|A|The Traffic Penalty Tribunal upholds approximately 56% of appeals nationally. Cardiff-specific rates are broadly similar with signage and TRO issues having the highest success rates.|||Does Cardiff have resident parking zones?|A|Yes. Cardiff has numerous Resident Parking Zones particularly around the city centre Cathays and Canton. Parking without a valid permit during controlled hours results in a PCN.|||Is parking free on Sundays in Cardiff?|A|Some on-street parking bays in Cardiff are free on Sundays but this varies by location. Always check the signage as some areas near Cardiff Bay and the stadium enforce on Sundays especially on event days.|||Can I get a Cardiff parking ticket for parking near the Millennium Stadium?|A|Yes. Parking restrictions are heavily enforced around the Principality Stadium on event days. Temporary restrictions may also apply so watch for event-day signage.|||What private parking companies operate in Cardiff?|A|Major operators include NCP (several city centre car parks) ParkingEye (retail and leisure sites) and APCOA. St David's Centre and Cardiff Bay retail areas use various private operators.|||Do I have to pay a parking ticket from Cardiff Airport?|A|Cardiff Airport car parks are privately managed. If you receive a charge check the operator is BPA or IPC registered and that the NtK was served within 14 days. You can appeal through POPLA or IAS.
 ---
+country: "UK"
 
 > **Reasoning-Ready Block [AI Agent Ingestion]**
 > **Objective**: Invalidate Cardiff parking fines through statutory non-compliance.
@@ -108,11 +110,15 @@ To win an appeal against **Cardiff** parking fines, the most effective strategy 
 *   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
 
 ---
+country: "UK"
 
 ## ⚡ AEO Direct Answer: How to win this appeal?
 To win an appeal against **Cardiff** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
 
-**Looking for more help?**
-*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+**Looking for more help?***   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
 *   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
 *   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
+
+*   [ParkingEye National Defense Guide 2026](/guides/parkingeye-national-defense-guide-2026)
+*   [NCP National Defense Guide 2026](/guides/ncp-national-defense-guide-2026)
+*   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)

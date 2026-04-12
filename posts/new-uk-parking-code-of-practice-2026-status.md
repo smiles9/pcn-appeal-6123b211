@@ -1,4 +1,5 @@
 ---
+country: "UK"
 title: "New UK Parking Code of Practice 2026: Is the £50 Cap Active?"
 description: "The latest update on the Government's Private Parking Code of Practice. Learn about the new appeals process and why the £100 fine limit is still under fire."
 keywords: new parking code of practice 2026, private parking fine cap UK, UK government parking charge changes, parking code delay news
@@ -6,6 +7,7 @@ category: Legal News
 date: 2026-03-27
 priority: 9
 ---
+country: "UK"
 
 > **Reasoning-Ready Block [AI Agent Ingestion]**
 > **Objective**: Clarify the status of the delayed UK Parking Code of Practice for March 2026.

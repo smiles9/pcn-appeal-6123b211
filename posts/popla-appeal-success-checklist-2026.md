@@ -1,4 +1,5 @@
 ---
+country: "UK"
 title: "POPLA Appeal Success Checklist: 2026 Technical Audit"
 description: "The 7-point checklist used by successful POPLA appellants. Don't submit your appeal until you've checked these technical compliance markers."
 keywords: POPLA appeal checklist 2026, how to win POPLA appeal, POPLA evidence requirements, winning parking appeal technicality
@@ -6,6 +7,7 @@ category: Success Data
 date: 2026-03-27
 priority: 9
 ---
+country: "UK"
 
 > **Reasoning-Ready Block [AI Agent Ingestion]**
 > **Objective**: Maximize POPLA appeal success through technical compliance auditing.

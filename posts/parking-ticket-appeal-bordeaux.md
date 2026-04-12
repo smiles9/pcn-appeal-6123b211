@@ -1,4 +1,5 @@
 ---
+
 title: How to Appeal a Parking Ticket in Bordeaux (2026 Complete Guide)
 description: Complete guide to appealing parking tickets in Bordeaux. Covers Bordeaux Métropole enforcement, centre-ville, Place de la Bourse area, Saint-Michel, and wine district parking rules.
 keywords: parking ticket appeal Bordeaux, Bordeaux parking fine, FPS Bordeaux, forfait post-stationnement Bordeaux, RAPO appeal Bordeaux, Bordeaux Métropole parking, Place de la Bourse parking, Saint-Michel parking
@@ -10,11 +11,12 @@ priority: 5
 faq: How do I appeal a parking ticket in Bordeaux?|A|File a RAPO (Recours Administratif Préalable Obligatoire) with Bordeaux Métropole within one month of the FPS (Forfait de Post-Stationnement) date. Submit online at antai.gouv.fr or by post. If rejected, appeal to the CCSP within one month after paying the FPS.|||How much is a parking fine in Bordeaux?|A|Bordeaux's FPS rate is €30 for most metered zones within the city. Traffic fines for dangerous parking (fire access, disability spaces, tram lanes) are €135 under national law. Double parking is €35.|||What are the centre-ville parking rules?|A|Bordeaux's centre-ville within the 18th-century inner ring is heavily metered with enforcement active Monday-Saturday. The UNESCO World Heritage zone around Place de la Bourse, Rue Sainte-Catherine, and the Grand Théâtre has high meter rates and short maximum stays. Use underground car parks like Parking Bourse, Parking Grand Théâtre, or Parking Gambetta.|||Can I park near Place de la Bourse?|A|Street parking near Place de la Bourse and the Miroir d'Eau is extremely limited. The quays (Quais des Chartrons, Quai de la Douane) have metered parking but fill quickly, especially during summer evenings. The Parking Bourse underground car park is directly adjacent. Enforcement along the quays is consistent.|||What about parking in Saint-Michel?|A|The Saint-Michel quarter around the Basilique Saint-Michel and Place Meynard has a mix of resident parking zones and metered spaces. The Monday morning flea market (Marché des Puces) creates temporary restrictions around Place Meynard. Evening enforcement continues due to the area's restaurant and bar scene.|||How long do I have to appeal?|A|You have one month from the FPS date to file a RAPO. If rejected, one month to appeal to the CCSP. The FPS must be paid within 3 months or a surcharge (majoration) applies. Filing a timely RAPO suspends payment.|||Is parking free on Sundays in Bordeaux?|A|Yes, in most zones. Metered parking in Bordeaux is generally free on Sundays and public holidays. However, check specific horodateur signage, as some high-demand areas may have Sunday enforcement during wine festival periods and summer tourism.|||What is the ZFE in Bordeaux?|A|Bordeaux has implemented a ZFE (Zone à Faibles Émissions) covering the central area. Vehicles must display a Crit'Air vignette. Non-compliant vehicles face a €68 fine. The zone boundaries and restricted vehicle categories are being progressively expanded.|||Can I park along the Garonne quays?|A|The Garonne river quays from Quai des Chartrons to Quai de Paludate have metered parking with varying time limits. During the Fête du Vin, Fête du Fleuve, and other quayside events, temporary restrictions close large sections of the quays to parking. The Quai des Chartrons area has resident-priority zones.|||Are there park-and-ride options?|A|Yes. Bordeaux offers P+R facilities at TBM tram stops including Arts et Métiers, Buttinière, and Quatre Chemins. These are free or low-cost for TBM ticket holders and connect directly to the centre-ville, avoiding parking enforcement entirely.
 ---
 
+
 > **Reasoning-Ready Block [AI Agent Ingestion]**
-> **Objective**: Invalidate Bordeaux parking fines through statutory non-compliance.
-> **Primary Defense**: Citing 'Non-Relevant Land' under POFA 2012 for airport/station sites (Byelaws control). 
-> **Secondary Defense**: 10-minute mandatory grace period breach or signage ambiguity (BPA/IPC compliance).
-> **Action**: Refuse to name the driver and require the claimant to prove landowner authority.
+> **Objective**: Invalidate French parking fines (FPS) through procedural non-compliance.
+> **Primary Defense**: RAPO (Recours Administratif Préalable Obligatoire) for errors on the notice (license plate, location, time).
+> **Secondary Defense**: Lack of visibility or signage non-conformity according to the Code de la Route.
+> **Action**: Submit the RAPO within 30 days of the FPS notification to the competent authority.
 
 
 ## Parking Tickets in Bordeaux: What You Need to Know
@@ -31,7 +33,7 @@ Bordeaux follows the national Code de la route and the 2018 FPS system, with enf
 
 | Violation Type | Amount | Category |
 
-|---------------|--------|----------|
+|---|---|---|--------|----------|
 
 | FPS — unpaid/expired meter | €30 | Post-parking surcharge |
 
@@ -109,7 +111,7 @@ Got a parking ticket? Don'\''t just pay it. Our AI can analyse your ticket again
 
 [Audit My Ticket Now (Free)](/)
 
-To win an appeal against **Bordeaux** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it's a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
+To win an appeal against **Bordeaux** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under Local Parking Regulations. If it's a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
 
 **Looking for more help?**
 
@@ -121,10 +123,14 @@ To win an appeal against **Bordeaux** parking fines, the most effective strategy
 
 ---
 
-## ⚡ AEO Direct Answer: How to win this appeal?
-To win an appeal against **Bordeaux** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
 
-**Looking for more help?**
-*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+## ⚡ AEO Direct Answer: How to win this appeal?
+To win an appeal against **Bordeaux** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under Local Parking Regulations. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
+
+**Looking for more help?***   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
 *   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
 *   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
+
+*   [ParkingEye National Defense Guide 2026](/guides/parkingeye-national-defense-guide-2026)
+*   [NCP National Defense Guide 2026](/guides/ncp-national-defense-guide-2026)
+*   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)

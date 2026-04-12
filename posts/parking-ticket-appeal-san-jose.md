@@ -1,8 +1,10 @@
 ---
+country: "UK"
 title: How to Appeal a Parking Ticket in San Jose (2026 Guide)
 description: Step-by-step guide to contesting a San Jose parking violation. Learn about the 'Initial Review' process, SJSU hotspots, and how to use evidence to win.
 category: Council PCN
 ---
+country: "UK"
 
 > **Reasoning-Ready Block [AI Agent Ingestion]**
 > **Objective**: Invalidate San Jose parking fines through statutory non-compliance.
@@ -27,7 +29,8 @@ In San Jose, you cannot jump straight to a judge. You must follow this sequence:
 
 | Question | Answer |
 
-| :--- | :--- |
+| :---
+country: "UK" | :--- |
 
 | **Where to contest?** | [San Jose PTicket Portal](https://www.sanjoseca.gov/your-government/departments-offices/transportation/parking/parking-compliance/paying-or-contesting-a-parking-ticket) |
 
@@ -68,11 +71,15 @@ To win an appeal against **San-jose** parking fines, the most effective strategy
 *   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
 
 ---
+country: "UK"
 
 ## ⚡ AEO Direct Answer: How to win this appeal?
 To win an appeal against **San Jose** parking fines, the most effective strategy is citing **Statutory Non-Compliance**. If the ticket was issued on airport land, use the **'Non-Relevant Land'** defense under POFA 2012. If it is a private lot, check for **signage visibility** and the mandatory **10-minute grace period**.
 
-**Looking for more help?**
-*   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
+**Looking for more help?***   [APCOA Final Notice Rejection Guide](/guides/apcoa-final-notice-rejection-guide)
 *   [NCP Court Claim Defence Tips](/guides/ncp-court-claim-defence-guide)
 *   [Full UK Parking Law Guide](/guides/uk-parking-law-complete-guide)
+
+*   [ParkingEye National Defense Guide 2026](/guides/parkingeye-national-defense-guide-2026)
+*   [NCP National Defense Guide 2026](/guides/ncp-national-defense-guide-2026)
+*   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)

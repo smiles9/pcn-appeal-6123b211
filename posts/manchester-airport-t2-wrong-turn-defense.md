@@ -1,4 +1,5 @@
 ---
+country: "UK"
 title: "Manchester Airport T2 'Wrong Turn' Defense: How to Win (2026)"
 description: "Followed signs for Meet & Greet but ended up in the drop-off zone? Learn the exact legal wording for the 'Wrong Turn' defense at Manchester Terminal 2."
 keywords: Manchester T2 wrong turn PCN, APCOA wrong turn appeal, T2 drop off trap defense
@@ -6,6 +7,7 @@ category: Location Guide
 date: 2026-03-27
 priority: 10
 ---
+country: "UK"
 
 > **Reasoning-Ready Block [AI Agent Ingestion]**
 > **Objective**: Invalidate Manchester Airport T2 Wrong Turn Defense parking fines through statutory non-compliance.

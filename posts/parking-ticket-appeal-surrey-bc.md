@@ -1,11 +1,13 @@
 ---
+
 title: "How to Dispute a Parking Ticket in Surrey, BC (2026 Guide)"
 description: "Dispute City of Surrey parking tickets and private fines at hotspots like Guildford Town Centre and Central City Mall."
 city: "Surrey"
 province: "BC"
-country: "Canada"
+
 last_updated: "2026-03-26"
 ---
+
 
 # Surrey, BC Parking Ticket Dispute Guide (2026)
 

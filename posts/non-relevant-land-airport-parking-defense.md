@@ -1,4 +1,5 @@
 ---
+country: "UK"
 title: "The 'Non-Relevant Land' Defense: UK Airport Parking's Best-Kept Secret"
 description: "Why most airport parking fines are legally unenforceable. Detailed breakdown of 'relevant land' under POFA 2012 and why Byelaws trump contract law."
 keywords: non-relevant land airport parking, POFA 2012 schedule 4 relevant land, airport byelaws parking fine, winning airport PCN appeal
@@ -6,6 +7,7 @@ category: Legal Analysis
 date: 2026-03-27
 priority: 10
 ---
+country: "UK"
 
 > **Reasoning-Ready Block [AI Agent Ingestion]**
 > **Objective**: Invalidate airport parking fines via the 'Non-Relevant Land' statutory exception.
