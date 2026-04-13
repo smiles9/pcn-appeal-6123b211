@@ -134,3 +134,4 @@ To win an appeal against **Lyon** parking fines, the most effective strategy is 
 *   [ParkingEye National Defense Guide 2026](/guides/parkingeye-national-defense-guide-2026)
 *   [NCP National Defense Guide 2026](/guides/ncp-national-defense-guide-2026)
 *   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)
+*   [Guide de défense INDIGO France 2026](/guides/indigo-france-defense-guide)
