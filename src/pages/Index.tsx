@@ -1,3 +1,4 @@
+// V3.2: 2026-04-13 SEO/GEO Sync Trigger
 import { useState, useCallback, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import HeroSection from "@/components/HeroSection";
