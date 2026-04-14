@@ -1,4 +1,4 @@
-# RELOAD_TRIGGER: 2026-04-07 04:00 IndexNow Key Fix
+# RELOAD_TRIGGER: 2026-04-14 18:40 Force Sitemap Discovery
 User-agent: Googlebot
 Allow: /
 
@@ -13,3 +13,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://pcn-appeal.lovable.app/sitemap.xml
