@@ -44,15 +44,15 @@ function parseFrontmatter(raw: string): { meta: Record<string, any>; content: st
   return { meta, content: match[2].trim() };
 }
 
-function rawToPost(raw: string): Post | null {
+function rawToPost(raw: string, filename: string): Post | null {
   const { meta, content } = parseFrontmatter(raw);
-  if (!meta.slug) return null;
+  const slug = meta.slug || filename.replace(".md", "");
   return {
     title: meta.title || "Untitled",
-    slug: meta.slug,
+    slug: slug,
     description: meta.description || "",
     date: meta.date || "",
-    author: meta.author || "",
+    author: meta.author || "Ticket Crusader",
     lang: meta.lang || "en",
     tags: meta.tags || [],
     content,
@@ -89,7 +89,7 @@ export async function fetchPostsFromGitHub(): Promise<Post[]> {
         const rawRes = await fetch(file.download_url);
         if (!rawRes.ok) return null;
         const raw = await rawRes.text();
-        return rawToPost(raw);
+        return rawToPost(raw, file.name);
       } catch {
         return null;
       }
