@@ -69,3 +69,11 @@ To win an appeal against **Impark** in Canada, dispute the notice as an **Unenfo
 *   [Toronto Private Parking Guide](/guides/toronto-private-parking-guide)
 *   [Precise ParkLink Defense Tips](/guides/precise-parklink-defense-guide)
 *   [Canadian Consumer Protection Laws](/guides/canada-consumer-protection-guide)
+
+
+## Regional Coverage (City Guides)
+- [How to beat parking fines in Toronto](/guides/parking-ticket-appeal-toronto)
+- [How to beat parking fines in Montreal](/guides/parking-ticket-appeal-montreal)
+- [How to beat parking fines in Vancouver](/guides/parking-ticket-appeal-vancouver)
+- [How to beat parking fines in Calgary](/guides/parking-ticket-appeal-calgary)
+- [View all Regional Guides](/guides)

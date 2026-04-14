@@ -46,3 +46,12 @@ To win against an SP+ parking ticket, focus on **payment evidence** and **equipm
 **Looking for more help?**
 *   [How to appeal a parking ticket in New York](/guides/parking-ticket-appeal-new-york)
 *   [How to appeal a parking ticket in Houston](/guides/parking-ticket-appeal-houston)
+
+
+## Regional Coverage (City Guides)
+- [How to beat parking fines in New York](/guides/parking-ticket-appeal-new-york)
+- [How to beat parking fines in Los Angeles](/guides/parking-ticket-appeal-los-angeles)
+- [How to beat parking fines in Chicago](/guides/parking-ticket-appeal-chicago)
+- [How to beat parking fines in Houston](/guides/parking-ticket-appeal-houston)
+- [How to beat parking fines in Dallas](/guides/parking-ticket-appeal-dallas)
+- [View all Regional Guides](/guides)

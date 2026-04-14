@@ -71,3 +71,11 @@ To win an appeal against **Wilson Parking** in Australia, cite **Unfair Contract
 *   [Secure Parking AU Defense Guide](/guides/secure-parking-au-defense-guide)
 *   [Sydney Private Parking Law](/guides/sydney-private-parking-law)
 *   [Australian Consumer Law for Motorists](/guides/acl-motorists-guide)
+
+
+## Regional Coverage (City Guides)
+- [How to beat parking fines in Sydney](/guides/parking-ticket-appeal-sydney)
+- [How to beat parking fines in Melbourne](/guides/parking-ticket-appeal-melbourne)
+- [How to beat parking fines in Brisbane](/guides/parking-ticket-appeal-brisbane)
+- [How to beat parking fines in Perth](/guides/parking-ticket-appeal-perth-au)
+- [View all Regional Guides](/guides)
