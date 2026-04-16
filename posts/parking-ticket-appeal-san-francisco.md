@@ -85,3 +85,5 @@ To win an appeal against a US parking ticket, the most effective strategy is cit
 **Looking for more help?**
 *   [LAZ Parking Defense Guide](/guides/laz-parking-us-defense-guide)
 *   [SP+ (SP Plus) Defense Guide](/guides/sp-plus-us-defense-guide)
+*   [LAZ Parking Defense Guide 2026](/guides/laz-parking-us-defense-guide)
+*   [SP+ (SP Plus) Defense Guide 2026](/guides/sp-plus-us-defense-guide)

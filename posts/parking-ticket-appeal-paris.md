@@ -127,3 +127,4 @@ Pour gagner la contestation d'un FPS en France, la stratégie la plus efficace c
 **Looking for more help?**
 *   [Guide de défense INDIGO France](/guides/indigo-france-defense-guide)
 *   [Contester une amende en France](/guides/contester-amende-stationnement-france)
+*   [Guide de défense INDIGO France 2026](/guides/indigo-france-defense-guide)
