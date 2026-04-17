@@ -20,7 +20,15 @@ const mappings = {
         cities: ['atlanta', 'austin', 'boston', 'charlotte', 'chicago', 'columbus', 'dallas', 'denver', 'fort-worth', 'houston', 'indianapolis', 'jacksonville', 'las-vegas', 'los-angeles', 'miami', 'minneapolis', 'nashville', 'new-orleans', 'new-york', 'oklahoma-city', 'orlando', 'philadelphia', 'phoenix', 'portland', 'sacramento', 'san-antonio', 'san-diego', 'san-francisco', 'san-jose', 'seattle', 'washington-dc'],
         links: [
             '*   [LAZ Parking Defense Guide 2026](/guides/laz-parking-us-defense-guide)',
-            '*   [SP+ (SP Plus) Defense Guide 2026](/guides/sp-plus-us-defense-guide)'
+            '*   [SP+ (SP Plus) Defense Guide 2026](/guides/sp-plus-us-defense-guide)',
+            '*   [Parkopedia App Appeal Guide 2026](/guides/parkopedia-app-appeal-guide)'
+        ]
+    },
+    uk: {
+        cities: ['london', 'manchester', 'birmingham', 'glasgow', 'liverpool', 'leeds', 'sheffield', 'bristol', 'newcastle', 'nottingham'],
+        links: [
+            '*   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)',
+            '*   [Euro Car Parks Appeal Guide 2026](/guides/euro-car-parks-appeal-guide)'
         ]
     }
 };

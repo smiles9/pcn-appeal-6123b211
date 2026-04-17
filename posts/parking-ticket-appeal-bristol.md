@@ -89,3 +89,4 @@ To win an appeal against a parking ticket in the UK, the most effective strategy
 *   [ParkingEye National Defense Guide 2026](/guides/parkingeye-national-defense-guide-2026)
 *   [NCP National Defense Guide 2026](/guides/ncp-national-defense-guide-2026)
 *   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)
+*   [Euro Car Parks Appeal Guide 2026](/guides/euro-car-parks-appeal-guide)
