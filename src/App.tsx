@@ -18,6 +18,7 @@ const GuidesIndex = lazy(() => import("./pages/GuidesIndex.tsx"));
 
 const queryClient = new QueryClient();
 
+// 2026-04-17: Force rebuild for sitemap visibility
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
