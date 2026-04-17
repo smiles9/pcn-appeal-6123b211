@@ -7,7 +7,10 @@ const postsDir = './posts';
 const mappings = {
     germany: {
         cities: ['berlin', 'munich', 'frankfurt', 'hamburg', 'cologne', 'stuttgart', 'dusseldorf', 'dresden'],
-        link: '*   [APCOA Germany Defense Guide 2026](/guides/apcoa-germany-defense-guide)'
+        links: [
+            '*   [APCOA Germany Defense Guide 2026](/guides/apcoa-germany-defense-guide)',
+            '*   [Parkdepot Germany Defense Guide 2026](/guides/parkdepot-germany-defense-guide)'
+        ]
     },
     france: {
         cities: ['paris', 'lyon', 'marseille', 'toulouse', 'nice', 'nantes', 'strasbourg', 'montpellier', 'bordeaux', 'lille'],
@@ -35,25 +38,27 @@ files.forEach(file => {
     
     for (const country in mappings) {
         if (mappings[country].cities.includes(city)) {
-            const linkToAdd = mappings[country].link || mappings[country].links.join('\n');
+            const countryLinks = mappings[country].links ? mappings[country].links : [mappings[country].link];
             
-            if (!content.includes(linkToAdd)) {
-                // Find the end of the "Looking for more help?" section
-                const helpSectionMarker = '**Looking for more help?**';
-                const markerIndex = content.lastIndexOf(helpSectionMarker);
-                
-                if (markerIndex !== -1) {
-                    // Find the end of the bullet points following the marker
-                    let insertIndex = content.indexOf('\n---', markerIndex);
-                    if (insertIndex === -1) insertIndex = content.length;
+            countryLinks.forEach(linkToAdd => {
+                if (!content.includes(linkToAdd)) {
+                    // Find the end of the "Looking for more help?" section
+                    const helpSectionMarker = '**Looking for more help?**';
+                    const markerIndex = content.lastIndexOf(helpSectionMarker);
                     
-                    const before = content.slice(0, insertIndex).trimEnd();
-                    const after = content.slice(insertIndex);
-                    
-                    content = `${before}\n${linkToAdd}\n${after}`;
-                    updated = true;
+                    if (markerIndex !== -1) {
+                        // Find the end of the bullet points following the marker
+                        let insertIndex = content.indexOf('\n---', markerIndex);
+                        if (insertIndex === -1) insertIndex = content.length;
+                        
+                        const before = content.slice(0, insertIndex).trimEnd();
+                        const after = content.slice(insertIndex);
+                        
+                        content = `${before}\n${linkToAdd}\n${after}`;
+                        updated = true;
+                    }
                 }
-            }
+            });
         }
     }
     
