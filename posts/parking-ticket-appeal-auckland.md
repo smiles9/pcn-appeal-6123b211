@@ -83,3 +83,4 @@ To win an appeal against **Auckland** parking fines, the most effective strategy
 *   [Wilson Parking NZ Defense Guide](/guides/wilson-parking-defense-guide-nz)
 *   [Auckland Transport Infringement Guide](/guides/at-infringement-guide)
 *   [NZ Road Rules & Parking Law Guide](/guides/nz-parking-law-complete-guide)
+*   [Wilson Parking New Zealand Defense Guide 2026](/guides/wilson-parking-defense-guide-nz)

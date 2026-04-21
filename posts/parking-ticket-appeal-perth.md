@@ -100,3 +100,5 @@ To win an appeal against **Perth parking fines, the most effective strategy is c
 *   [Wilson Parking AU Defense Guide](/guides/wilson-parking-defense-guide-au)
 *   [Secure Parking AU Defense Guide](/guides/secure-parking-defense-guide-au)
 *   [AU Road Rules & Parking Law Guide](/guides/au-parking-law-complete-guide)
+*   [Wilson Parking Defense Guide 2026](/guides/wilson-parking-defense-guide-au)
+*   [Secure Parking Defense Guide 2026](/guides/secure-parking-defense-guide-au)

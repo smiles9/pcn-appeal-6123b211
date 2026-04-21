@@ -75,3 +75,4 @@ To win an appeal against a Canadian parking ticket, challenge the **signage visi
 
 **Looking for more help?**
 *   [Impark Canada Defense Guide](/guides/impark-parking-defense-guide-ca)
+*   [Wilson Parking New Zealand Defense Guide 2026](/guides/wilson-parking-defense-guide-nz)

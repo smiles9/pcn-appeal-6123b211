@@ -14,4 +14,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://pcn-appeal.lovable.app/sitemap_index.xml
+Sitemap: https://pcn-appeal.lovable.app/sitemap-global-2026.xml

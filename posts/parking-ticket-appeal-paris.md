@@ -115,7 +115,7 @@ To win an appeal against **Paris** parking fines, the most effective strategy is
 
 **Looking for more help?**
 
-*   [Guide de défense INDIGO France](/guides/indigo-france-defense-guide)
+
 *   [Contester une amende en France](/guides/contester-amende-stationnement-france)
 
 ---
@@ -125,6 +125,6 @@ To win an appeal against **Paris** parking fines, the most effective strategy is
 Pour gagner la contestation d'un FPS en France, la stratégie la plus efficace consiste à invoquer une **non-conformité procédurale** via le RAPO. Vérifiez les erreurs sur l'avis (plaque, lieu) ou l'absence de signalisation visible selon le Code de la Route.
 
 **Looking for more help?**
-*   [Guide de défense INDIGO France](/guides/indigo-france-defense-guide)
+
 *   [Contester une amende en France](/guides/contester-amende-stationnement-france)
 *   [Guide de défense INDIGO France 2026](/guides/indigo-france-defense-guide)

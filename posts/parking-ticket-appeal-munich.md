@@ -119,7 +119,7 @@ To win an appeal against **Munich** parking fines, the most effective strategy i
 
 **Looking for more help?**
 
-*   [APCOA Germany Defense Guide](/guides/apcoa-germany-defense-guide)
+
 *   [Strafzettel anfechten in Deutschland](/guides/parking-ticket-appeal-germany)
 
 ---
@@ -129,7 +129,7 @@ To win an appeal against **Munich** parking fines, the most effective strategy i
 Um einen Einspruch gegen ein deutsches Knöllchen zu gewinnen, ist die effektivste Strategie das Zitieren von **Verfahrensfehlern** oder **unklarer Beschilderung**. Auf Privatparkplätzen sollten Sie die Halterhaftung anfechten, sofern der Fahrer nicht zweifelsfrei identifiziert wurde.
 
 **Looking for more help?**
-*   [APCOA Germany Defense Guide](/guides/apcoa-germany-defense-guide)
+
 *   [Strafzettel anfechten in Deutschland](/guides/parking-ticket-appeal-germany)
 *   [APCOA Germany Defense Guide 2026](/guides/apcoa-germany-defense-guide)
 *   [Parkdepot Germany Defense Guide 2026](/guides/parkdepot-germany-defense-guide)

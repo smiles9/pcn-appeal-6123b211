@@ -17,7 +17,7 @@ const mappings = {
         link: '*   [Guide de défense INDIGO France 2026](/guides/indigo-france-defense-guide)'
     },
     usa: {
-        cities: ['atlanta', 'austin', 'boston', 'charlotte', 'chicago', 'columbus', 'dallas', 'denver', 'fort-worth', 'houston', 'indianapolis', 'jacksonville', 'las-vegas', 'los-angeles', 'miami', 'minneapolis', 'nashville', 'new-orleans', 'new-york', 'oklahoma-city', 'orlando', 'philadelphia', 'phoenix', 'portland', 'sacramento', 'san-antonio', 'san-diego', 'san-francisco', 'san-jose', 'seattle', 'washington-dc'],
+        cities: ['atlanta', 'austin', 'boston', 'charlotte', 'chicago', 'columbus', 'dallas', 'denver', 'fort-worth', 'houston', 'indianapolis', 'jacksonville', 'las-vegas', 'los-angeles', 'miami', 'minneapolis', 'nashville', 'new-orleans', 'new-york', 'oklahoma-city', 'orlando', 'philadelphia', 'phoenix', 'portland', 'sacramento', 'san-antonio', 'san-diego', 'san-francisco', 'san-jose', 'seattle', 'washington-dc', 'baltimore', 'salt-lake-city'],
         links: [
             '*   [LAZ Parking Defense Guide 2026](/guides/laz-parking-us-defense-guide)',
             '*   [SP+ (SP Plus) Defense Guide 2026](/guides/sp-plus-us-defense-guide)',
@@ -25,10 +25,31 @@ const mappings = {
         ]
     },
     uk: {
-        cities: ['london', 'manchester', 'birmingham', 'glasgow', 'liverpool', 'leeds', 'sheffield', 'bristol', 'newcastle', 'nottingham'],
+        cities: ['london', 'manchester', 'birmingham', 'glasgow', 'liverpool', 'leeds', 'sheffield', 'bristol', 'newcastle', 'nottingham', 'aberdeen', 'bath', 'belfast', 'bournemouth', 'brighton', 'cambridge', 'cardiff', 'coventry', 'derby', 'dundee', 'edinburgh', 'exeter', 'gloucester', 'hull', 'leicester', 'luton', 'middlesbrough', 'milton-keynes', 'northampton', 'norwich', 'oxford', 'peterborough', 'plymouth', 'portsmouth', 'preston', 'reading', 'slough', 'southampton', 'stoke-on-trent', 'sunderland', 'swansea', 'wolverhampton', 'york'],
         links: [
             '*   [APCOA National Defense Guide 2026](/guides/apcoa-national-defense-guide-2026)',
-            '*   [Euro Car Parks Appeal Guide 2026](/guides/euro-car-parks-appeal-guide)'
+            '*   [Euro Car Parks Appeal Guide 2026](/guides/euro-car-parks-appeal-guide)',
+            '*   [ParkingEye National Defense Guide 2026](/guides/parkingeye-national-defense-guide-2026)',
+            '*   [NCP National Defense Guide 2026](/guides/ncp-national-defense-guide-2026)'
+        ]
+    },
+    australia: {
+        cities: ['sydney', 'melbourne', 'brisbane', 'perth', 'adelaide', 'gold-coast', 'canberra', 'darwin', 'hobart', 'cairns', 'geelong', 'townsville'],
+        links: [
+            '*   [Wilson Parking Defense Guide 2026](/guides/wilson-parking-defense-guide-au)',
+            '*   [Secure Parking Defense Guide 2026](/guides/secure-parking-defense-guide-au)'
+        ]
+    },
+    canada: {
+        cities: ['toronto', 'montreal', 'vancouver', 'calgary', 'ottawa', 'edmonton', 'winnipeg', 'halifax', 'mississauga', 'brampton', 'kitchener', 'surrey-bc', 'quebec-city'],
+        links: [
+            '*   [Impark (REEF) Canada Defense Guide 2026](/guides/impark-parking-defense-guide-ca)'
+        ]
+    },
+    nz: {
+        cities: ['auckland', 'wellington', 'christchurch', 'hamilton'],
+        links: [
+            '*   [Wilson Parking New Zealand Defense Guide 2026](/guides/wilson-parking-defense-guide-nz)'
         ]
     }
 };
@@ -49,6 +70,13 @@ files.forEach(file => {
             const countryLinks = mappings[country].links ? mappings[country].links : [mappings[country].link];
             
             countryLinks.forEach(linkToAdd => {
+                // Remove old versions of the link (without 2026) if present
+                const baseLink = linkToAdd.replace(' 2026', '');
+                if (content.includes(baseLink) && baseLink !== linkToAdd) {
+                    content = content.split(baseLink).join('');
+                    updated = true;
+                }
+
                 if (!content.includes(linkToAdd)) {
                     // Find the end of the "Looking for more help?" section
                     const helpSectionMarker = '**Looking for more help?**';
@@ -66,6 +94,22 @@ files.forEach(file => {
                         updated = true;
                     }
                 }
+                
+                // Final deduplication for exact linkToAdd
+                const lines = content.split('\n');
+                const uniqueLines = [];
+                let seenLink = false;
+                for (const line of lines) {
+                    if (line.trim() === linkToAdd.trim()) {
+                        if (seenLink) {
+                            updated = true;
+                            continue; // Skip duplicate
+                        }
+                        seenLink = true;
+                    }
+                    uniqueLines.push(line);
+                }
+                content = uniqueLines.join('\n');
             });
         }
     }
