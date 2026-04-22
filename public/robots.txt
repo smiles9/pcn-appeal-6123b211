@@ -1,4 +1,4 @@
-# RELOAD_TRIGGER: 2026-04-20 00:01 Force Sitemap Discovery / Monday Blitz
+# RELOAD_TRIGGER: 2026-04-22 11:37 Force Sitemap Discovery
 User-agent: Googlebot
 Allow: /
 
@@ -14,4 +14,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://pcn-appeal.lovable.app/sitemap-global-2026.xml
+Sitemap: https://pcn-appeal.lovable.app/sitemap.xml
