@@ -15,3 +15,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://pcn-appeal.lovable.app/sitemap.xml
+# TRIGGER: Fri Apr 24 11:50:35 CEST 2026
