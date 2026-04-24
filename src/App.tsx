@@ -18,7 +18,7 @@ const GuidesIndex = lazy(() => import("./pages/GuidesIndex.tsx"));
 
 const queryClient = new QueryClient();
 
-// Force redeploy Fri Apr 17 09:20:00 CEST 2026 (Explicit Code Change)
+// Force redeploy Fri Apr 24 13:02:00 CEST 2026 (Force Sync for 187 guides)
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
