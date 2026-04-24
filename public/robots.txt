@@ -1,4 +1,4 @@
-# RELOAD_TRIGGER: 2026-04-22 11:37 Force Sitemap Discovery
+# RELOAD_TRIGGER: 2026-04-24 08:45 Force Sitemap Discovery Sync
 User-agent: Googlebot
 Allow: /
 
@@ -14,4 +14,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://pcn-appeal.lovable.app/sitemap_new.xml
+Sitemap: https://pcn-appeal.lovable.app/sitemap.xml
